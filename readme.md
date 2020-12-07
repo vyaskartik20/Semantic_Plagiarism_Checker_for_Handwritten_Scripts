@@ -1,0 +1,1 @@
+Semantic Plagiarism Checker for Handwritten Scripts
