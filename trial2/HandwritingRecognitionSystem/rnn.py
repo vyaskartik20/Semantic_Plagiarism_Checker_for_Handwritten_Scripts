@@ -7,6 +7,8 @@
 #!/usr/bin/python
 
 import tensorflow as tf
+# import tensorflow.compat.v1 as tf
+# tf.disable_v2_behavior()
 import numpy as np
 import math
 
@@ -21,7 +23,7 @@ NClasses = len(Classes)
 
 def RNN(Inputs, SeqLens, Scope):
 
-	with tf.variable_scope(Scope):
+	with tf.compat.v1.variable_scope(Scope):
 
 		################################################################
 		#Construct batch sequences for LSTM

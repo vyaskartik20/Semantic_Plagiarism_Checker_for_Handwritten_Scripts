@@ -7,6 +7,8 @@
 #!/usr/bin/python
 
 import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 import numpy as np
 import cv2
 import math
@@ -14,13 +16,15 @@ import os
 import codecs
 from config import cfg
 
+# tf.compat.v1.enable_eager_execution()
+
 def LoadList(path):
     with open(path) as vlist:
         return vlist.readlines()
 
 #Ref: https://stackoverflow.com/questions/33949786/how-could-i-use-batch-normalization-in-tensorflow
 def batch_norm_conv(x, n_out, phase_train):
-    with tf.variable_scope('bn'):
+    with tf.compat.v1.variable_scope('bn'):
         beta = tf.Variable(tf.constant(0.0, shape=[n_out]), name='beta', trainable=True)
         gamma = tf.Variable(tf.constant(1.0, shape=[n_out]), name='gamma', trainable=True)
         batch_mean, batch_var = tf.nn.moments(x, [0,1,2], name='moments')
@@ -37,7 +41,7 @@ def batch_norm_conv(x, n_out, phase_train):
     return normed
 
 def weight_variable(shape):
-  initial = tf.truncated_normal(shape, stddev=0.1)
+  initial = tf.compat.v1.truncated_normal(shape, stddev=0.1)
   return tf.Variable(initial)
 
 def conv2d(x, W, stride=(1, 1), padding='SAME'):

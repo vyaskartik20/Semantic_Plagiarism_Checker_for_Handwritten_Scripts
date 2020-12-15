@@ -7,6 +7,7 @@
 #!/usr/bin/python
 
 import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import sys
 import cv2
 import numpy as np
@@ -38,6 +39,7 @@ LogFile = codecs.open(cfg.LogFile, "a")
 
 phase_train = tf.Variable(True, name='phase_train')
 
+tf.compat.v1.disable_eager_execution()
 x = tf.placeholder(tf.float32, shape=[None, WND_HEIGHT, WND_WIDTH])
 
 SeqLens = tf.placeholder(shape=[cfg.BatchSize], dtype=tf.int32)

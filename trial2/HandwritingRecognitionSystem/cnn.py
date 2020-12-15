@@ -7,13 +7,19 @@
 #!/usr/bin/python
 
 import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import math
+
+tf.disable_v2_behavior()
 
 from config import cfg
 from util import batch_norm_conv
 from util import weight_variable
 from util import conv2d
 from util import max_pool
+
+
+# tf.compat.v1.enable_eager_execution()
 
 ####################################################################
 #CNN-specific architecture configuration
@@ -67,8 +73,8 @@ def CNNLight(X, Training, Scope):
 
 
 def CNN(X, Training, Scope):
-
-	with tf.variable_scope(Scope):
+# tf.variable_scope()
+	with tf.compat.v1.variable_scope(Scope):
 
 		ConvLayer1 = ConvLayer(X, 1, 64, Training, 'ConvLayer1')
 
@@ -114,7 +120,7 @@ def CNN(X, Training, Scope):
 
 def ConvLayer(Input, FilterIn, FilterOut, Training, Scope):
 
-	with tf.variable_scope(Scope):
+	with tf.compat.v1.variable_scope(Scope):
 
 		Weight = weight_variable([3, 3, FilterIn, FilterOut])
 
