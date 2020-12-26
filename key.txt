@@ -1,0 +1,5 @@
+trial 4 : model of arthurflo : image to text conversion and bentham dataset
+api1 : microsoft api and pdf to images conversion
+sem-trial1 : sEMAntic trial
+sem-trial2: yet to be done
+online-trial1 : online plag
