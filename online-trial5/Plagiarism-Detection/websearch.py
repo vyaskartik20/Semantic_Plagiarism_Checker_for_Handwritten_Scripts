@@ -66,7 +66,28 @@ def searchBing(query, num):
 
 
 def extractText(url):
-    page = requests.get(url)
+    # page = requests.get(url)
+    page='z'
+    try:
+        page = requests.get(url)
+        # r.raise_for_status()
+    except requests.exceptions.HTTPError as errh:
+        x=1
+        return ('z')
+        # print ("Http Error:",errh)
+    except requests.exceptions.ConnectionError as errc:
+        x=1
+        return ('z')
+        # print ("Error Connecting:",errc)
+    except requests.exceptions.Timeout as errt:
+        x=1
+        return ('z')
+        # print ("Timeout Error:",errt)
+    except requests.exceptions.RequestException as err:
+        x=1
+        return ('z')
+        # print ("OOps: Something Else",err)
+        
     soup = bs(page.text, 'html.parser')
     return soup.get_text()
     
