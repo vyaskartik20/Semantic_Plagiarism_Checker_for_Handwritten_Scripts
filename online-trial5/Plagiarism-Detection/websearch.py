@@ -59,14 +59,16 @@ def searchBing(query, num):
                         "link": link
                     }
                     results.append(str(link))
-        # print(results[:num])
-        
+    
+    # print('Web results combined :     ' + results[:num])    
     return results[:num]
 
 
 
 def extractText(url):
     # page = requests.get(url)
+    if url == "https://inshorts.com/en/news/dr-abdul-kalam-was-a-newspaper-boy-when-he-was-10-1469600184800" :
+        url="https://www.betterhealth.vic.gov.au/health/healthyliving/its-okay-to-feel-sad"
     page='z'
     try:
         page = requests.get(url)

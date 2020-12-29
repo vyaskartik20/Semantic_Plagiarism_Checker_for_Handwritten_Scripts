@@ -2,6 +2,8 @@ import nltk
 import websearch
 from difflib import SequenceMatcher
 import pandas as pd
+from rabin import *
+from rabin1 import *
 
 nltk.download('stopwords')
 nltk.download('punkt')
@@ -18,12 +20,14 @@ def webVerify(string, results_per_sentence):
     for url in websearch.searchBing(query=string, num  = results_per_sentence):
         matching_sites.append(url)
     for sentence in sentences:
-        # print(sentence)
+        print(sentence)
         for url in websearch.searchBing(query = sentence, num = results_per_sentence):
             matching_sites.append(url)
 
-    # print( 'cds           ' + str(len(matching_sites)))
+    print( 'cds           ' + str(len(matching_sites)))
     return (list(set(matching_sites)))
+
+
 
 
 def similarity(str1, str2):
@@ -39,7 +43,11 @@ def similarity(str1, str2):
         return -10
     f2 = (c1+c2)/(2*c1)
     f3=(f1*f2)
-    return f3
+    print('the plag is :') 
+    print(f3)
+
+
+
 
 import re, math
 from collections import Counter
@@ -83,7 +91,20 @@ def cosineSim(text1,text2):
      print('The optimal plag is ' + str(cosine*100))
      print('')
      return (cosine*100)
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def report(text):
     
@@ -103,18 +124,70 @@ def report(text):
     
     
     #trial
+    text1= purifyText(text).upper()
+    text2= purifyText(websearch.extractText("http://www.abdulkalam.com/kalam/theme/jsp/guest/myprofile.jsp").upper())
+    text3= purifyText(websearch.extractText("https://timesofindia.indiatimes.com/life-style/health-fitness/de-stress/people-with-good-memory-have-these-6-good-habits/photostory/72289863.cms").upper())
+    
+    # object = OnlinePlag(text1,text2)
+    # object.search_main()
     
     
     
-    
-    
-    
+    # trial= similarity(text, websearch.extractText("http://www.abdulkalam.com/kalam/theme/jsp/guest/myprofile.jsp"))
+    # print(trial)
     
     # trial= cosineSim(text, websearch.extractText("http://www.abdulkalam.com/kalam/theme/jsp/guest/myprofile.jsp"))
     # print(trial)
     
+    # print('first')
+    # print(text.upper())
+    # print(websearch.extractText("https://kidshealth.org/en/teens/brain-nervous-system.html").upper())
+    # print('break')
+    # print('break')
+    # print('break')
+    # print('break')
+    # print('break')
+    # print('break')
+    # print('break')
+    # print('break')
+    # print('break')
+    # print('break')
+    # print('break')
+    # print('break')
+    # print('break')
+    
+    # onject2 = OnlinePlag(text.upper(), websearch.extractText("https://www.cpp.edu/~ftang/courses/CS420/notes/planning.pdf").upper())
+    # onject2.search_main()
+    
+    # print('second')
+    
+    # object1 = OnlinePlag(text.upper(), websearch.extractText("https://kidshealth.org/en/teens/brain-nervous-system.html").upper())
+    # object1.search_main()
+    # search_main(text.upper(), websearch.extractText("https://kidshealth.org/en/teens/brain-nervous-system.html").upper())
+    # print(trial)
     
     
+    
+    # print('third')
+    # print(trial)
+    # https://kidshealth.org/en/teens/brain-nervous-system.html
+    # https://www.cpp.edu/~ftang/courses/CS420/notes/planning.pdf
+    
+    
+    # trial= checker(text, websearch.extractText("http://www.abdulkalam.com/kalam/theme/jsp/guest/myprofile.jsp"))
+    # print(trial)
+    
+    
+    checker = PlagiarismChecker(text1,text2)
+
+    print('The percentage of plagiarism held by both documents is  {0}%'.format(
+        checker.get_rate()))
+    
+    checker2 = PlagiarismChecker(text1,text3)
+    
+    
+    print('The percentage of plagiarism held by both documents is  {0}%'.format(
+        checker2.get_rate()))
     
     
     
@@ -185,24 +258,38 @@ def report(text):
 
     
     
-    matching_sites = webVerify(purifyText(text), 1)
-    matches = {}
+    # matching_sites = webVerify(purifyText(text), 1)
+    # matches = {}
 
-    # print(len(matching_sites))
+    # # print(len(matching_sites))
 
-    for i in range(len(matching_sites)):
-        # score=0
-        # for sentence in text.split('.'):
-        #     score=score + similarity(sentence, websearch.extractText(matching_sites[i]))
+    # for i in range(len(matching_sites)):
+    #     # score=0
+    #     # for sentence in text.split('.'):
+    #     #     score=score + similarity(sentence, websearch.extractText(matching_sites[i]))
         
-        # matches[matching_sites[i]] = score
-        print(str(matching_sites[i]))
-
-        matches[matching_sites[i]] = cosineSim(text, websearch.extractText(matching_sites[i]))
+    #     # matches[matching_sites[i]] = score
+    #     print(str(matching_sites[i]))
         
-    matches = {k: v for k, v in sorted(matches.items(), key=lambda item: item[1], reverse=True)}
+    #     if(i==2):
+    #         print('time to skip')
+    #         continue
 
-    return matches
+    #     checker = PlagiarismChecker(purifyText(text), purifyText(websearch.extractText(matching_sites[i])))
+
+    #     print('The percentage of plagiarism held by both documents is  {0}%'.format(
+    #         checker.get_rate()))
+
+    #     # detector(text, websearch.extractText(matching_sites[i]))
+
+    #     # similarity(text, websearch.extractText(matching_sites[i]))
+
+    #     # object = OnlinePlag(text.upper(), websearch.extractText(matching_sites[i]).upper())
+    #     # object.search_main()
+        
+    # matches = {k: v for k, v in sorted(matches.items(), key=lambda item: item[1], reverse=True)}
+
+    # return matches
 
 
 def returnTable(dictionary):
