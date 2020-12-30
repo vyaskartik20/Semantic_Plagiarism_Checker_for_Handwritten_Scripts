@@ -128,6 +128,24 @@ def report(text):
     text2= purifyText(websearch.extractText("http://www.abdulkalam.com/kalam/theme/jsp/guest/myprofile.jsp").upper())
     text3= purifyText(websearch.extractText("https://timesofindia.indiatimes.com/life-style/health-fitness/de-stress/people-with-good-memory-have-these-6-good-habits/photostory/72289863.cms").upper())
     
+    file2=open("assignment_0.txt","w")
+    file2.write(str(text1))
+    file2.close()
+    
+    file2=open("assignment_1.txt","w", encoding="utf-8")
+    file2.write((text2))
+    file2.close()
+    
+    # with open(fname, "w", encoding="utf-8") as f:
+    # f.write(html)
+    
+    
+    file2=open("assignment_2.txt","w", encoding="utf-8")
+    file2.write(str(text3))
+    file2.close()
+
+    
+    
     # object = OnlinePlag(text1,text2)
     # object.search_main()
     
