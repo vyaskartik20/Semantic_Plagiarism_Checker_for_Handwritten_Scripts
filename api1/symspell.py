@@ -15,7 +15,7 @@ sym_spell.load_bigram_dictionary(bigram_path, term_index=0, count_index=2)
 # splitting & merging)
 filePath="D:\BTP-2\\api1\\inputFinal.txt"
 f = open(filePath).read()
-file2=open("corr.txt","w")
+file2=open("outputSymSpellPy.txt","w")
 
 for sentence in f.split('.'):
     input_term = sentence

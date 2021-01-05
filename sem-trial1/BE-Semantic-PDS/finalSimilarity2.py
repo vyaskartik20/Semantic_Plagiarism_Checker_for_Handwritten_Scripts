@@ -24,8 +24,8 @@ from random import randint
 from nltk.tokenize import word_tokenize
 
 
-#!wget 'https://nlp.stanford.edu/software/stanford-ner-2018-10-16.zip'
-#!unzip stanford-ner-2018-10-16.zip
+# !wget 'https://nlp.stanford.edu/software/stanford-ner-2018-10-16.zip'
+# !unzip stanford-ner-2018-10-16.zip
 
 def lsa():
     java_path = "C:/Program Files/Java/jdk-12/bin/java.exe"
@@ -236,7 +236,7 @@ def paraphrase():
     print(prediction)
     return prediction
 
-#lsa()
+lsa()
 
-#doc_sim()
+doc_sim()
 #paraphrase()

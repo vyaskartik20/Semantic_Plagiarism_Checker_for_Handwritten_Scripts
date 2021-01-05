@@ -58,6 +58,8 @@ class bloom_filter:
 
     def set_bit(self, filter_no, indices):
         for idx in indices:
+            if(int(idx) > self.size) :
+                continue
             if filter_no == 1:
                 self.first_filter[int(idx)] = 1
             else:
@@ -65,6 +67,8 @@ class bloom_filter:
 
     def look_up(self, filter_no, indices):
         for idx in indices:
+            if(int(idx) > self.size) :
+                continue
             if filter_no == 1 and not self.first_filter[int(idx)]:
                 return False
             if filter_no == 2 and not self.second_filter[int(idx)]:

@@ -9,7 +9,7 @@ warnings.filterwarnings("ignore", module='bs4')
 # def searchBing(query, num):
 
 #     query = query.replace(' ', '+')
-#     url = 'https://www.google.com/search?q=' + query
+#     url = 'https://www.bing.com/search?q=' + query
 #     urls = []
 
 #     page = requests.get(url, headers = {'User-agent': 'John Doe'})

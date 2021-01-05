@@ -16,7 +16,7 @@ computervision_client = ComputerVisionClient(endpoint, CognitiveServicesCredenti
 
 print("===== Batch Read File - local =====")
 # D:\BTP-2\api1\imag\1608557373
-local_image_handwritten_path = "D:\BTP-2\\api1\\imag\\1608735007\output13.jpg"
+local_image_handwritten_path = "D:\BTP-2\\api1\\imag\\1609349852\\output13.jpg"
 local_image_handwritten = open(local_image_handwritten_path, "rb")
 
 recognize_handwriting_results = computervision_client.read_in_stream(local_image_handwritten, raw=True)

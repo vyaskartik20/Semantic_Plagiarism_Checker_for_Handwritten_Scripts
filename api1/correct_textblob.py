@@ -11,6 +11,6 @@ print("Corrected Text : " + str(b.correct()) )
 
 file1.close()
 
-file2=open("outputFinal1.txt","w")
+file2=open("outputFinalTextBlob.txt","w")
 file2.write(str(b.correct()))
 file2.close()
