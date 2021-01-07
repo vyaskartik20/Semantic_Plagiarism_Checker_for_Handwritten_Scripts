@@ -17,6 +17,7 @@ from keras.layers import TimeDistributed
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.decomposition import TruncatedSVD
 import h5py
+from tensorflow.keras.optimizers import Adam  
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
@@ -83,7 +84,9 @@ model.add(Bidirectional(LSTM(100, activation='sigmoid', dropout=0.2, recurrent_d
 model.add(Dense(1, activation='softmax'))
 model.summary()
 
-model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])  # binary_crossentropy, categorical_crossentropy,
+a=Adam(1e-5) 
+
+model.compile(loss='binary_crossentropy', optimizer=a , metrics=['accuracy'])  # binary_crossentropy, categorical_crossentropy,
 model.fit(data, np.array(train_labels), validation_split=0.2, epochs=1, batch_size=1)  
 # epochs=10 2.epochs=25, batch_size=1
 
