@@ -130,15 +130,15 @@ if __name__ == '__main__':
     # SageMaker parameters, like the directories for
     # training data and saving models; set automatically
     # Do not need to change
-    parser.add_argument('--output-data-dir', type=str,
+    parser.add_argument('--output_data_dir', type=str,
                         default=os.environ['SM_OUTPUT_DATA_DIR'])
-    parser.add_argument('--model-dir', type=str,
+    parser.add_argument('--model_dir', type=str,
                         default=os.environ['SM_MODEL_DIR'])
-    parser.add_argument('--data-dir', type=str,
+    parser.add_argument('--data_dir', type=str,
                         default=os.environ['SM_CHANNEL_TRAINING'])
 
     # Training Parameters, given
-    parser.add_argument('--batch-size', type=int, default=10, metavar='N',
+    parser.add_argument('--batch_size', type=int, default=10, metavar='N',
                         help='input batch size for training (default: 10)')
     parser.add_argument('--epochs', type=int, default=10, metavar='N',
                         help='number of epochs to train (default: 10)')
@@ -148,11 +148,11 @@ if __name__ == '__main__':
     ## DONE: Add args for the three model parameters:
     # input_features, hidden_dim, output_dim
     # Model Parameters
-    parser.add_argument('--input-features', type=int, default=2, metavar='IN',
+    parser.add_argument('--input_features', type=int, default=2, metavar='IN',
                         help='number of input features')
-    parser.add_argument('--hidden-dim', metavar='H', nargs='*', default=[64,64],
+    parser.add_argument('--hidden_dim', metavar='H', nargs='*', default=[64,64],
                         help='size of hidden layers')
-    parser.add_argument('--output-dim', type=int, default=1, metavar='OUT',
+    parser.add_argument('--output_dim', type=int, default=1, metavar='OUT',
                         help='number of outputs')
     parser.add_argument('--dropout', type=float, default=0.2, metavar='D',
                         help='probability of an element to be zeroed')
