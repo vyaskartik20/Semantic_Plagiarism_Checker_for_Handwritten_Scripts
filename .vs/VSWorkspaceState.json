@@ -4,8 +4,10 @@
     "\\semantic",
     "\\semantic\\udacity",
     "\\semantic\\udacity\\source_pytorch",
+    "\\semantic\\udacity\\source_pytorch\\data",
+    "\\semantic\\udacity\\source_pytorch\\model",
     "\\semantic\\udacity\\source_pytorch\\plagiarism_data"
   ],
-  "SelectedNode": "\\semantic\\udacity\\source_pytorch\\predict.py",
+  "SelectedNode": "\\semantic\\udacity\\source_pytorch\\plagiarism_data\\train.csv",
   "PreviewInSolutionExplorer": false
 }

@@ -3,6 +3,7 @@ import os
 import numpy as np
 import torch
 from six import BytesIO
+import pandas as pd
 
 # import model from model.py, by name
 from model import BinaryClassifier
@@ -81,4 +82,14 @@ def predict_fn(input_data, model):
     return out_label
 
 path = 'C:\\Users\\Aditya\\Desktop\\Semantic_Plagiarism_Checker_for_Handwritten_Scripts\\semantic\\udacity\\source_pytorch\\model\\'
-model_fn(os.path.dirname(path))
+#model_fn(os.path.dirname(path))
+
+data_stream = open('plagiarism_data/test.csv',"r").read()
+# read data as DataFrame
+test_df = pd.read_csv('plagiarism_data/test.csv', header=None, names=None)
+# split data into labels and features
+test_y_np = test_df.iloc[:,0].values.astype('float32')
+test_x_np = test_df.iloc[:,1:].values.astype('float32')
+
+predict_fn(test_x_np,model_fn(os.path.dirname(path)))
+
