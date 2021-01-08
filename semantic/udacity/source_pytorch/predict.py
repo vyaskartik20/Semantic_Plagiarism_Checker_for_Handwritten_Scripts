@@ -76,5 +76,9 @@ def predict_fn(input_data, model):
     out = model(data)
     out_np = out.cpu().detach().numpy()
     out_label = out_np.round()
+    print(out_label)
 
     return out_label
+
+path = 'C:\\Users\\Aditya\\Desktop\\Semantic_Plagiarism_Checker_for_Handwritten_Scripts\\semantic\\udacity\\source_pytorch\\model\\'
+model_fn(os.path.dirname(path))
