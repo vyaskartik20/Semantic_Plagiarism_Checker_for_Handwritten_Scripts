@@ -1,3 +1,6 @@
+#2 pharses ::
+
+
 # # Python/NLTK implementation of algorithm to detect similarity between
 # # short sentences described in the paper - "Sentence Similarity based
 # # on Semantic Nets and Corpus Statistics" by Li, et al.
@@ -319,7 +322,7 @@
 
 
 
-
+# 2 words :: -- 
 
 # from __future__ import division
 # from nltk.corpus import wordnet as wn
@@ -355,7 +358,7 @@
 
 
 
-
+# 2 documents :: -- 
 
 
 # from __future__ import division

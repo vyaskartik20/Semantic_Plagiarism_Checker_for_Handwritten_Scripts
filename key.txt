@@ -3,3 +3,11 @@ api1 : microsoft api and pdf to images conversion
 sem-trial1 : sEMAntic trial
 sem-trial2: yet to be done
 online-trial1 : online plag
+transfer gpu dgx : model transferred of be sem and microsoft data
+intrinsic-trial1 :clustering
+nltk-trials : nltk similarity toolkit
+semantic : ml model based on lcs and n gram
+online-trial2
+online-trial5 : cosine1, sequence matcher, cosine gfg, rabin 1, rabin 2
+online-trial6 : original trial 2
+online-trial7 : jaccard and cosine 1,2,3 gram
