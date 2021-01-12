@@ -1,0 +1,1 @@
+the suite comes complete with a word processor, spreadsheet, presentation software and other components, while continuing its tradition of utilizing an xml-based file format.

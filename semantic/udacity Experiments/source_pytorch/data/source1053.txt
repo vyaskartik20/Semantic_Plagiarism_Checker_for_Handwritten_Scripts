@@ -1,0 +1,1 @@
+power5, like power4, includes two processor cores in a single slice of silicon.

@@ -1,0 +1,1 @@
+the compilers are available in two forms: the intel c++ compiler for microsoft embedded visual c++ is available from intel for $399, and is intended for applications development.

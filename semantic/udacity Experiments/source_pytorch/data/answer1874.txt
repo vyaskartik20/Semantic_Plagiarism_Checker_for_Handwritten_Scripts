@@ -1,0 +1,1 @@
+thanks to avalon, longhorn will support new styles of user interfaces and user interface elements.

@@ -1,0 +1,1 @@
+available in june, bare metal restore 4.6 costs $900 per windows client and $1,000 per unix client for new customers.

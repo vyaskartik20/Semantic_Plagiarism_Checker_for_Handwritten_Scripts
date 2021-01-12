@@ -5,6 +5,13 @@ import operator
 # Add 'datatype' column that indicates if the record is original wiki answer as 0, training data 1, test data 2, onto 
 # the dataframe - uses stratified random sampling (with seed) to sample by task & plagiarism amount 
 
+    # Creates test & training datatypes for plagiarized answers (1,2,3)
+    # create_datatype(new_df, 1, 2, 'Datatype', 'Class', operator.gt, 0, 1, random_seed)
+
+    # Creates test & training datatypes for NON-plagiarized answers (0)
+    # create_datatype(new_df, 1, 2, 'Datatype', 'Class', operator.eq, 0, 2, random_seed)
+
+
 # Use function to label datatype for training 1 or test 2 
 def create_datatype(df, train_value, test_value, datatype_var, compare_dfcolumn, operator_of_compare, value_of_compare,
                     sampling_number, sampling_seed):
@@ -20,7 +27,7 @@ def create_datatype(df, train_value, test_value, datatype_var, compare_dfcolumn,
     df_subset.loc[:, datatype_var] = train_value
     
     # Performs stratified random sample of subset dataframe to create new df with subset values 
-    df_sampled = df_subset.groupby(['Task', compare_dfcolumn], group_keys=False).apply(lambda x: x.sample(min(len(x), sampling_number), random_state = sampling_seed))
+    df_sampled = df_subset.groupby(['Class'], group_keys=False).apply(lambda x: x.sample(frac =.2))
     df_sampled = df_sampled.drop(columns = [datatype_var])
     # Sets all datatype to value for test_value for df_sampled
     df_sampled.loc[:, datatype_var] = test_value
@@ -52,10 +59,10 @@ def train_test_dataframe(clean_df, random_seed=100):
     new_df.loc[:,'Datatype'] = 0
 
     # Creates test & training datatypes for plagiarized answers (1,2,3)
-    create_datatype(new_df, 1, 2, 'Datatype', 'Category', operator.gt, 0, 1, random_seed)
+    create_datatype(new_df, 1, 2, 'Datatype', 'Class', operator.eq, 1, 1, random_seed)
 
     # Creates test & training datatypes for NON-plagiarized answers (0)
-    create_datatype(new_df, 1, 2, 'Datatype', 'Category', operator.eq, 0, 2, random_seed)
+    create_datatype(new_df, 1, 2, 'Datatype', 'Class', operator.eq, 0, 2, random_seed)
     
     # creating a dictionary of categorical:numerical mappings for plagiarsm categories
     mapping = {0:'orig', 1:'train', 2:'test'} 
@@ -110,3 +117,8 @@ def create_text_column(df, file_directory='data/'):
     text_df['Text'] = text
     
     return text_df
+
+
+# [[((1))]] transform (made csv and segmented text, made data in files) {driver code : transform.py} 
+# [[((2))]] helpers [text added, helpers.create_text_column] 
+#               [classfied into test and train data via helpers.train_test_dataframe] {driver code : data_exploration.py } 
