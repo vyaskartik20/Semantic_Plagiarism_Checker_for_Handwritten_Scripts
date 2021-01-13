@@ -81,12 +81,12 @@ def predict_fn(input_data, model):
 
     return out_label
 
-path = 'D:\\BTP-2\\semantic\\udacity\\source_pytorch\\model\\'
+path = 'D:\\BTP-2\\semantic\\udacity_Experiments\\source_pytorch\\model\\'
 #model_fn(os.path.dirname(path))
 
-data_stream = open('plagiarism_data/test.csv',"r").read()
+data_stream = open('plagiarism_data/train.csv',"r").read()
 # read data as DataFrame
-test_df = pd.read_csv('plagiarism_data/test.csv', header=None, names=None)
+test_df = pd.read_csv('plagiarism_data/train.csv', header=None, names=None)
 # split data into labels and features
 test_y_np = test_df.iloc[:,0].values.astype('float32')
 test_x_np = test_df.iloc[:,1:].values.astype('float32')
