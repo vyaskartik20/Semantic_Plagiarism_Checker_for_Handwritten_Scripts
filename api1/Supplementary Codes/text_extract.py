@@ -15,8 +15,7 @@ endpoint = "https://textconversion.cognitiveservices.azure.com/"
 computervision_client = ComputerVisionClient(endpoint, CognitiveServicesCredentials(subscription_key))
 
 print("===== Batch Read File - local =====")
-# D:\BTP-2\api1\imag\1608557373
-local_image_handwritten_path = "D:\BTP-2\\api1\\imag\\1609349852\\output13.jpg"
+local_image_handwritten_path = "D:\BTP-2\\api1\\imag\\output3.jpg"
 local_image_handwritten = open(local_image_handwritten_path, "rb")
 
 recognize_handwriting_results = computervision_client.read_in_stream(local_image_handwritten, raw=True)

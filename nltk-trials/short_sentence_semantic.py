@@ -1,4 +1,4 @@
-#2 pharses ::
+# # 2 pharses ::
 
 
 # # Python/NLTK implementation of algorithm to detect similarity between
@@ -112,6 +112,7 @@
     
 # def word_similarity(word_1, word_2):
 #     synset_pair = get_best_synset_pair(word_1, word_2)
+#     # print(synset_pair[0], synset_pair[1])
 #     return (length_dist(synset_pair[0], synset_pair[1]) * 
 #         hierarchy_dist(synset_pair[0], synset_pair[1]))
 
@@ -245,10 +246,10 @@
 #     parameter is True or False depending on whether information content
 #     normalization is desired or not.
 #     """
-#     # return DELTA * semantic_similarity(sentence_1, sentence_2, info_content_norm) + \
-#         # (1.0 - DELTA) * word_order_similarity(sentence_1, sentence_2)
+#     return DELTA * semantic_similarity(sentence_1, sentence_2, info_content_norm) + \
+#         (1.0 - DELTA) * word_order_similarity(sentence_1, sentence_2)
         
-#     return semantic_similarity(sentence_1, sentence_2, info_content_norm)
+#     # return semantic_similarity(sentence_1, sentence_2, info_content_norm)
 # ######################### main / test ##########################
 
 # # the results of the algorithm are largely dependent on the results of 
@@ -286,9 +287,12 @@
 #   ["serf", "slave", 0.39]
 # ]
 # for word_pair in word_pairs:
-#     print ("%s\t%s\t%.2f\t%.2f" % (word_pair[0], word_pair[1], word_pair[2], 
-#                                   word_similarity(word_pair[0], word_pair[1])))
+#     # print ("%s\t%s\t%.2f\t%.2f" % (word_pair[0], word_pair[1], word_pair[2], 
+#     #                               word_similarity(word_pair[0], word_pair[1])))
 
+#     print ("%s\t%s\t%.2f" % (word_pair[0], word_pair[1], 
+#                               word_similarity(word_pair[0], word_pair[1])))
+    
 
 # sentence_pairs = [
 #     ["I like that bachelor.", "I like that unmarried man.", 0.561],
@@ -309,9 +313,13 @@
 #     ["I have a hammer.", "Take some apples.", 0.121]
 # ]
 # for sent_pair in sentence_pairs:
-#     print ("%s\t%s\t%.3f\t%.3f\t%.3f" % (sent_pair[0], sent_pair[1], sent_pair[2], 
-#         similarity(sent_pair[0], sent_pair[1], False),
-#         similarity(sent_pair[0], sent_pair[1], True)))
+#     # print ("%s\t%s\t%.3f\t%.3f\t%.3f" % (sent_pair[0], sent_pair[1], sent_pair[2], 
+#     #     similarity(sent_pair[0], sent_pair[1], False),
+#     #     similarity(sent_pair[0], sent_pair[1], True)))
+
+#     print ("%s\t%s\t%.3f\t%.3f" % (sent_pair[0], sent_pair[1], 
+#             similarity(sent_pair[0], sent_pair[1], False),
+#             similarity(sent_pair[0], sent_pair[1], True)))
 
 
 
@@ -334,14 +342,15 @@
 #   sim_scores = []
 #   for synset1 in synsets1:
 #     for synset2 in synsets2:
+#       # print(synset1, synset2)
 #       sim_scores.append(sim(synset1, synset2))
 #   if len(sim_scores) == 0:
 #     print(0)
 #   else:
 #     print(max(sim_scores))
 
-# word1 = "graveyard"
-# word2 = "cemetry"
+# word1 = "fruit"
+# word2 = "apple"
 
 # similarity(word1, word2)
 
@@ -358,7 +367,7 @@
 
 
 
-# 2 documents :: -- 
+ # 2 documents :: -- 
 
 
 # from __future__ import division
@@ -444,13 +453,13 @@
 #   test(tdMatrix, cats, nltkutil.euclidean_distance)
 #   print ("Results with SCAM Distance Similarity Measure")
 #   test(tdMatrix, cats, scam_distance)
-
-
-
-
   
 # if __name__ == "__main__":
 #   main()
+
+
+
+
   
 import numpy as np
 import scipy.sparse as ss
@@ -512,7 +521,7 @@ def main():
   scamDist12 = scam_distance(testDocs[0], testDocs[1])
   scamDist23 = scam_distance(testDocs[1], testDocs[2])
   scamDist13 = scam_distance(testDocs[0], testDocs[2])
-  print (1-scamDist12, 1-scamDist23, 1-scamDist13)
+  print (1-scamDist12, 1-scamDist13, 1-scamDist23)
 
 if __name__ == "__main__":
     main()
