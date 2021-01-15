@@ -186,7 +186,7 @@ features_df = pd.DataFrame(np.transpose(all_features), columns=features_list)
 # print('Features: ', features_list)
 # print()
 
-test_selection = list(features_df)[:2] # first couple columns as a test
+test_selection = list(features_df)[:3] # first couple columns as a test
 (train_x, train_y), (test_x, test_y) = plagiarism_feature_engineering.train_test_data(complete_df, features_df, test_selection)
 
 data_dir = 'plagiarism_data'

@@ -77,11 +77,12 @@ def predict_fn(input_data, model):
     out = model(data)
     out_np = out.cpu().detach().numpy()
     out_label = out_np.round()
-    print(out_label)
+    #print(out_label)
 
     return out_label
 
-path = 'D:\\BTP-2\\semantic\\udacity\\source_pytorch\\model\\'
+#path = 'D:\\BTP-2\\semantic\\udacity_Experiments\\source_pytorch\\model\\'
+path = 'C:\\Users\\Aditya\\Desktop\\Semantic_Plagiarism_Checker_for_Handwritten_Scripts\\semantic\\udacity_Experiments\\source_pytorch\\model\\'
 #model_fn(os.path.dirname(path))
 
 data_stream = open('plagiarism_data/test.csv',"r").read()
@@ -91,5 +92,36 @@ test_df = pd.read_csv('plagiarism_data/test.csv', header=None, names=None)
 test_y_np = test_df.iloc[:,0].values.astype('float32')
 test_x_np = test_df.iloc[:,1:].values.astype('float32')
 
-predict_fn(test_x_np,model_fn(os.path.dirname(path)))
+arr = predict_fn(test_x_np,model_fn(os.path.dirname(path)))
+#print(arr)
+
+csv_file = 'data/file_information.csv'
+test_df = pd.read_csv(csv_file)
+class_df = test_df.query('Datatype == "test"')
+trial_df = class_df['Class']
+values_p = trial_df.values
+#print(values_p)
+
+
+
+total = 0
+count = 0
+j=0
+for i in arr:
+    if(arr[j]==values_p[j]):
+        count = count+1
+    total = total+1
+    j=j+1
+
+print(count)
+print(total)
+print(count/total)
+
+
+
+
+
+    
+
+
 

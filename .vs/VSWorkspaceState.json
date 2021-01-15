@@ -1,13 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\semantic",
+    "\\nltk-trials",
+    "\\semantic\\Tensorflow",
     "\\semantic\\udacity",
-    "\\semantic\\udacity\\source_pytorch",
-    "\\semantic\\udacity\\source_pytorch\\data",
-    "\\semantic\\udacity\\source_pytorch\\model",
-    "\\semantic\\udacity\\source_pytorch\\plagiarism_data"
+    "\\semantic\\udacity_Experiments",
+    "\\semantic\\udacity_Experiments\\source_pytorch"
   ],
-  "SelectedNode": "\\semantic\\udacity\\source_pytorch\\plagiarism_data\\train.csv",
+  "SelectedNode": "\\nltk-trials\\short_sentence_semantic.py",
   "PreviewInSolutionExplorer": false
 }
