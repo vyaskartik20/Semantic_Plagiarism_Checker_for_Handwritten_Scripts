@@ -152,7 +152,7 @@ if __name__ == '__main__':
     for n in ngram_range:
         column_name = 'c_'+str(n)
         features_list.append(column_name)
-        # create containment features
+
         all_features[i]=np.squeeze(create_containment_features(text_df, n))
         i+=1
 
