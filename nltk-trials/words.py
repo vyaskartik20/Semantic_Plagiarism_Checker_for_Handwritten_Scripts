@@ -10,12 +10,24 @@ def similarity(w1, w2, sim=wn.path_similarity):
     for synset2 in synsets2:
       # print(synset1, synset2)
       sim_scores.append(sim(synset1, synset2))
+  
+  # print(sim_scores)
+  
   if len(sim_scores) == 0:
     print(0)
   else:
-    print(max(sim_scores))
+    ans=0    
+    for index in sim_scores :
+      try : 
+        if index > ans :
+          ans=index
+      except :
+        continue
+    
+    print(ans)
 
-word1 = "fruit"
-word2 = "apple"
+
+word1 = "water"
+word2 = "oil"
 
 similarity(word1, word2)

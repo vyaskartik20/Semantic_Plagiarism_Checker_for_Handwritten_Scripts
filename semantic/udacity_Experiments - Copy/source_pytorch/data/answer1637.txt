@@ -1,0 +1,1 @@
+beta versions of nterprise linux services are expected to be available on certain hp proliant servers in july.

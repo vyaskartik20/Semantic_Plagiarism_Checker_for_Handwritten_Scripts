@@ -1,0 +1,48 @@
+# 8 Puzzle I : 
+
+In the initial configuration all the tiles are misplaced so the start-heuristic is 8 and is admissible because the minimum no of tiles to be changed to reach the goal state is at least 8. This is a relaxed problem heuristic because here we can take out any tile to arrange them to reach the goal state and the cost is exact for the relaxed problem.
+
+# 8 Puzzle II : 
+
+This is a lesser relaxed problem as compared to puzzle II and in this case we could slide any tile
+any direction any time ignoring other tiles. Heuristic is admissible and start-heuristic is calculated using the total manhattan distance.
+
+# 8 Puzzle III-
+
+This problem is about using actual cost as a heuristic which would be definitely admissible because we are finding the actual cost and definitely not overestimating and it will directly lead to the optimal result without expanding any further nodes which gives not results but the cost to compute the heuristics is very expensive but could be calculated . That's why we go with a trade-off with A* which is a trade off between quality of estimate and work per node
+There is a family of heuristics :
+1. No time in computing heuristics and thus we don't actually know which node to expand further
+2. All the heuristic is equal to the actual cost and we exactly know where to go.
+3. The middle of the above two gives the best results in the maximum number of cases.
+
+# Dominance :
+For two heuristics when one heuristic' (suppose A) value at every node is always greater than equal to the other heuristic (suppose C) value then A is said to dominate C.
+i.e for all n Ha(n)>=Hc(n)
+# Heuristics form a semi-lattice : If there exists two heuristics which are admissible then the maximum of two heuristics  is also admissible.i,e H(n) = max(Ha(n),Hb(n)) is also admissible where Ha and Hb are two admissible heuristics.
+# Trivial Heuristics : At the bottom of the heuristic class is a zero heuristic that always returns zero and it is admissible. It leads to Uniform Cost Search if we assume zero heuristic for all the nodes.
+# Graph Search 
+In graph search if we keep on expanding the nodes for creating the search tree then it may lead to expansion of some node more than once, disturbing the optimality of the solution and increasing the computation exponentially . The optimal solution is to not expand a node again if it has been expanded previously at least once . Implementation : 1. Tree search + set of expanded nodes("closed set")2. Expand the search tree node by node but,3. Before expanding a node check to make sure its state is new4. If not new, skip it.
+Implementation of a closed set should be done as a set and not as a list because of implementation problems. By refusing to expand certain nodes in the tree we don't lose the ability to find the solution because since we are rejecting the solution it means that we have previously visited that state and hence we don't need to repeatedly expand the state again but we may not get the optimal path to the goal state and this problem is corrected using consistency of heuristics.Consistency is considered to be a stronger term than admissibility. Definition of consistency says that real cost should be greater than the cost implied by the heuristics. The consequences of graph search is that the F value along a path never decreases and A* graph search is optimal.There are two facts regarding A* graph search with consistent heuristic:
+1. A* expands nodes in increasing the total f value in tree search. 
+2. For every state s, nodes that reach s optimally are expanded before nodes that reach s suboptimally.
+So in short , about optimality , 1. For tree search , A* is optimal if heuristic is admissible and UCS is a special case with h =02. For graph search , A* is optimal if heuristic is consistent and UCS is optimal with  h=0 (consistent).
+Tree-search algorithm:1. Add the initial node to the fringe2. Do until the fringe is not empty:3. Take the top-most node and check if it is the goal . if goal return this node. else,4. Expand this node and push the child-nodes to the fringe.
+Graph - search algorithm:
+1. Add an initial node to the fringe and make an empty closed set.
+2. repeat steps from 3 until not returned a value
+3. if fringe is empty return failure
+4.Remove the front node
+5. If the node is the goal state then return true.
+6. If the node is not in closed then add all the child nodes to the fringe and add the node to the closed set.
+
+# Constraint Satisfaction Problems: CSPs is a special subset of search problems in which the state of a set of objects must satisfy a number of constraints or limitations.Few examples of CSPs are : 
+1. Map Coloring:Constraint: Adjacent regions must have different colours.
+2. N-Queens:Constraint: Two queens can't be attacking each other either horizontally,vertically or diagonally and total no of queens should be equal to n in a nXn board.
+3. Cryptarithmetic:Constraint:In the constraint graph that contains constraints that are more than binary then the constraint is drawn as a square and all the connected with strings to all variables that are constrained.
+4. Sudoku: Constraint:a. All values in a column must be distinct.b. All values in a row must be distinct.c. All values in a region must be distinct.5.Waltz Algorithm :Constraint: Each intersection is a variable and adjacent intersections impose restrictions on each other.
+There are two varieties of CSPs ie. Discrete variables and continuous variables . Discrete variables are of two types : Finite domains and infinite domains. Finite domains include Boolean CSPs and Infinite domains include job scheduling problems. Continuous variables include the start/end time for Hubble telescope observations and linear constraints are solvable in polynomial time by LP methods.There are three varieties of constraints : unary, binary and higher order constraints. Unary constraints involve a single variable,binary constraints involve pairs of variables and higher-order constraints involve three or more variables .
+Solution : Backtracking search is the basic uninformed algorithm for solving CSPs.The idea is that we keep on assigning the values to the variables and keep on checking the constraints on the go. If valid with previous assignments then we search for a valid complete solution if can't find a solution then change the current assignment and repeat the above mentioned algorithm until we reach a correct assignment satisfying all the constraints.Improving Backtracking:1. Ordering - This means which variable should be assigned next and in what order the values should be tried.There are two types of ordering : minimum remaining values and least constraining value.In MRV, choose the variable with the fewest legal left values in its domain.In least constraining value choose the one which rules out the fewest values in the remaining variables.2. Filtering - There are two kinds of filtering - forward checking and constraint propagation . In forward checking , everytime we make an assignment in backtracking search we are going to check the unassigned variables and if any their values would be conflicting with the existing assignment then cross them off. In constraint propagation, we check for the consistency of every possible arc and make the corrections. An arc X->Y is consistent iff for every x in the tail there is some y in the head which could be assigned without violating a constraint.Limitations of arc consistency - Arc consistency does not detect all failure . It only detects a possible failure . 
+# Local search and optimisationHill climbing search  s an optimisation technique which involves a loop that continuously moves towards increasing value and terminates when the peak is reached.Its value can be either objective function value or minimised heuristic value.If there are multiple neighbours with same value it chooses any of them randomly.The important point to note is depending on the initial state , it can either reach a local maximum or a global maximum.N-Queens problem is converted to an optimisation problem with the aim of optimising the number of pairs of queens that are attacking each other.Important note is that hill climbing in N queens problem may not lead us to a goal state that satisfies all the constraints but we may reach a state which will be a correct solution according to hill climbing search because it gets stuck at local minima.There are three drawbacks to the hill climbing search:1. Local maxima 2. Plateaus3. Diagonal ridgesSideways move is a solution which allows sideways moves in hope that the algorithm can escape and raises the percentage of problems that are solved from 14% to 94%.
+Tabu search involves keeping a fixed length queue preventing quickly return to the same state ,adding most recent state to the queue, dropping the oldest and never making the step that is currently tabu'ed.
+Local beam search involving keeping track of k nodes randomly states instead of one and choosing the k best successors until we find the goal state.
+Genetic algorithms involves generating successors by combining two parent states.It involves population,fitness function and simulated evolution which involves random selection, mutation and crossover.An example is Travelling Salesman Problem.

@@ -1,0 +1,73 @@
+Introduction to Artificial Intelligence - 
+
+The definition of Artificial Intelligence can be organized into four categories. Broadly speaking, AI is the science of making machines that can Think Humanly, Act Humanly, Think Rationally or Act Rationally. Let's take a look at each of them. [1]
+
+Acting Humanly is a Turing Test approach. In this a human interrogator will pose some written questions. If the human interrogator cannot tell if the responses of the questions are from a human or a computer, the computer would pass the turing test. A computer to pass a turing test would need to possess the capability of Natural Language Processing, Knowledge Representation, Automated Reasoning and Machine Learning. However this avoids any direct physical interaction between the integrator and computer. The total Turing test also consists of video signals so that an integrator can test a subject's perceptual abilities and should also have the ability to pass physical objects. This would require a computer to have computer vision and robotics.[1]
+
+The Thinking Humanly approach needs a way to determine how humans think so that we can conclude whether a program is thinking like a human. In this if a program’s I/O behaviour matches a corresponding behaviour of a human being then we can say some of the program's mechanisms can also be operating in humans. The field of cognitive science is more suited towards this approach. [1]
+
+The Thinking rationally approach is the “laws of thought” approach. This is related to governing the operations of a mind. This initiated the field called logic. There are two obstacles in this approach. It's hard to take informal knowledge and state it in formal terms. Secondly, solve a problem in principle and solving it in practice is a very big difference. A simple problem with just a few facts is too much for the computational resources of any computer.[1]
+
+The Acting Rationally is the rational agent approach. This is the approach we are going to look at in this course. Let us define what a Rational Decision is. We use the term rational in a very specific and technical manner. Rationality is a way of maximally achieving a pre-defined goal. We are not concerned with the thought process behind making decisions, rather we care only about what the decisions were made. The goals of an outcome is defined in terms of utility. So being rational means maximising an expected utility. This leads to the conclusion that a better title of this course would be Computational Rationality. We know that the human brain is very good at making rational decisions but it is not perfect. Brains are hard to reverse engineer as it isn’t as modular as software. The lesson we can learn from a brain is that memory and simulation are key to decision making. [1]
+ 
+Let’s see how we can design rational agents. An agent is an entity that perceives the environment and through sensors and acts upon the environment through actuators. A rational agent selects actions that maximize its (expected) utility. The sequence of actions that an agent takes based on what it perceives cause the environment to go through a sequence of states. If the environmental sequence is desirable then we say that an agent has performed well. This notion of desirability is captured by a performance measure that evaluates any given sequence of environment states. [1]
+
+A reflex agent chooses an action based on current perception (and maybe memory). It may have memory of the world’s current state. It only considers how the world is and doesn’t consider the future consequences of its actions. For example, an automatic vacuum-cleaner perceives that there is dirt in front of it and acts upon it. A reflex agent may or may not be rational. For this if we say the performance measure is having a clean floor the vacuum-cleaner to be called rational if it can maximize this utility. So we can say that if we have a simple environment and the rational agent can maximize its expected utility then we have a reflex agent. In a game to pacman if the goal is to eat all the dots and pacman can eat only an adjacent dot, it may not be able to achieve its goal. In that case the reflex agent won’t be considered rational. [1] [2]
+
+
+Planning Agents ask a question “what if”. It considers how the world would be and makes decisions based on consequences of actions. It must have a goal test. In a game of pacman it achieves its goal it formulates decisions based on the consequences of its actions and plans ahead to achieve its goal. A planning can be both optimal and complete. In optimal planning if there are multiple paths to a goal it selects the best one possible. In pacman if the goal is to eat all the dots then we want to do it in as few time steps as possible. In complete planning if a solution exists our algorithm will find it. Lets define two terms planning and replanning. In planning we see all the way to our goal where in replanning we define some intermediate goals and if  we achieve all the intermediate goals we achieve our goal. Replanning may not be optimal but planning is always optimal. [1] [2]
+
+Search Problems - 
+
+A search problem consists of a state space (set of all environment agents can be in), a successor function ( given a state and an action what would the environment be after taking that action and the corresponding cost associated with it), a start state and goal test (a function to determine if an agent as achieve its goal). A solution is a sequence of actions (a plan) which
+transforms the start state to a goal state. In an example where we have to travel from one city to another in least distance. The state space is cities, the successor function is roads i.e go to adjacent cities with cost equal to distance, start state is the starting city and the goal test is a function which checks if the current city we are in is the city we want to travel to. [2]
+
+A world state includes every last detail of the environment  where as a search state keeps only the details needed for planning. If the problem in case of pacman is pathing then the state space would be (x,y) locations, actions would be NSEW, the successor function is update the location only and the goal test is (x,y) ==END. If the problem is to Eat all the dots. State space is {(x,y), dot booleans}, actions is NSEW, successor is update location and possibly a dot boolean and the goal test is a function to check if all dots are false. [2]
+
+A state space graph is a mathematical representation of a search problem. The nodes of the graph are world configurations, arcs represent successors and the goal test is a set of goal nodes. A state space graph has each state once. We don't build the full graph in memory as it is too big. [2]
+
+Uninformed Search - 
+
+A search tree is a tree of plans and their outcomes. The start state is the root node. The children are the successors. We never build the would tree and construct it on demand. A problem with search trees is that if a state graph consists of a cycle then the search tree would be infinite. In a search tree we expand out potential paths and maintain a fridge of partial paths that are under consideration. We want to expand as new nodes as possible. There are various exploration strategies we follow for searching. [2]
+
+In a depth first search (DFS) strategy we expand the deepest node first and expand from left to right. The implementation is done by maintaining a fringe in a LIFO stack. DFS is complete for finite search trees i.e we need to prevent cycles in state space graphs for the tree to be finite and hence make DFS complete . It is not optimal as it finds the first solution it sees i.e the leftmost solution. The Time Complexity and the Space Complexity both is the branching factor raised to the power of the depth. If b is the branching factor and m is the maximum depth. Then the time and space complexity are O(b^m). The fringe takes space of 0(bm). [2]
+
+In Breadth First Search(BFS) we expand the shallowest node first. The implementation is done by maintaining a fringe in a FIFO queue. BFS expands level by level i.e we process all the nodes above the shallowest solution. If the branching factor is b and the shallowest solution is s. The Time Complexity is O(b^s). The fringe takes a space of O(b^s). BFS is complete as s must be finite so if a solution exists we will find it. BFS is optimal only if all costs are 1 otherwise it may not be. 
+
+BFS will outperform DFS when the tree is infinite and we care about shallow goals. DFS will outperform BFS when we have limited memory and a solution exists at the bottom. [2]
+
+In Iterative Deepening we get DFS’s space advantage with BFS’s time/ shallow-solution advantages. We run a DFS with a depth limit of 1. If no solution then run DFS with a depth limit of 2 and so on. The time complexity is O(b^s) as work generally happens in the lowest level searched. The space complexity of fringe is O(bs).[2]
+
+Uniform Cost Search is a strategy to expand the cheapest node first. The implementation is done by maintaining a fringe in a priority queue where the priority is the cumulative cost. If that solution costs C* and arcs cost at least e , then the “effective depth” is roughly C*/e. Time complexity is O(b^C*/e). The space complexity is almost equal to the last tier i.e O(b^C*/e).
+UCS is complete assuming the best solution has finite cost and minimum arc cost is positive. UCS is optimal. The disadvantage of UCS is that it explores in all directions and we don't have any information regarding the goal location. [2]
+
+Informed Search - 
+
+Let's take an example of The Pancake Problem. In this we need to sort a disordered stack of pancakes in order of size when a spatula can be inserted at any point in the stack and used to flip all pancakes above it. The cost is the number of pancakes flipped. The spate space graph consists of nodes as a configuration of the pancakes and the edge is the cost. The edges are bidirectional as we can go back and forth between the nodes in this case. It can be solved using a search tree approach. We will use this description of the problem later.[2]
+
+In a game of Pacman if the goal is to go to the bottom left corner. If we follow UCS in this, it will lead to unnecessary work. So if we can have some idea as to where the required location is we can solve it in less time. We will use this description of the problem later.[2]
+
+A heuristic is a function that estimates how close a state is to a goal. It is unique for each search problem. For the example of pacman above we can have the heuristic as the manhattan distance or the euclidean distance. In the travelling problem the heuristic can be the straight line distance to our goal city. In the pancake problem the heuristic can be the number of the largest pancake that is still out of place. [2]
+
+A greedy search uses heuristic to solve the problem. For the travelling problem we expand the city in the search tree with the least straight line distance to the goal city. Greedy search is not optimal as a city may have less straight line distance to the goal city compared to others but the distance may be less in a different path. [2]
+
+In greedy search the strategy is to expand the node we think is closest to the goal state. A common case is that it takes us straight to the goal but its not the optimal one. In the worst case it is like a badly guided DFS. [2]
+
+We fix this we use a algorithm called A*. In this we combine Uniform Cost Search and Greedy Search. UCS orders by path cost or backward cost g(n) and Greedy orders by goal proximity h(n). A* orders by the sum f(n) = g(n) + h(n). If there are no restrictions on the heuristic then A* search may not be optimal as we need the estimates to be less than actual costs. We define a new term called admissible heuristic to solve this problem. A heuristic h is admissible (optimistic) if 0 <= h(n) <= h*(n) where h*(n) is the true cost to a nearest goal. For the pacman example the manhattan distance is an admissible heuristic as is it a relaxation of the actual problem as in case of manhattan distance we are also considering that pacman can go through walls so the cost will always be less than the true cost. Hence its heuristic will always be less than the actual heuristic. [2]
+
+If we have a admissible heuristic than A* is optimal. Proof- We assume that A is an optimal goal node and B is a suboptimal goal node and h is admissible. We claim that A will exit the fringe before B. If B is on the fringe then some ancestor of A must also be in the fringe (can be A). n will be expanded before B as f(n) is less or equal to f(A) and f(A) is less than f(B) ( g(A) <g(B) => f(A) < f(B) as h =0). Therefore n expands before B ( f(n) <= f(A) <= f(B)). This means that A expands before B. Hence A* is optimal.[2]
+A* search is used in video games, pathing problems, language analysis, speech recognition. 
+
+For solving A* search problems it boils down to creating admissible heuristic for that problem. [2]
+
+Let's take an example of 8 Puzzle games. It is played on a 3-by-3 grid with 8 square blocks labeled 1 through 8 and a blank square. Your goal is to rearrange the blocks so that they are in order. The state space would be the different configurations of the board. The actions are moving a number left, right, top or bottom. The goal state is a configuration of the board in which numbers are in order. 
+If we take the heuristic as the number of tiles misplaced then it is admissible as it is a relaxed-problem heuristic as in this we assume that we can move the tiles in any manner we want. [2] 
+
+
+
+REFERANCE - 
+
+[1] Stuart J. Russell and Peter Norvig, Artificial Intelligence A Modern Approach, Third Edition.
+
+[2] UC Berkeley CS188 Intro to AI - http://ai.berkeley.edu/home.html
+

@@ -1,0 +1,119 @@
+Artificial intelligence is used to make machines think like people / act like people according to some definitions. The machines must also think and act rationally.
+
+Rational has many meanings, but we consider rational as to achieve the pre-defined goal to the maximum extent, only considering that moment and not doing any thought process. Achieving the goal means having maximum utility(utility will be discussed the later part of the course, for now,, we can take it as the extent of the goal achieved). Being rational means maximising the expected utility. Being rational also means to take care of things while doing an action, like how the environment will affect/will be affected. The machine takes care of only the task that has been assigned to it,, and it does not take care of other things.
+
+
+Brain is the foundation idea of intelligence. Although the working of AI is completely different from brain functionality, the basic idea is of the Brain. Memory and simulation are the keys to decision making. So we use this memory and simulation in the machines and make them artificially intelligent.
+
+Although AI is much better in some cases when compared to the human brain (finding a word in 10K words), there are some things where humans are better. Some are like having a good conversation. Driving through a busy street. The machines do not have any feelings, which makes things pretty different. Now AI has commonly used in text <-> speech conversions, recognitions of hands and movements  of humans, Robotics etc...
+
+An agent is a machine/robot which is artificially intelligent. A rational agent performs in such a way that the utility is maximum for that particular goal. We only talk about the agents that can
+plan (what it can do and what are the surroundings).There are some types of agents. Reflex agents perform actions thinking only about that instance and not at all dealing with the future consequences A reflex agent is not rational every time as it does not consider the future consequences. But if it takes the right decisions every time, then it might be rational.Planning agents consider their future consequences of the actions that they are currently doing and also keep the goal in their mind..
+
+There are two types of planning : optimal(best) and complete(not necessarily best, but achieves the goal). An optimal plan is always a complete plan.
+
+
+SEARCH : We define the search problem using a state space,a successor function, a start state and a  goal test. The solution is a set of states from start state to goal test using the successor function There can be more than one goal states. We try to make the environment (approximations) in such way that the agent can achieve the goal
+    
+Consider a classic Pacman game. Let our goal be to reach a position (goal test). We make this a search problem by making state space as the position of the Pacman (x,y) and we tell that
+the goal is achieved if the (x,y)= the goal test coordinates, and the action is going from the current state to 4 directions.We do not worry if there are dots left to eat or not in this particular goal If the goal is to eat all the dots, the action of the Pacman is same as discussed above but the state space and the successor function would be different (a boolean value to represent a dot in a position) The goal test here would be when all the booleans are false. Here goal test is no state (our state is just the position of Pacman), so goal test is not necessarily a state. A world state is something that contains all the details of the environment. The sample space of all possible states is called the world space, here in Pacman, the things that need to be taken care of are the position of Pacman, the position/(presence at a position) of food, the position of ghosts and the action that the Pacman can perform. It has to be noticed that the state space is dependant on the goal we wish to achieve
+
+
+The states are static possibilities/configurations and the action of the agent leads from one state to another. We can model this as a graph/tree. From one state, the successor function helps our agent to go from one state to another (say a directed edge between two states formulated as a node for the state graph ). A state graph has all possible states and connections between the states. The noticeable thing is that a state never occurs twice. The state graph is memory consuming and not useful in many cases, but the idea is valid though.
+
+
+There is another representation of this called the state tree. Here, all the states are not necessarily present. It starts from the start state, and the flow goes on until the goal state is 
+reached. Unlike the state graph, repetition of the states is possible in case of the search tree, although neither is practically feasible.If there is a loop somewhere in the states, then the
+state tree would be infinite, so we do not consider the full tree for this reason.We have a single rule, we must not encounter the same node twice in a path (this takes care of loops)
+
+
+While traversing the tree, we maintain a data structure, a generic name is a fringe which stores the nodes that are yet to be expanded in that particular path. There will be a certain priority 
+of expanding the nodes which are there on the fringe. We also take care of loops, not expanding such nodes which are already expanded. We traverse the tree in the following way; we check whether any unexpanded nodes are left in the plan, if there aren't any, we return false for that path. If there are any(they are stored in the fringe, then we will expand them according to the strategy(DFS/BFS))
+
+
+Depth-first search: This will give a complete solution, but it might not be an optimal one (if there are no loops).It traverses a path until a leaf node occurs if the goal node is found meanwhile
+we return true.If the path doesn’t have the goal node, we return false for that particular path, and if all paths are done, we will return the solution if it exists. The fringe here is a LIFO stack
+The time complexity is O(b^m) b->branching factor m->height of tree as in the worst case we end up exploring all nodes The space complexity is O(b*m) b->branching factor m->height of tree in order to take care of loops, we have to maintain all the nodes in that particular level
+The fringe for DFS is a LIFO stack,, and we must ensure that we are returning the path while popping out from the stack instead of pushing it into the stack which will be dealt with later
+
+
+
+Breadth-first search : This will give a complete solution,, but it might not be an optimal one (if there are no costs, then it gives optimal).It traverses level wise, if the goal node is found meanwhile we return true.If all levels are done, we will return the solution if it exists. The fringe here is a FIFO queue
+The time complexity is O(b^m) b->branching factor m->height of tree as in the worst case we end up exploring all nodes 
+The space complexity is O(b^m) b->branching factor m->height of the tree in order to take care of loops, we have to maintain all the nodes in that particular level, and the last level has b^m nodes
+
+We cannot say which of this is better, there are some cases DFS does better than BFS and vice versa, if looked on an average, DFS uses lesser space, but both are almost same.
+
+Iterative Deepening : As DFS has better space complexity and BFS can find the solution if it is nearer, combining these 2, there is iterative deepening, perform DFS till depth k, next iteration increase k by 1
+
+Uniform Cost Search: BFS gives the solution with respect to the least number of actions but not the least cost. We use cumulative cost to expand the nodes which is called uniform cost search 
+The fringe used here is a Priority Queue,, ensuring that we expand the cheapest node. We stop the process when the goal node is on the top of the Priority Queue not when we are inserting the goal node 
+The time complexity is O(b^(c*/E0)),, and so is the space complexity. It is because it is BFS only but with C*/E0 levels instead of m 
+It not only gives a complete solution but also gives optimum one (more to be seen later). There is one con of this method, we check every possible way, doesn’t use the fact where the goal is, hence called blind search.
+
+
+All the searches are the same except for the fringes (all are queues if observed closely, assign priority for the strategy).In DFs and BFS the log(n) is overhead is taken care of stacks and queues, if seen in priority format, queue gives the element with maximum timestamp, and stack provides the element with with the minimum timestamp.
+
+An agent doesn’t perform all the plans, instead, it simulates all the scenarios and then acts accordingly, and for that,, we model the search problem. Some times, there might be a problem with the model which doesn’t contain all the useful information, which might give wrong results (severely wrong in some cases)
+
+
+PANCAKE PROBLEM: The problem is that we are given a set of pancakes, we have to make it sorted(the above pancake is smaller than the below pancake) and we are allowed to make only one move, that is flipping the top 'i' pancakes where i->1 to the number of pancakes. A.K.A bounds of sorting by prefix reversal. This can be modelled as a search problem. States are the pancake state. edges are the no of pancakes that we are flipping in one move, and these are bidirectional. Then we formulate this as a tree and perform the traversal for the solution, if the solution exists then return the answer, else return the failure. We say that the path is wholly explored if the fringe is empty.
+
+
+INFORMED SEARCH: Using  the additional information where the goal is. We take help of heuristic function, which outputs for every state how far it is from the goal test.The heuristics are different for different problems, and it doesn’t tell anything about the solution. The heuristic doesn’t guarantee that we will be getting a solution and it is just an estimate.
+For the pancake problem, a considerable heuristic would be the number of pancakes misplaced from the goal test.
+
+GREEDY SEARCH: Takes the best possible way in for that instance, might not be optimal in the future. We expand such a node which is closest to the goal(by heuristic, we can tell which is close)
+There is a very good chance that the solution is not at all optimum and it might be worse than any uninformed search. The agent here is reflex agent (does not think about future)	
+
+A* SEARCH : UCS gives the optimum solution(but slow) and greedy provides a quick solution (but not necessarily optimum), the idea of combining these two algorithms gives A*
+we use the backward cost (UCS idea, maintaining the cumulative cost in a fringe) and the forward cost(heuristic function, not the true forward cost) to determine our next step.
+So the priority of the fringe here is sum of backward and forward cost. Here also, we stop when the goal test is dequeued from the fringe, not when it is enqueued.
+A* gives a complete solution, but is it optimal? To answer that, we have a condition. If that condition is satisfied, then the A*search is optimal
+The condition is The estimated good cost must be lesser than the actual cost of going from that node to the goal test
+
+
+Admissable(Optimistic) heuristic is an underestimate of the actual forward cost and Inadmissible(pessimistic) heuristic is an overestimate of the actual forward cost.A heuristic is admissible if 0<=h(n)<=h*(n) i.e. it is lesser than the actual forward cost, therefore A* search depends on the arc cost.
+
+Optimal A*  Tree Search : consider we have two solutions. A (optimal) and B(sub-optimal) and consider we have an admissible heuristic, then we claim that A pops out of the fringe faster than B
+We take the priority of f(n) (=g(n) + h(n))
+PROOF: consider that B (sub-optimal) is already on the fringe and without loss of generality, we assume that an ancestor of A (say n) is also there on the fringe. we claim that n expands before B
+as f(n) <= f(A) as “h” is admissible and h=0 at A
+ and f(A) < f(B) as h=0 for both A and B and f is less for A as A is optimal
+so n expands before B and this is true for all the ancestors. Therefore A expands before B,, and A* search is optimal
+
+PROPERTIES OF A* SEARCH : We use heuristic and a cumulative cost priority fringe which makes A* search the best possible method. Compared to UCS, A* is better as it uses the fact that it  knows how much far the goal is. The contours won’t be uniform , but inclined towards the goal, and this A* search has many practical applications.
+There might be a case where we might use inadmissible heuristic, when we need a quick suboptimal solution. Here if the admissable heuristic takes much computation time, we opt for the inadmissible heuristic
+
+Creating admissible heuristics: We relax the problem and then find the cost.Relaxing might be adding impossible path (flying in case of shortest distance)/ going through walls, we just need the estimation..
+
+8 PUZZLE PROBLEM : A 3*3 grid with 8 blocks from 1-8 and 1 vacant cell.We can move a block to the blank block; we have a goal test (an arrangement we need the grid to be).
+We consider the heuristic as the number of tiles that are misplaced	
+
+
+
+
+
+
+P.S : I have not mentioned any references as the only references I have used are the recordings of lectures and the slides of UC Berkeley.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
