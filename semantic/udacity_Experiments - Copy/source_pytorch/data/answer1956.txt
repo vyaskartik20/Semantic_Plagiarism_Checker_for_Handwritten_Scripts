@@ -1,0 +1,1 @@
+db2 cube views automates the process of creating metadata by defining, describing, and indexing information in a database.

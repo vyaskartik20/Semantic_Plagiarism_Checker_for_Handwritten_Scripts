@@ -1,0 +1,1 @@
+class-action suits expand exponentially the number of plaintiffs and damages in a lawsuit by allowing initial plaintiffs to plea on behalf of a far larger group with common interest.

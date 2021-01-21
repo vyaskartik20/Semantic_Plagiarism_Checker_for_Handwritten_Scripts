@@ -1,0 +1,1 @@
+it supports the windows ce, palm, symbian, and linux operating systems.

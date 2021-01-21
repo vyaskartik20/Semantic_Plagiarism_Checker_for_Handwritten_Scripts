@@ -27,7 +27,7 @@ def similarity(w1, w2, sim=wn.path_similarity):
     print(ans)
 
 
-word1 = "play"
-word2 = "game"
+word1 = "water"
+word2 = "oil"
 
 similarity(word1, word2)

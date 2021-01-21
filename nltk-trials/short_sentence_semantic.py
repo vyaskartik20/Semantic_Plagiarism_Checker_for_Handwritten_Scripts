@@ -246,10 +246,10 @@ def similarity(sentence_1, sentence_2, info_content_norm):
     parameter is True or False depending on whether information content
     normalization is desired or not.
     """
-    return DELTA * semantic_similarity(sentence_1, sentence_2, info_content_norm) + \
-        (1.0 - DELTA) * word_order_similarity(sentence_1, sentence_2)
+    # return DELTA * semantic_similarity(sentence_1, sentence_2, info_content_norm) + \
+    #     (1.0 - DELTA) * word_order_similarity(sentence_1, sentence_2)
         
-    # return semantic_similarity(sentence_1, sentence_2, info_content_norm)
+    return semantic_similarity(sentence_1, sentence_2, info_content_norm)
 ######################### main / test ##########################
 
 # the results of the algorithm are largely dependent on the results of 
