@@ -162,7 +162,10 @@ def checker(text, pattern):
 # if __name__ == "__main__":
     # print(checker("ABDCCEAGmsslslsosspps", "agkalallaa"))
     
-# checker = PlagiarismChecker(purifyText(text), purifyText(websearch.extractText(matching_sites[i])))
+# text1 = "Kartik Vyas studies at IITJ"
+# text2 = "Kartik Vyas is an Undergrad student at IITJ"
+    
+# checker = PlagiarismChecker(text1,text2)
 
 # print('The percentage of plagiarism held by both documents is  {0}%'.format(
 #     checker.get_rate()))

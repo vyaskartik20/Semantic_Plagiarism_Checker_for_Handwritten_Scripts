@@ -42,10 +42,17 @@ def cosine2 (X,Y) :
     f1 = len(X.split())
     f2 = len(Y.split())
      
-    f2 = cosine * 100 * (f1 + f2)
+    # f2 = cosine * 100 * (f1 + f2)
+    f2 = cosine * (f1 + f2)
+     
      
     if f1 != 0 : 
         f1 = f2 / (2*f1)
     
     print("similarity: ", (f1)) 
     return f1
+
+# text1 = "Kartik Vyas studies at IITJ"
+# text2 = "Kartik Vyas is an Undergrad student at IITJ"
+
+# print(cosine2(text1,text2))

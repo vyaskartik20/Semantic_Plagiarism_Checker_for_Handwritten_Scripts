@@ -2,7 +2,8 @@ from difflib import SequenceMatcher
 
 def similarity(answer, source):
     # source = purifyText(source)
-    f1 = (SequenceMatcher(None,answer,source).ratio())*100
+    # f1 = (SequenceMatcher(None,answer,source).ratio())*100
+    f1 = (SequenceMatcher(None,answer,source).ratio())
     c1 = len(answer.split())
     c2 = len(source.split())
     
@@ -13,3 +14,8 @@ def similarity(answer, source):
     # print('the plag is :') 
     # print(f3)
     return f3
+
+# text1 = "Kartik Vyas studies at IITJ"
+# text2 = "Kartik Vyas is an Undergrad student at IITJ"
+
+# print(similarity(text1,text2))

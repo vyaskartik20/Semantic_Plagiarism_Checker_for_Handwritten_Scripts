@@ -321,4 +321,7 @@ def similarity(sentence_1, sentence_2, info_content_norm):
 #             similarity(sent_pair[0], sent_pair[1], False),
 #             similarity(sent_pair[0], sent_pair[1], True)))
 
-# similarity(sent_pair[0], sent_pair[1], False)
+text1 = "Kartik Vyas studies at IITJ"
+text2 = "Kartik Vyas is an Undergrad student at IITJ"
+
+print(similarity(text1, text2, False))

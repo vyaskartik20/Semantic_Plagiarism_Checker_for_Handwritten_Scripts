@@ -8,8 +8,9 @@ intrinsic-trial1 :clustering
 nltk-trials : nltk similarity toolkit
 semantic/udacity : ml model based on lcs and n gram : udacity
 semantic/udacity_experiments : ml model based on lcs and n gram : udacity with microsoft data
+semantic/udacity_experiments -copy : more features added
 online-trial2
 online-trial5 : cosine1, sequence matcher, cosine gfg, rabin 1, rabin 2
 online-trial6 : original trial 2
 online-trial7 : jaccard and cosine 1,2,3 gram
-model3 : tenserflow own model
+semantic- tensorfloww : tenserflow own model

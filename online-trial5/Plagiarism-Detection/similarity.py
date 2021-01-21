@@ -243,8 +243,8 @@ def report(text):
     # onject2 = OnlinePlag
     # print('second')
     
-    # object1 = OnlinePlag(text.upper(), websearch.extractText("http://www.abdulkalam.com/kalam/theme/jsp/guest/myprofile.jsp").upper())
-    # object1.search_main()
+    object1 = OnlinePlag(text.upper(), websearch.extractText("http://www.abdulkalam.com/kalam/theme/jsp/guest/myprofile.jsp").upper())
+    object1.search_main()
     # search_main(text.upper(), websearch.extractText("https://kidshealth.org/en/teens/brain-nervous-system.html").upper())
     # print(trial)
     
@@ -356,8 +356,8 @@ def report(text):
     #     print(str(matching_sites[i]))
         
    
-    #     object = OnlinePlag(text.upper(), websearch.extractText(matching_sites[i]).upper())
-    #     object.search_main()
+        # object = OnlinePlag(text.upper(), websearch.extractText(matching_sites[i]).upper())
+        # object.search_main()
 
     #     '''
     #     *******

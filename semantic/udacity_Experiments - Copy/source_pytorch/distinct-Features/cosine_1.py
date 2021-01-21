@@ -33,10 +33,10 @@ def text_to_vector(text):
 #returns cosine similarity of two words
 #uses: text_to_vector(text) and get_cosine(v1,v2)
 def cosineSim(text1,text2):
-     vector1 = text_to_vector(text1)
-     vector2 = text_to_vector(text2)
-     #print vector1,vector2	
-     cosine = get_cosine(vector1, vector2)
+    vector1 = text_to_vector(text1)
+    vector2 = text_to_vector(text2)
+    #print vector1,vector2	
+    cosine = get_cosine(vector1, vector2)
 
     #  f1 = len(text1.split())
     #  f2 = len(text2.split())
@@ -46,6 +46,14 @@ def cosineSim(text1,text2):
     #  if f1 != 0 : 
     #     f1 = f2 / (2*f1)
      
-     print('The optimal plag is ' + str(100 * cosine))
-     print('')
-     return (100 * cosine)
+    print('The optimal plag is ' + str(cosine))
+    # print('The optimal plag is ' + str(100 * cosine))
+    print('')
+    # return (100 * cosine)
+    return (cosine)
+    
+ 
+# text1 = "Kartik Vyas studies at IITJ"
+# text2 = "Kartik Vyas is an Undergrad student at IITJ"
+
+# print(cosineSim(text1,text2))
