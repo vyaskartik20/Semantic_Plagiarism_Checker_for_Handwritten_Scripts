@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\nltk-trials",
-    "\\semantic\\Tensorflow",
-    "\\semantic\\udacity",
-    "\\semantic\\udacity_Experiments",
-    "\\semantic\\udacity_Experiments\\source_pytorch"
+    "\\nltk-trials"
   ],
   "SelectedNode": "\\nltk-trials\\short_sentence_semantic.py",
   "PreviewInSolutionExplorer": false

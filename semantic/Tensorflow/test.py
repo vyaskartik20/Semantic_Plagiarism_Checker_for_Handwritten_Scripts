@@ -50,6 +50,7 @@ def plot_similarity(labels, features, rotation):
       cmap="YlOrRd")
   g.set_xticklabels(labels, rotation=rotation)
   g.set_title("Semantic Textual Similarity")
+  plt.show()
 
 def run_and_plot(messages_):
   message_embeddings_ = embed(messages_)
@@ -76,4 +77,14 @@ messages = [
     "what is your age?",
 ]
 
-run_and_plot(messages)
+texts = []
+
+for x in range(1,6):
+    with open(str(x)+'.txt','r') as file:
+        Str = file.read()
+        texts.append(Str)
+ 
+
+        
+run_and_plot(texts)
+#run_and_plot(messages)
