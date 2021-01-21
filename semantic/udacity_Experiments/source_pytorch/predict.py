@@ -81,12 +81,12 @@ def predict_fn(input_data, model):
 
     return out_label
 
-<<<<<<< HEAD:semantic/udacity_Experiments/source_pytorch/predict.py
+#<<<<<<< HEAD:semantic/udacity_Experiments/source_pytorch/predict.py
 #path = 'D:\\BTP-2\\semantic\\udacity_Experiments\\source_pytorch\\model\\'
 path = 'C:\\Users\\Aditya\\Desktop\\Semantic_Plagiarism_Checker_for_Handwritten_Scripts\\semantic\\udacity_Experiments\\source_pytorch\\model\\'
-=======
-path = 'D:\\BTP-2\\semantic\\udacity_Experiments\\source_pytorch\\model\\'
->>>>>>> 8b9cc597fb8f7485de514279cd7c36874f9a666a:semantic/udacity Experiments/source_pytorch/predict.py
+#=======
+#path = 'D:\\BTP-2\\semantic\\udacity_Experiments\\source_pytorch\\model\\'
+#>>>>>>> 8b9cc597fb8f7485de514279cd7c36874f9a666a:semantic/udacity Experiments/source_pytorch/predict.py
 #model_fn(os.path.dirname(path))
 
 data_stream = open('plagiarism_data/test.csv',"r").read()
@@ -94,7 +94,7 @@ data_stream = open('plagiarism_data/test.csv',"r").read()
 test_df = pd.read_csv('plagiarism_data/test.csv', header=None, names=None)
 # split data into labels and features
 test_y_np = test_df.iloc[:,0].values.astype('float32')
-test_x_np = test_df.iloc[:,1:].values.astype('float32')
+test_x_np = test_df.iloc[:,0:].values.astype('float32')
 
 arr = predict_fn(test_x_np,model_fn(os.path.dirname(path)))
 #print(arr)
