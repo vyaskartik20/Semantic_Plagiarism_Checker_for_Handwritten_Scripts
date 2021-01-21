@@ -1,0 +1,84 @@
+﻿Biweekly Notes
+Sept 1-Sept 11
+Introduction
+The course started off with the definition of the word Artificial Intelligence. So, AI is the study of agents that receive percepts from the environment and make rational decisions and perform actions accordingly. The term rational here means, maximally achieving pre-defined goals. So being rational here means maximizing the expected utility. Then we drew parallels between the working of the brain and artificial intelligence. After that, we were taught about the things that AI could do and could not do at the present time such as it could play a decent game of table tennis whereas it is not able to converse successfully with another person for an hour and different applications of AI in different fields. To name a few, we learned about how AI is being used in Natural Language Processing, it’s the most famous example in this field being various voice assistants such as Siri where it could automatically recognize speech, perform Text-to-Speech synthesis, etc. Another example would be Language processing technologies such as question answering, text classification, spam filtering, etc. Then we looked at applications of AI in the field of Robotics and how it is being used to automate a lot of processes such as driving a car or manufacturing a car. Then we learned about two more fields where the use of AI is prevalent that are: Logic systems(theorem provers, Question answering, etc) and in Games. Then to finish with the applications of AI section, we looked at various applications where AI is being used to make decisions such as Google Maps, Medical Diagnosis, Fraud Detection, etc. 
+Agents and Types of Agents
+Then we came to the definition of Agents which I have mentioned at the start of this document, where I define Artificial Intelligence. So, an Agent is an entity that perceives and acts i.e it takes a variety of information from its surroundings and acts accordingly to maximize the utility of the decision for example Pacman could be an agent in the Pacman game.
+Then to take a step further into the course we were taught about the types of agents that are Reflex agents and Planning agents. Reflex agents are the ones which take an action based on the current state and their surrounding or we could say their current percept. They do not consider the future consequences of their actions. These agents may or may not be rational. Planning agents are the ones which take a decision based on the consequences of their actions. These consequences are hypothesized. These agents must have a model of how the world(a model of the complete environment of an agent) evolves in response to actions. Planning agents always try to make rational decisions. 
+Search Problems
+Then we learned that making decisions is basically a search problem where we try to travel through different states from a given state space given a successor function(with actions, costs, etc) in order to reach a goal state. A solution to this search problem is a sequence of actions or a plan which transforms the start state to a goal state. We looked at examples of search problems wherein we had to travel within the country of Romania and the state space consisted of various cities and the successor function consisted of roads for going to the adjacent city and the distance was the cost to do so. The goal was to reach the city of Bucharest starting from the city of Arad. Then we took up the example of the PacMan game again to see how the state space changes in accordance with our goal and the problem we try to solve. For example, if the problem is of finding paths then the state space consists only of different locations as coordinates whereas if the problem is of Eating all dots then the state spaces consist of the location coordinates along with the dot booleans which tell if a dot is present at that location. 
+
+
+State Space Graphs
+To represent the search problems mathematically we studied two representations of the state space. One of them being the state space graphs and the other one being the state space tree. 
+In a state-space graph, nodes represent the different configurations of the world and arcs represent the result of an action. The goal test is a set of goal nodes. Full version of this graph is difficult to construct given the memory constraints but it is very useful. In a state space graph each state occurs only once.
+
+
+Search Trees
+Another way to represent a search problem is through search trees. The root node represents the start state and the children correspond to successors. Usually, the whole state space tree is never built while solving the problem. Each node in the search tree corresponds to an entire path in the state space graph. For this, we saw an example in which a node ‘e’ in a search tree would represent a path {s,d,e} in a state-space graph. We saw another difference between search trees and state-space graph wherein a small search graph with cycles in it would correspond to an infinitely big search tree due to a large number of repeated structures in the search tree. 
+
+
+Tree Search
+In the next section, we learned how to solve a search problem using search trees. We looked at the previously mentioned example of traveling in Romania, where we had to search for a path from Arad to Bucharest. We started from Arad as the root node of the search tree and expanded out potential plans. We maintain a fringe of partial plans under consideration and try to expand as few tree nodes as possible. The fringe tells us which nodes are left to be expanded given a context. It may be a stack or a queue that would be decided by the expansion strategy. If there are no candidates for expansion and we haven’t found our goal state yet, we return False, and if the expanded node contains the goal state, we return the corresponding solution. Else we keep expanding over the available nodes and keep adding them to the search tree until we find a solution. Then we looked at various expansion strategies that told us which nodes to explore further to get to our goal. 
+
+
+Uninformed Search
+Depth-First Search
+In this expansion strategy, we expand the deepest node first and the fringe is a Last in First out stack. DFS if complete i.e it will surely find a solution for us if we are able to prevent cycles and handle them appropriately. It might not be optimal i.e it might not give us the least cost path because DFS stops as soon as it finds a solution. The time complexity of DFS is O(bm) because bm is the upper bound of the number of nodes in the tree and space complexity is O(bm) because the length of the longest path is m and for each node we would need to store its siblings so that when we have visited all the children, we need to come back to the parent explore the rest of the siblings. Here, B is the branching factor, m is the maximum depth of the search tree. 
+Breadth-First Search
+In this expansion strategy, the shallowest node is expanded first and the fringe is a FIFO queue.
+If the depth of the shallowest solution is ‘s’ then the time complexity of BFS is O(bs) and the space complexity is O(bs) because the fringe roughly contains the last tier. BFS is complete i.e it is guaranteed to find a solution because s must be finite if a solution exists. And BFS is optimal only if all the costs are 1 i.e it gives us a solution in the least possible number of actions but the solution may not have the least cost.
+Iterative Deepening
+In this expansion strategy, we combine DFS’s space advantage with BFS’s time advantages. We run DFS while iteratively increasing the depth till which it runs until we find a solution. Generally, the solution is found in the lowest search levels so the work done is usually not redundant. 
+Uniform Cost Search
+This search algorithm finds the least-cost path in the search tree. The strategy that is followed here is to expand the cheapest node first. Fringe here is a priority queue where the priority is given according to the cumulative cost. In Uniform Cost search at each step all the available nodes for expansion are looked at and those are expanded which have a cost less than the cheapest solution or in  other words we expand over the words with the least cumulative cost. Time complexity of uniform cost search is O(bC*/e) where C* is the total cost of the solution if it exists and arcs cost at leat ‘e’ i.e “effective” depth is roughly C*/e. Space complexity of this algorithm is O(bC*/e) because the fringe roughly consists of the last tier. Uniform Cost Search cost search is guaranteed to provide a complete solution if it is assumed that the best solution has finite cost and minimum arc cost is positive. It also provides the most optimal solution. But if we allow negative costs as well. Then the algorithm would give us a complete solution but it may not be optimal because it does not look at all possible plans which would be needed to find an optimal solution if negative edges are present. So we will need to look at all the possible plans to find an optimal solution. We also looked at an example of a graph with negative costs wherein we looked at a robot which would consume some battery when moved from one location to the other and the cost of such a path would be negative in the amount of battery consumed and some locations might have a charging point which would result in a positive path from that location. The goal is to reach some destination with the maximum battery possible. 
+
+
+Uniform search tree explores options in every “direction” and we don’t make use of any information about the goal that might tell us about its location. That is why all the above search algorithms are called uninformed search algorithms.
+
+
+We learned that all the above uninformed search algorithms are the same except the strategies each of them adopts to maintain their respective fringes. They can even be coded using a single implementation using a variable queuing object. 
+
+
+Search and Models
+In this section we learned that the search operates over a model of the world and the agent doesn’t actually try all the plans out in the real world. A good model would result in a good search. And the planning is just a simulation.
+
+
+Then we looked at the pancake flipping problem where we had 4 pancakes of different sizes and the goal was to arrange the pancakes such that the pancake of the largest size is at the bottom. The constraint was that we could only flip from the top of the pancake stack. And the cost was the number of pancakes flipped. 
+
+
+
+
+
+
+
+
+
+
+
+
+Search Heuristics
+Heuristic is a function that estimates how close a state is to the goal and it varies according to the search problem. For example, Manhattan distance, Euclidean distance. Looking at the example of the Romania graph we set the heuristic function as the straight line distance from one city to the other. In the pancake problem we set the heuristic as the largest pancake that was out of place. 
+Informed Search
+Greedy Search
+In this algorithm we expand a node that seems closest to the goal state according to the heuristic. Using the heuristic we get an idea of how far we are from the goal. A common situation that occurs in this algorithm is that we get to the wrong goal. 
+A* Search
+This algorithm combines Uniform Cost Search and Greedy Search. Uniform-Cost search orders by the path cost, or backward cost( g(n)) and greedy search orders by goal proximity, or forward cost (h(n)). So combining the two A* search orders by the sum of the above two f(n)=g(n) + h(n).
+We stop the A* search when we dequeue the goal. Optimality of A* search depends on the heuristics we choose. We need estimates that are less than actual costs i.e we need admissible heuristics. Admissible heuristics are also called optimistic heuristics which slow down bad plans but never outweigh true costs. Whereas inadmissible or pessimistic heuristics trap good plans on the fringe and makes the solution non optimal. Looking for admissible heuristics is the main part of A*  search.  
+To prove the optimality of A*  given admissible heuristic we assumed that a node A is an optimal goal node and a node B is a suboptimal goal node. We claimed that A will exit the fringe before B. We imagined that B is on the fringe and some ancestor n of A or maybe even A is on the fringe then we established that f  cost f(n) is less than or equal to f(A) from the definition of the f cost and making use of the fact that we have assumed admissible heuristics. Then we established that f(A) is less than f(B) by making use of the fact that g(A) is less than g(B) because B is suboptimal and h(A) and h(B) are both zero since A and B are goal nodes. Then from the statements established above we conclude that n expands before B thus all ancestors of A expand before B thus A expands before B, proving that A*  search is optimal.
+Then we looked at some properties of A* search and saw that A* search expands mainly towards the goal and tries to ensure optimality.
+Some applications os A* search includes Video games, Resource planning problems, language analysis, etc.
+Most of the work in solving hard problems optimally is coming up with admissible heuristics which are solutions to relaxed problems where new actions are available. Inadmissible heuristics are useful in some problems too.  
+
+
+Then we looked at the 8 puzzle problem. Where we were given a 9*9 matrix which had 8 tiles with a digit written on it and we had to arrange them to get a matrix in which the tiles are arranged sequentially from 1 to 8 with the top right slot of the matrix empty and the tiles start from the next slot. We could only move a tile to an empty location. Each configuration is a state. We could give coordinates to each slot and associate that coordinate to each digit. We looked at the number of tiles misplaced as a heuristic function. This is relaxed- problem heuristic as in this version of the problem we were able to pick up any tile and place it inside an empty slot which may not be adjacent to it, which was not the case in the original problem. So this heuristic was established as an admissible heuristic. 
+
+
+  
+
+
+
+
+References:
+1. Lecture Slides 
+2. stackoverflow.com

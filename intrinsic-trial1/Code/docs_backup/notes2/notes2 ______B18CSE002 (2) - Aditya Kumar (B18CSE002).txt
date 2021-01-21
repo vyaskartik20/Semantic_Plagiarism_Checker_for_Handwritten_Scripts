@@ -1,0 +1,217 @@
+﻿Aditya Kumar
+B18CSE002
+
+
+
+Admissible Heuristic:-
+A heuristic function is called admissible heuristic if value of heuristic function is less than or equal to minimum true cost to nearest goal. For example taking manhattan distance as heuristic function in pacman game is admissible heuristic.
+
+
+Creating Admissible Heuristics:-
+The major work in solving hard problems is coming up with with admissible heuristics. Most of the time admissible heuristic is solution to relaxed problem. For example in pacman game Euclidean Distance can be taken as admissible heuristic which is calculated asuming there are no walls.
+
+
+Let us take another example of 8 puzzle where we will come up with multiple heuristic function and compare them.
+
+
+In first case we take number of misplaced tiles as heuristic and it is admissible because every move can at max get one tile in position so actual cost will always be greater than or equal to value returned by heuristic function.This heuristic outperforms Uniform Cost Search.Although heuristic function is far from reality because we cannot directly remove a tile and place it in its final position.
+
+
+In second case we will take manhattan distance between current position of tile and the final position of tile where it should be as heuristic function.It is admissible because we are ignoring other tiles while shifting which is a relaxed problem. This heuristic out performs even the previous heuristic because it is more realistic. Therefore more closer the heuristic to actual cost the less work we need to do.
+
+
+Now the question comes up why can’t we use the actual cost as heuristic function even though it is admissible and we will have to expand less nodes. We cannot because computing actual cost would take as much time as Uniform Cost Search.
+
+
+Semi-Lattice of Heuristics:-
+An admissible heuristic(ha) is said to dominate another admissible heuristic(hc) if for all n ha(n) is greater than or equal to hc(n). Max of admissible heuristics is always admissible . Zero is heuristic function in that case search will act as Uniform Cost Search.
+
+
+Graph Search:-
+In case of Search Tree we cannot detect repeated states which causes overwork.To avoid overwork we can use graph search.
+
+
+The strategy of graph search is same as search tree with addition of closed set where we store the states which have been expanded. We explore nodes of search tree and before expanding a node we check in closed set if it has been expanded before or not. In case it was explored we will skip else in case of new we will add to set.
+
+
+Graph Search is complete because even if there are multiple paths it will surely expand one of the paths.Although the explored path may not be optimal.
+
+
+Can Graph Search go wrong?. Yes it can in case the difference of heuristic value of two nodes is greater than actual cost between nodes. Here comes a new heuristic , Consistent heuristic where the difference of heuristic value of two nodes is never greater than actual cost between nodes. Because of consistent heuristic f value never decreases along a path and A* graph search becomes optimal.
+
+
+Summary of A*
+A* uses both actual cost (forward cost) and estimated cost (heuristic cost).A* is optimal in case of admissible and consistent heuristic.The main key of solving any problem is designing of heuristic function.
+
+
+Planning Problems:-
+In this type of problem the important thing is the path to goal and different paths have different costs and depths and we are guided by heuristic functions to quickly find the path to goal. We always aim for the most optimal path.
+
+
+Identification Problems:-
+This is different from planning problems.In this case the most important thing is the goal and and we do not care about the path.All paths are at same depth.Constraint Satisfaction Problems are special type of identification problems.
+
+
+Standard Search Problem:-
+We do not know about the goal state till we reach, it can be function over states. Successor function can also be anything. State is like “black box”, it can be anything pair of integers, strings etc.
+
+
+Constraint Satisfaction Problems:-
+They are subset of search problems. State is defined by set of variables V which are to be assigned values from domain D under given constraints.The goal test is allocation of allowable values for subset of variables under set of constraints.
+
+Some Examples of CSP’s
+
+
+Map Coloring:-
+In this problem there are some set of countries and we are given with some set of colors. We need to assign colors to countries such that no two adjacent countries have same colours.There are two ways of writing constraints, implicit and explicit. In implicit way we write which two variables cannot take same value for example two adjacent countries while in explicit way we write what are the set of values that two variables can take together for example set of possible values that adjacent countries can be assigned.
+
+
+N-Queens:-
+In this problem queen are to be placed in such a way on the board so that no two queens are attacking each other.
+Here we will see two different formulations
+
+
+Formulation1:-
+In this case every box is assigned a variable and domain for each box is either 0 or 1. 1 means queen is in that box and vice versa. Here we explicitly define constraints. We define all the pair of values that two boxes can take row-wise,column-wise and diagonally, and also the number of queens on the boards should be N.
+
+
+Formulation2:-
+In this case we assign every row is assigned a variable as there can be only one queen in each row. Now every queen can be any one of the column from 1 to N and we explicitly define set of values of column that two queens of two different rows can take such that they are not attacking each other.
+
+
+Constraint Graphs:-
+In Binary CSP each constraint relates atmost two variables.In binary constraint graph the variables are represented by nodes and constraints are represented by arcs.Graph is used to speed up the search.Two variables are connected via constraints.
+
+
+In Cryptarithmetic problem more than two variables are connected by constraints.
+
+
+Sudoku Problem:
+All empty square are the variables and domain is numbers from 1 to 9 with constraints of 9 different numbers in each column, 9 different numbers in each row and 9 different numbers in each region.
+
+
+Waltz Algorith
+This algorithm was designed to interpret line drawings of solid polyhedra as 3D objects.We treat every intersection as variable . Adjacent intersections impose constraints on each other for example if one intersection is pointing outward then adjacent intersection also has to point outward.
+
+
+Varieties of CSPs
+Discrete Variables:- 
+Finite Domain - for example Boolean CSP’s like N queens.
+Infinite Doman - for example job scheduling where variables are start and end time of job.
+Continuous Variables:-
+For example start and end time of hubble telescope observations.
+
+
+Varieties of Constraints
+Unary Constraints :- Involves only single variable 
+Binary Constraints :- Involves pair of variables like coloring problem
+Higher-order Contraints :- Involves 3 or more variables like cryptarithmetic problem
+Application of CSP’s
+Some examples of CSP’s application are timetabling problems, transportation scheduling, hardware configuration, fault diagnosis etc.
+
+
+Standard Search Formulation of CSPs
+It is same as search tree. States contains the values of variables assigned so far. In Initial state assignment is empty that is all variables are unassigned. The goal test is when all variables are assigned values and it satisfies all constraints.This is naive approach and we will improve this as we proceed.
+
+
+BFS
+It will produce all possible combinations of states as it does not check constraint satisfaction at any step and will have to more work.
+
+
+DFS 
+It will also produce major possible combinations of states but is still better than DFS in terms of work done.We can improve using backtracking search.
+
+
+Backtracking Search
+Here we use two ideas two improve previous DFS
+Idea1:
+We should assign value to one variable at a time
+Idea 2:
+We should check constraint satisfaction at each step
+Using above two ideas with DFS is called backtracking search and can solve queen problem for N~=25
+
+
+General purpose of ideas improve our algorithm in terms ot time required.
+Some examples are ordering, filtering, and using structure of constraint graph.In ordering we decide what variable is to be assigned next and in which order should its values be tried.
+Filtering: Forward Checking
+Checks domains of unassigned variables and cross of values from its domain in case it defies constraints after assignment of previous variable.For example removal of color from domain of adjacent countries of current assigned country.
+
+
+Filtering: Constraint Propagation
+Although forward checking propagates information from assigned to unassigned variables but doesn’t provide early detection of all failures.Here comes the notion of constraint propagation. Checking from constraint to constraint.
+
+
+Consistency of a Single Arc 
+An arc from X to Y is said to be consistent iff for every value in tail (X) there is some value in head (Y) which could be assigned without violating a constraint.
+In forward checking we only enforce consistency of arcs pointing to new assignment.While in case of arc consistency of an Entire CSP we make sure all arcs are consistent. In case if any variable loses value its neigbours needs to be rechecked. Arc consistency detects failure earlier than forward checking.The only problem with arc consistency is that we need to do lot of computation.
+
+
+Limitation of Arc Consistency
+It does not always detect failures.It is only subpart of backtracking search.
+
+
+Ordering: Minimum remaining values 
+In this case we choose a variable to assign which has fewest legal values left. We choose the min because anyway we are gonna backtrack when we reach it, so if we assign this variable earlier we will do less backtracking.It is also called “Fail-fast” ordering.
+
+
+
+
+Ordering: Least Constraining Value
+In this case we choose the variable which rules out fewest values in remaining variables. We use least because it reduces time as we have to anyhow assign values to variables.
+
+
+Combining all these orderings makes queen problem feasible for N=1000
+
+
+Local Search Techniques and Optimization 
+In case of local search agent does not simulate like uninformed/informed search instead takes decision depending on its neighbours.In case of local search state is important.In local search we keep track of only single state and move only to neighboring states and path is not important in local search.The advantage of local search is that it uses very less memory and also finds reasonable solution in large state space.Local search problem can be mapped to optimization problem.Every state will be defined by an obwctive function and our goal will be to find the state with min or max objective value.
+
+
+Trivial Algorithms for local Search
+Random Sampling:-
+We will choose states randomly and every state will have objective function associated with it although it may not be the optimal solution but if we do it many times, eventually we will find the optimal solution.
+Random Walk:-
+We randomly pick neighbour of current state hoping for optimal solution.
+Both of the above algorithms are asymptotically complete.
+
+
+Hill Climbing (Greedy Local Search)
+In this case we will be looking at max version.We are at some state and if nighbour value has greater objective value then we update the current node to neighbour node.In case of min version we reverse the inequalities.The loop terminates when we reach the peak value.It does not look ahead of its neighbour.Our end state depends on the start state we may not always get global maxima but we will get local maxima for sure.Multiple starting state may lead us to same end state.
+
+
+We can pose N queen as constraint optimization problem.With each state we will assign objective function whose value will be equal to number of pairs attacking each other.We need to find the state with least objective value.Every state will be a solution irrespective of the number of pairs attacking each other, although it may not be the optimal and complete solution.
+
+
+Hill climbing on 8-queens:-
+On using randomly generated starting states, the problem is solved 14% of the times while 86% of the time it gets stuck on local minimum. It takes only 4 steps on average in case of success and 3 on average on failure.
+
+
+Drawbacks of hill climbing:-
+Local Maxima - we get stuck in local maxima and are not able to reach global maxima.
+Plateaus - when for long range neigbours have same value we get stuck at same point.
+Diagonal Ridges.
+
+
+Escaping Shoulders: Sideways Move
+To escape above drawbacks we need to put a limit on sideways moves to avoid infinite loops.On limiting sideways moves in 8-queen problem the success percentage increases from 14% to 94% but the drawback we face is increase in number of steps.
+
+
+Hill Climbing : Stochastic Variations
+Combining hill climbing with random restart and random walk. Random restart means randomly choosing starting states. It eventually leads us to optimal solution.We can have different variations in random restart like we can run for a fixed amount of time or run only for fixed number of restarts.In random walk either move to neighbour with largest value with probability p or to random neigbour with probability 1-p.This variation hepl in escaping local maxima drawback.8-Queen problem reuires 7 restarts for complete solution.
+
+
+Tabu search
+In this we maintain a queue of states.We keep on removing oldest states and keep on adding new states hoping to lead us in increasing direction.It prevents returning quickly to same state.
+
+
+Using BFS to overcome local maxima drawback
+It is combination of local and exhaustive search.We perform breadth from local optima until we find the next state with better h function.
+
+
+Simulated Annealing:-
+It is inspired from physical phenomenon of annealing.We use this for case of global minima.We need to give push in some form in case it gets stuck in local minima similar to ball rolling downhill and we give shake to get the ball out from valley.The amount of shaking gradually decreases.In practice this is very slow. 
+
+
+Local beam search:-
+This is also variation of hill climbing.Instead of one state we keep track of k states.Initially we select any random k states and determine successor of all k states.If any of the successor is goal state we terminate the algorithm else select k best from successors and repeat. 
+We can mix all successors and choose best k from them to improve our algorithm.

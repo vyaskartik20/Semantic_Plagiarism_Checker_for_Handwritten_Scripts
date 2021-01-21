@@ -1,0 +1,275 @@
+﻿Aditya Kumar
+B18CSE002
+
+
+Logic
+If we can formally represent a problem formally then machines can use logical reasoning to make rational decisions.
+
+
+Different Types of Logic
+-Propositional Logic
+-First-Order Logic
+-Non-Monotonic Logic
+-Markov Logic
+
+
+Every Logic has syntax, semantics, and inference procedure
+Syntax - Rules to represent the sentence
+Semantics - meaning of the sentence
+Inference Procedure - Deriving sentences from given knowledge
+
+
+Propositional Logic
+Propositional Logic is made up of propositions. Propositions are statements that either true or false. Ex “Delhi is in India” is a proposition because it’s true while “y+2=3” is not a proposition because it depends on the value of y. Statements in propositional logic are represented by symbols that may be either true or false. 
+
+
+Propositional Logic Syntax (Grammar)
+There may be two types of sentence Atomic sentence or Complex sentence. Atomic sentences may be truth value or a symbol. Complex sentences consist of multiple sentences joined together by different operators. A formula that follows the grammar is called well-formed formula (wff) and vice versa. 
+
+
+Difference Operators
+-Negation
+Negation A is true when A is false and false when A is true
+-Conjunction
+A conjunction B is true if both of them are true else false
+-Disjunction
+A disjunction B is true if any one of them is true else false 
+-Implication
+A implication B is false only when A is true and B is false else always true
+-Biconditional
+A biconditional B is true when both A and B have the same truth values
+
+
+Precedence of Operators
+Negation > Conjunction > Disjunction > Implication > Biconditional
+If precedence order of operators is clear we can avoid parenthesis else we should use parenthesis.
+
+
+Truth Table 
+The truth table for propositional formula F shows all possible truth value of F for all possible values of its atomic propositions.
+
+
+Propositional Logic Semantics
+Interpretation - It is the assignment of all possible values to propositions in a sentence. For n propositions, total possible combinations will be 2^n.
+Semantics - It is a set of interpretations in which the sentence evaluates to be true.
+Model - The model for a set of sentences is an interpretation in which all sentences are true. 
+
+
+Satisfiable formula
+A Formula that is true for at least one interpretation
+
+
+Unsatisfiable formula
+A formula that is false for all interpretations. It is also called contradiction.
+
+
+Valid Formula
+A formula that is true for all interpretations. It is also called tautology
+
+
+Converse of implication
+The converse of A implies B is B implies A. Example converse of “If I am a computer science student, then I can program” will be “If I can program, then I am a computer science student”.
+
+
+Inverse of implication
+The inverse of A implies B is -A implies -B. Example converse of “If I am a computer science student, then I can program” will be “If I am not a computer science student, then I can not program”.
+
+
+Contrapositive of implication
+The converse of A implies B is -B implies -A. Example converse of “If I am a computer science student, then I can program” will be “If I can not program, then I am not a computer science student”.
+
+
+-Conditional and contrapositive always have the same truth value and we can prove this using the truth table.
+-Inverse and converse always have the same truth value and we can prove this using the truth table.
+
+
+Knowledge Base
+It is a set of sentences and is equivalent to one long sentence which is the conjunction of all sentences. The model of the knowledge base is an interpretation in which all sentences of the knowledge base is true. A knowledge base can have multiple models.
+
+
+Entailment
+- Interpretation I entails Formula F if F evaluates to be true under I
+- Interpretation I do not entails Formula F if F evaluates to be false under interpretation I.
+Theorem I entails F if and only if it does not entails -F.
+Entailments is relation where a sentence b logically follows from sentence a. Sentence a entails sentence b if and only if in interpretation a is true and b is also true. All models of a are also models of b.
+
+
+Contingent - There is at least one interpretation for which the formula evaluates to true and at least one interpretation for which formula evaluates to false.
+
+
+Equivalence 
+Two Formula F1 and F2 are said to equivalent if they have same truth value for every interpretation.
+
+
+Some important Equivalences are
+Iaw of double negation 
+ ¬¬p≡p
+Identity laws 
+ p∧T≡p,  p∨F≡p
+Domination laws
+p∨T≡T,  p∧F≡F
+Idempotent laws  
+ p∧p≡p,  p∨p≡p
+Negation laws  
+ p∧¬p≡F,  p∨¬p≡T
+Absorption laws  
+p∧(p∨q)≡p, p∨(p∧q)≡q
+Commutative laws  
+(p∨q)≡(q∨p), (p∧q)≡(q∧p)
+
+
+Above equivalences are used to prove two formulas are equivalent. One formula is rewritten into other using above equivalences.
+
+
+Formalizing arguments in logic
+We convert english arguments into logical formula, represent propositions by symbols and use truth table or use equivalences to show whether argument is valid or not.
+
+
+Deductive Inference
+We write a program to prove whether a sentence b is entailed by a and this is called deductive inference.
+Properties the program should have
+Soundness - the inference algorithm only derives entailed sentences.
+Completeness - All entailment can be inferred
+
+
+Method1: Inference by Enumeration
+Also known as model checking or truth table enumeration
+We are given knowledge base. We form a truth table for all possible values of propositions. The rows of truth table for which all sentences of knowledge base are true are models of Knowledge Base. B is entailed by knowledge base if all rows where knowledge base is true, B is also true which means KB⇒B is valid. Inference by enumeration takes exponential time.
+
+
+Method2: Natural deduction using sound inference rules
+Uses set of inference rules and all equivalences to derive new sentences from the sentences that are true and are initially in KB.
+Sound Inference rules
+Modus Ponens
+a⇒b, a then b
+And-Elimination
+a ∧ b, then a
+
+
+
+
+
+
+Monotonicity Property
+Natural deduction follows monotonicity property of propositional logic. If a new sentence is derived and is added to KB, it will not affect what can be entailed from original KB. Therefore we can add in any order new true derived sentences. Once a sentence is proved true, it will remain true.
+
+
+Resolution Rule of Inference
+Taking two clauses where one contains some symbol and other clause contains its compliment and merge them by removing the symbol and its complement and obtained clause is called resolvent clause.
+
+
+Method3: Resolution Refutation
+Showing KB entails a by proving that KB ∧ -a is unsatisfiable or deducing false from KB ∧ -a
+Algorithm
+1 - adding negation of query to KB
+2 - pick any two sentences that have not been used before and resolution rule of inference can be applied on them.
+3 -If none, terminated and output that query is not entailed by KB
+4 -Compute Reslovent and add it to KB
+5 - If false in KB then terminate and output that query is entailed by KB 
+     Else goto step2
+
+
+Conjunctive Normal Form (CNF)
+1 - Replace all ⇔ using biconditional elimination
+   a ⇔ b  is transformed to (a⇒b)∧(b⇒a)
+2 - Replace all ⇒ using implication elimination
+   a⇒b is transformed to ,¬a∨b
+3 - Move all negation using double negation or De Morgan’s rule
+4 - Apply distribution of ∨ over ∧
+
+
+Resolution Refutation Algorithm
+1 - Given Query and KB
+2 - Add ¬B (query) to KB and convert all sequences to CNF
+3 -  and show this leads to false (Empty Clause)
+
+
+Efficiency of Resolution Refutation Algorithm
+In worst case runtime can be exponential but often it is faster. If a new clause contains same symbol we can delete the duplicate. If a clause contains a symbol and its compliment , the clause is a tautology and we can throw this as it is useless.
+
+
+Applications of PL
+It can be used to solve puzzles, scheduling problems, layout problems etc.
+
+
+Weaknesses of PL
+It is not a very expressive language.It cannot quantify things , can’t express relations for a group of things and only deals with facts and does not allow variables where you can express things about them without naming them explicitly.
+
+
+First Order Logic
+We previously learned propositional logic but it is not expressive enough so we learn first order logic which is more expressive and we can represent more complex facts and more sophisticated inferences. Propositions were building blocks of propositional logic while constants, variables and predicates are building blocks of first order logic. Constants are specific objects ex 6(a number), george(a person), CS311(a course) etc. Variables is range over objects ex 1,2,3…(numbers greater than zero). Predicates describe properties of objects or relationships between objects.Predicates can be applied to both constants and variables. A predicate P(x) is true or false depending on whether property P holds for x. 
+
+
+Formulas in FOL
+Formulas of first order logic are formed using predicates and logical connectives.Ex prime(x) V odd(x) is a formula.In propositional logic the truth value of formula depended on assignment values of variables while in FOL the  truth value of formula depends on interpretation of predicate symbols and variables over some domain.
+Quantifiers
+This is where first order logic shadows propositional logic. Quantifiers allow us to talk about all objects or existence of some object.There are two quantifiers. Universal quantifier (∀) refers to all objects.Universal quantification is true only if predicate is true for all the values in domain. Existential quantifier (∃) refers to some objects. Existential quantification is true if there is atleast one value in domain for which predicate is true.
+
+
+Quantified Formulas
+We can also quantify whole formulas containing multiple predicates and logical connectives. Ex- ∃x(odd(x)∧prime(x))
+
+
+DeMorgan’s Laws for quantifiers
+Demorgan’s law is also extended for first order logic same as propositional logic along with two new laws for quantifiers. When we push negation ∀ changes to ∃ and vice versa.
+
+
+Nested Quantifiers
+Sometimes we cannot represent formula using single quantifier so we need to multiple quantifier in that case. Ex - ∀x.∃y.loves(x,y).
+
+
+Well Formed Formula (wff)
+A variable is called free variable that is not bound by any quantifier.Ex ∃y.loves(x,y) here x is a free variable. A well formed formula is a sentence in which all its variables are quantified 
+
+
+Equivalence
+In PL we could proof two formula are equivalent using truth table but it is not possible in FOL. We use equivalences to rewrite one formula as other.
+
+
+Rules of Inference
+Modus Pollens 
+(p∧q) and ((p∧q)⇒r) implies r
+Modus Tollens
+((p∧q)⇒r) and ¬r implies ¬(p∧q)
+Hypothetical Syllogism
+(p⇒q) and (q⇒r) implies (p⇒r)
+Or Introduction
+p implies p∨q
+Or Elimination
+pvq and ¬p implies q 
+And Introduction
+p and q implies (p∧q)
+And Elimination 
+p∧q implies p
+Resolution
+(pvq) and (¬pvr) implies (qvr)
+
+
+Universal Instantiation
+If we know something is true for all members of domain then we can also conclude that it is true for some specific member of that domain.∀xP(x) implies P(c) is also true where c is in domain of x.
+
+
+Universal Generalization
+If we can prove a claim for any arbitrary element in the domain and since we have not made any assumptions about this element. Therefore it should apply to all other elements of its domain. If P(c) is true where c is arbitrary element then it is true for all other elements of its domain that is ∀xP(x) is also true. 
+
+
+Existential Instantiation
+If ∃xP(x) is true then P(c) is also true where c is a fresh name 
+
+
+Existential Generalization
+If P(c) is true for some constant c then we can conclude ∃xP(x) is also true.
+
+
+Problems with propositionalization
+Propositional generates lots of irrelevant sentences.
+
+
+
+
+Unification
+We can get inference immediately if we can find a suitable substitution for variables of predicates. 
+
+
+Generalized Modus Ponens
+We can generalize modus ponens for set of sentences and we can prove using forward chaining proof .

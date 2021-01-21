@@ -1,0 +1,73 @@
+Name:Nagamalla Rohith
+Roll no.:B18CSE065
+
+Biweekly notes 1:
+
+********************
+INTRODUCTION
+********************
+AI can be considered as a branch of science which tries to understand and build intelligent entities.
+There can be types of approches to AI, one is "human centered" approach which involves observations and hypothesis about human behaviour and the other is "rationalist" approach which involves a combination of mathematics and engineering.Based on these two approaches the definations of AI can be divided into 4 catogaries namely Thinking humanly, thinking rationally, acting humanly and acting rationally.
+The term "rationally" above means given a system, it is rational if it does the “right thing,” given what it knows.Being rational means maximising the expected utility.
+
+Intelligent agents: An agent is anything that can be viewed as perceiving its environment through sensors and acting upon that environment through actuators.
+Types of intelligent agents(2):
+
+Reflex agent : This kind of agent chooses the next action only based on present state or something that is already present in its memory. It does not think about the future consequences.Reflex agent may or may not give a rational solution i.e., it does not think rationally but unintentionally we may get to rational approach some times. For example if we consider a pacman game where there is only one row in the game and it is full of dots and the agent is at center and the algorithm says that it eats a dot which is only adjacent to it. So if it follows this, it will be able to complete only one side of dots and the other side remain.But is the dots are placed in square shape then for this algorithm the agent can it all the dots where ever it is placed in the shape.So in second case it is giving rational solution but in first it is not.
+
+Planning agent : This makes desicions by estimating the future consequences.The consequnces are estimated by formulating a model.Again this is of two kinds: optimal planning and complete planning.complete means finding a solution but optimal means that finding the best soultion according to a cost function.
+
+The problems these agents solve are referred as "search problems".
+Every search "problem" contains: a state space, a successor function (with actions and costs), a start state and end state.
+A "solution" can be defined as a sequence of steps that helps us reach the goal state from the start state.
+For example, consider a graph containing different cities and length of roads between them and th problem is to travel from city A to city B.So in this case the state space:cities, successor function:Roads:go to adjacent cities with cost=distance, start state:A, goal test:state==B, solution: sequence of roads.
+
+State space graph: It is a kind of mathematical representation of search problem in which each node represents a state and the arcs connecting the nodes represents the successor function value.The goal state will also be a set of nodes(may be 1 also).Each state apperas exactly once in state space graph and uasually search space graphs are very huge to be build in a memory(for example, the problem of eating all the dots in pacman game).
+
+Search trees:It is also a kind of representation of problems but it can be reffered as a "what if" tree of plans and their and outcomes.the root will be the start node and unlike search graph this may have repetition of nodes as there may be multiple paths to a node.for most problems, we cant build the entire tree.
+
+****************************
+UNINFORMED SEARCH
+****************************
+All the above describes what is a problem and how do we represent it.Now to solve those we need different search algorithms.In general search of a search tree can be defined as follows:
+We espand some potential plans(nodes) and we maintain something called as fringe with partial plans and try to expand them depending on how we priortize them.
+The main question comes here is when we have some nodes in a fringe which node do we expand next? i.e., how do we prioratize the nodes?
+Based on how we priortize the nodes we define different algorithms for the search.The following are some of those:
+
+Depth first Search(DFS) : The algorithm starts at the root node and explores as far as possible along each branch before backtracking.Fringe for this will be a stack.In this case we can consider that the nodes on the left side are given more priority that those on rigth.If we consider the branching factor as b and depth of the tree is m then the time complexity will be=no. of nodes(as we search all the node)=O(b^m).And comming to space complexity as Fringe has only siblings on path to root so, O(bm).Comming to completeness this gives a complete solution(if nodes are finite) but may not give optimal one as it finds the "leftmost" solution regardless of cost/depth.
+
+Bredth first search(BFS) : It starts at the tree root, and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level.The Fringe in this case is FIFO queue.We can say that priority in this case is given according to the depth of th node i.e., the node with least depth is expanded first.the number of nodes at depth d of a tree with branching factor b is b^m.the time complexity is same as dfs as we explore all the nodes in worst case i.e., O(b^m).And the space complexity can also go upto O(b^m) as we store all the nodes in a level in fringe.Comming to completeness if there exists a solution we are bound to find it so this is complete and it also gives a optimal solution but only if cost of all arcs is same.
+
+In cases where the end node is lesser depth but on right side BFS performs a lot better than DFS but when the solution is deeper and on left side of tree DFS outpeforms BFS.DFS also hava space advantage over BFS,but BFS guarantees gives a optimal solution(if weights are same).
+
+Iterative Deepening : This uses the space advantage of DFS and shallow solution of BFS.We run  DFS up to depth limit of 1 unit,If no solution then we increase it 2 unit and go on doing this until we find the solution.This method gives us optimal solution but lot of redunt work is done here as we we search the same levels again and again until we find a solution.(but generally most of the work is done in lower levels).
+
+All the three algotithms stated above work only if the cost all the arcs are same.But if different arcs have different costs (i.e., path is cost sensitive) then those wont work,The following is algorithm similar to BFS but modified for "Cost-sensitive search":
+
+Uniform-Cost Search (UCS) : This similar to BFS whereas instead priortizing node with least depth we priortize based on least cumulative cost(sum of all the arc's costs to reach that particular node) i.e., expanding the cheapest node first so instead of a normal queue we use a priority queue(min heap with weight as cumulative cost).
+Suppose that cost of solution is C*,tree has branching factor b and minimum cost of a arc in the tree is e, then effective depth is approximately C*/e.So simplt comparing it with BFS the time taken becomes O(b^(C*/e)).And comming to space, it eill be roughly equal to last level searched i.e., O(b^(C*/e)).
+UCS is nothing but BFS modified for cost sensitive search so this also will be complete and optimal just as BFS.
+ 
+****************************
+INFORMED SEARCH
+****************************
+In all the search agorithms seen above we dont have any information about the solution(like for far is solution from current step etc.).So it just tries to serach in all the possible ways.So they all are called as "Uninformed search" algorithms.Next we will see some algorithms which have some info. about the solution which might help us and they are called as "Informed search" alogorithms. For informed search we use something called as "Search Heuristic", which gives us a estimate that how close a state is to a goal.different problems have different heuristic functions.For example,consider pacman game and the problem is to eat a particular dot.One suitable heuristic in this case can be manhattan distance between the present position and the goal dot.
+
+Greedy Search:This appears to be similar to UCS,but in this case instaed of expanding a node which has lowest cumulative cost we expand the which appears to be closest to the goal i.e., the node which for which our heuristic function gives the lowest value.The algo. goes as follows:expand the start state into the fringe,if there are no candidates for expansion return false,then choose a leaf node to expand according to the heuristic strategy and if the the current node is final state return true or else continue the above process until it terminates.
+
+A* Search : This is a combination of uniform-cost search and greedy.In UCS we priortize nodes based on lowest cumulative cost(backward cost) say g(n) and in greedy we priortize based on hueristic(forward cost) say h(n).Now in A* search the priority is given by f(n)=g(n)+h(n).Same as UCS and greedy in this case also we stop the search when we deque a goal.
+
+There are two types of hueristics, admissible and Inadmissible.Admissible are the ones that slowdowns the bad plans but never outweigh the true costs i.e., it kinda gives estimate for the problem with some relaxed constraints whereas Inadmissible break optimality by trapping good plans on the fringe i.e., it gives the solution faster but may not be optimal.
+A heuristic h is admissible if 0<=h(n)<=h*(n), where h*(n) is the true cost to a nearest goal.
+Comming to A* search it is guaranteed to give a optimal solution when h is admissible.
+
+Optimality of A* tree search : Assume A,B are goal nodes on a tree and h is a admissible heuristic and finding A is the optimal solution.Now consider that at some point  B is on the fringe and some ancestor of A,say n will also be on the fringe,then we need to prove that n will be expanded before B.Now, f(n)<=f(A) and f(A)<f(B) that means n expand before B.That means all ancestors A expand before B thus A expands before B.So by this we can say that A* search is optimal.
+
+some important properties of A* search : UCS expand equally in all the direction doing a lot of wasteful work whereas A* expand mainly towards the goal given we chose a good enough heyristic.Some important applications of A* search are video games,pathing problems, resource planning problems, robot motion planning, Language analysis e.t.c.
+
+Now the point left is to solve a problem optimally we have choose a proper admissible heuristics.The task of choosing a admissible heuristic is nothing but finding a solution to relaxed problems where new actions are available.For example,in the problem of agent eating a particular dot in pacman for finding a heuristic we can use relax the constarint of walls(assuming agent can pass through walls) and use manhattan distance as an admiddible heuristic to solve the problem.
+Inadmissible heuristics are also use full in many cases where we dont necessarily need a optimal solution i.e., its ok to get a sub optimal solution as there will be significant reduction in search time.
+
+Sources:
+[1]classroom slides.
+[2]Artificial Intelligence,a modern approach by Russel & Norwig.

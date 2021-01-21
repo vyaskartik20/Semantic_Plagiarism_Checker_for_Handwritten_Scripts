@@ -1,0 +1,168 @@
+﻿## Section 1: Introduction to AI
+
+We da-humans are (and will be, at least for a few more years) special because of our ability to think, because of our brain, because of our ‘intelligence’. And we then wanted machines to think smartly like us. Now of course, machines can’t have a brain just like ours, so there is a lot of stuff out there to make ‘artificial’ intelligence possible. We have learnt from the study of the human brain that MEMORY (in order to learn from experiences and previous conclusions) and SIMULATIONS (to reach rational results by calculating) are two important things in order to make decisions. Our ‘intelligent’ agents would have to (1) think and act like humans and (2) think and act rationally. And we have to study how these computations can be done by some model, so that study is AI. There are a few definitions, approaches, tests, standards to measure that. And as a good start, this is an introductory course for that big buzzword. 
+
+About the use, we can’t say that AI can do all the things humans are able to do but there are certainly a lot of things which we can do with ease or with more perfection using AI. AI can do computer vision, tasks related to speech technologies and language processing and many other logical plans and decisions but AI can not do tasks which require emotional intelligence or decisions involving cultures or human values.
+
+UtTILITY term is used for usefulness or quality of usefulness of the decision. Goals of any process can be defined as utility of the results. RATIONALITY can be defined as having the highest possible utility. Rationality concerns only with what you do and not  how you do it. We want to learn how to maximize the utility i.e. how to become rational and mostly we will focus on computational rationality.
+
+
+## Section 2: Intelligent Agents
+
+Anything that communicates with the environment is an agent, Who takes input  and performs output. For example, devices like alexa or siri, or a chatbot, an interactive robot, or a player of a game(may be a human being too!) etc.
+
+PLANNING AGENTS:
+Rational agent is one who takes the data in any forms (maybe manually entered, or captured using sensors or anything) from the environment, comes up with a sequence of actions, decides if it is desirable or not and finalise a course of action, and performs the output (using actuators or some I/O devices etc). These actions from the sequence will cause the environment to go through some states.
+They don't actually perform the actions but they check by performing some simulations. They think how the results would be if this is the action taken. For example, an agent can not jump to get an apple from a tree in all the situations, you have to put conditions on when to jump and when to not.  
+
+COMPLETE PLANNING is planning that ensures achieving the goal whereas OPTIMAL PLANNING is a complete planning which is the best possible one. 
+PLANNING the agents come up with one plan while in REPLANNING the agent comes up with many plans and then executes the best one out of them.
+
+REFLEX AGENTS: 
+They perform operations based on decisions which are finalised after applying logic on current circumstances and/or maybe something like a lookup table (made using memory). In short, they think based on the presence without worrying much about the future. They don't think about the results of their actions.
+[ Can reflex agents be rational? Yes, they can rational, if we provide enough memory or logic to decide the course of action which turns out to be correct one for the given situation, because rationality does not depend on how you let the decision but on what you lead to. ]
+
+
+## Section 3: Search Problem:
+
+In the game of chess, move this piece to a particular location, kill a particular piece or win the game are some of the examples of search problems. Search problems consist of a state space, successor functions,  start state and goal test. STATE SPACE is the condition of how the world is at a certain point during the course of action. For example, location of all the pieces, or list of all the filled and empty locations on the possible paths of a piece (in the game of chess). SUCCESSOR FUNCTIONS tell us the next state, what path to take, cost for it for a given start state. START STATE is where the agent starts. For example, move the agent to the south by 2 steps from the current dot. GOAL TEST is to check if the goal is  fulfilled. For example, if the required dot is reached or not, all dots are eaten or not. SOLUTION is a sequence of actions (plan)  by following which, goal test can be passed given the start state.
+
+“Search problems are just models.” 
+What we mean by this is, we can’t extract too much information from the real world, we won’t be able to solve the problem or we can’t neglect too much of Information, our solution won't be accurate.  For example, if the search problem is to find the next move of a chess game, we will consider the current state of the game and all possible next states but will not consider what is the colour of board or  size of chess pieces.
+(In this example, 
+state space is set off possible states of the pieces, 
+successor function will be commands to determine which piece can move to which state given the current state of the game with the cost of the move, 
+start state will be the original state of the chessboard and 
+goal test will be either the piece reached the position or it may be if the player won or not)
+
+WORLD STATE includes every possible detail of the environment. In our case, world state will include all the positions of all the pieces. While SEARCH STATE is the set of only those details which are necessary for planning. For example, in the chess game case, state space could be the state of only those squares on which our current piece can possibly go. 
+
+Examples
+1) problem: move the piece in danger
+- states: location of the square where the piece is
+- actions: depends on the type of piece (different for all knights, bishops etc)
+- successor: updated location and corresponding location of piece previously there if any
+- goal test: check final location is safe or not
+
+2) problem: win the game
+- states: set of all the locations of the pieces
+- actions: depends on the type of piece (different for all knights, bishops etc)
+- successor: updated location and corresponding location of piece previously there if any
+- goal test: win (king is killed or not)
+
+To formulate and solve search problems,  we use mathematical representation of search problems using state space graphs and search trees.
+
+STATE SPACE GRAPH
+They are large graphs having nodes as the world states [these world states must be as abstracted as possible to get an efficient solution] and  successor functions are represented by arcs. We need to know the goal test which may be a set of nodes or one node and a start state too. As we do not have the same nodes more than once in regular graphs, we don't have the same state more than once either. So one state appears only once in a graph. 
+They are too large to be built completely. We try to find optimal solution without having to write the whole graph in real life.
+
+So we try to collect only those things which are actually relevant to reach the goal test. That's where the idea of search trees comes in the picture.
+
+SEARCH TREES 
+They are trees having a start state as root node and then all the possible ways(next states) for any current state are branches to that node. Nodes are states just as state space graph but here each node can be reached by following one path from the start state(root) so we can say which actions would correspond to that path and lead to the particular node, so in that way, a node represents a plan(course of actions) from root node. Most of the time we cannot build the whole tree. (because they can be too large or graph may have a cycle then it will go infinitely long)
+
+While solving a problem using search trees, one will start from the start state and expand the tree by following plans to reach the states and thus creating nodes. We keep current possible ways to expand (i.e. ways to reach next possible states) naming them fringe, which is just a list of nodes that are to be explained. When we reach the goal test, we stop. We try to expand as few nodes as possible. 
+
+Algorithm would be:
+the function which takes the problem and informations about successors and return solution or shows failure in case it didn’t find any
+- Initialize the tree using start state of the problem
+- while (true)
+        - if fringe is empty, means nothing to be expanded, then return failure
+        - choose a leaf node to be expanded according to the successor 
+        - if the node satisfying the goal test, return the related solution
+- else expand that node and insert it into the tree
+- end 
+
+DEPTH FIRST SEARCH
+Start at the top node, go to the nodes linked to the current node, take one of them and then expand it and when it hits an empty node(leaf), take the next node and expand it in the same way.
+Nodes are expanded starting from the left bottom of the tree and move to the right bottom. 
+Let’s say, the tree has at max b branches at every node (branching factor=b) and maximum depth is m. then answer the following questions for a DFS
+Q. total number of nodes = O(b^m)
+Q. Is it complete? If there is a solution, yes iff there is no cycle (coz cycle will lead to infinite height of the tree)
+Q. Is it optimal? No
+Q. Time complexity:  O(b^m)
+Q. Space complexity: O(b*m)
+
+BREADTH FIRST SEARCH
+It visits all nodes which are at just the next level of the current node and then goes to all the next level nodes of each one of them one by one, starting from the left one and so on.
+Nodes are expanded starting from the top layer and go layer by layer.
+Let’s say, the tree has at max b branches at every node (branching factor=b) and maximum depth is m and the uppermost solution(which is at the min level given that the root is at the 0th level) is at level x. then answer the following questions for a DFS
+Q. Time taken:  O(b^s)
+Q. Space occupied: O(b*s)
+Q. Is it complete? Yes, because finite s for existing solution
+Q. Is it optimal? No in general 
+
+In general dfs has better average space complexity and bfs has better avg time complexity, but it depends a lot on the particular problem.
+
+ITERATIVE DEEPENING
+In this,we take advantage of both DFS and BFS, like go for dfs for depth limit 1, if no solution is found then run it with limit 2 and so on. This way we are taking less space and coming up with solution in less time. It’s beneficial when the solution is at low levels.
+
+As we saw dfs and bfs, we noticed that those give us the optimal solution in terms of the number of steps taken for the solution. But if the steps cost us differently, then the optimal solution can be one with maybe more steps but having less cost (total cost of all the steps taken). So we need cost sensitive search.
+
+UNIFORM COST SEARCH (UCS)
+In this we look for the cheapest solution and not one with less steps to reach there. While expanding, we take the cheapest cost rather than taking them by level or depth. In short, we prioritize the nodes in the fringe in terms of cost.  All nodes having cost less than the cheapest solution will be expanded. It has cons like it explores all the directions to reach the goal.
+
+If the cheapest solution is costing us X and the tree has at max b branches
+Q. depth of the cheapest solution? X/e (effective depth) where e is the minimum edge cost
+Q. space taken by the fringe: O(b^(X/e))
+Q. Is it complete? Yes (given finite X and e is positive)
+Q. Is it optimal? YES
+  
+PANCAKE PROBLEM- AN EXAMPLE OF SEARCH PROBLEM
+
+Problem statement: 
+Given a stack of different sizes of pancakes, flip them several times such that finally the pancake having the largest diameter is at the bottom of the stack and the one with the smallest at the top. We will consider the number of flips as the cost of the problem. (as boring as it sounds, but THE Bill Gates worked on this, so maybe now we want to study this..!)
+
+State space graph:
+Start from the original situation and have possible states as nodes after some number of flips. And the node where the ordering of pancakes is the same as that of goal state, is our destination.
+
+General tree search algorithm for this: (revisiting)
+the function which takes the problem and informations about successors and return solution or shows failure in case it didn’t find any
+- Initialize the search tree using start state of the problem
+- while (true)
+        - if fringe is empty, means nothing to be expanded, then return failure
+        - choose a leaf node to be expanded according to the successor 
+        - if the node satisfying the goal test, return the related solution
+- else expand that node and insert it into the tree
+- end 
+
+(expansion will be done like this: if u r at the original state(root) then flip top 2 and add the new state in the fring, flip top 3 and then flip top 4 and so on)
+
+STRATEGIES TO PRIORITIZE FRINGE 
+This is where these algorithms differ from one another. As we said, fringes are list or collection of nodes which have different costs or priorities associated with them. In dfs, the deepest node has higher priority, in bfs, the shallowest one has the highest priority, and in ucs, the cheapest one has. 
+
+INFORMED SEARCH
+We had seen that the problem with ucs was that it was considering the cheapest solutions in all the possible directions. But we should look for the solution only in the direction of goal. Heuristics is one such designed function which guesses how close the current state is to the goal. 
+For example, it tells if you are near to the goal based on the distance between 2 points. In the case of the pancake problem, it tells how many flips we are away from the given state to the goal.
+
+GREEDY SEARCH
+In this, when prioritising the nodes in the fringe, we will consider the heuristic function i.e. expand the closet node. Well, this doesn't always work, when we look for the closest solution in the next step, which might be costlier in the long run.
+
+A* SEARCH
+UCS is slow and steady and greedy is fast when considered for a short run. A* can be said as a combination of them. ucs orders nodes priority based on the cost,  and greedy looks for the solution which seems to be the nearest to the goal.  So A* prioritise them by the sum of both the costs. How much cost will it take and how nearer it is to the goal.  
+A* terminates when the solution with the minimum sum of cost is removed (and not when it is added in the fringe) from the fringe. If we don’t do that, we might miss the function which might be better in the long run.
+Q. Is A* optimal? NO, when the state which is far but way cheaper than the nearer but costly,  might be ignored.
+
+ADMISSIBILITY
+Heuristics which give less priority to one node thinking that it’s far away from the goal, but it is actually very cheap, are inadmissible (pessimistic). The heuristics which are not totally stopping the nodes from the fringe which are far because they are cheaper, are admissible(optimistic). So they estimate the cost which is less than the true cost. 0 < = estimated cost <= true cost
+
+Q. Is it optimal? YES
+Explanation: 
+- if we have one good and optimal goal node and one bad goal node, and we are given one admissible heuristic h.
+- we need to say that we will remove g from the fringe before we remove b. 
+- if b is not on the fringe, there is no issue at all.
+- let's assume that b is already in the fringe, and g is not yet in it. 
+- now since g is the optimal goal node, some ancestor of g must be in the fringe because h is admissible.
+- so if that ancestor will be expanded before the bad goal node and then the good goal node will be expanded before the bad one and hence it will be removed first and so we get the correct optimal solution.
+Now to prove that the ancestor will be expanded before the bad goal node, we know that priority of the ancestor of good one is less or equal to priority of good node, because h is admissible. And the priority of the good one is less than that of the bad node. So all ancestors of a good node will be expanded before the bad node. Hence we can say that a good, optimal node will always be expanded before a bad, suboptimal node.
+
+UCS goes upto almost similar depth for all the nodes in the same level, while A* checks deeper for the nodes nearer to the goal and shallower for the nodes away from goals. A* can be very useful and has a lot of applications in various search problems.
+
+
+
+
+
+
+References:
+[1] http://ai.berkeley.edu/lecture_slides.html
+[2] http://ai.berkeley.edu/lecture_videos.html

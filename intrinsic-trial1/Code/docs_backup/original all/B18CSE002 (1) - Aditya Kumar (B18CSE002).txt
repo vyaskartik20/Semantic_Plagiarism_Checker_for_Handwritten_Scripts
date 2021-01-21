@@ -1,0 +1,66 @@
+﻿Aditya Kumar (B18CSE002)
+
+
+Artificial intelligence can also be called as machine intelligence. The goal of artificial intelligence is to make machines that can perform tasks like a human, sometimes better than humans, sometimes not.
+
+
+Rational Decisions-Being rational means achieving maximum predefined goals and maximizing expected utility. It only concerns what decisions are made and not the thought process behind them. Goals are expressed in terms of the utility of outcomes. 
+
+
+Comparing the human brain with artificial intelligence it tries to mimic the human brain, sometimes it outperforms it and sometimes not. Some of the tasks which artificial intelligence can perform are playing a decent game of table tennis, drive safely along a curved path, image classification, object detection, robo-soccer, etc. Some of the tasks which it cannot perform until the current day are writing a funny story, self-driving cars on a busy road, talking with another person for an hour, etc.
+
+
+An agent is an entity that perceives its environment and then acts. Our goal is to make agents take actions rationally and maximizing expected utility.
+
+
+Now we will look search problem. There are two types of agents, reflex agents and planning agents. Reflex agents take actions based on the current environment percept and not considering future consequences of their actions, may or may not have the memory of the world’s current state. Reflex agents can be rational in case every take action they take leads towards goal. On the other hand planning agents take actions based on the consequences of their actions and will have a model which tells how the world evolves on basis of their actions. They explore all the possibilities and come up with the most optimal solution which their computational power allows.
+
+
+There are two types of planning complete planning and optimal planning. Complete planning always achieves the predefined goals but it may not be the best way while on the other hand optimal planning always achieves the predefined goals in the best possible way. Optimal planning will always be complete planning but complete planning may or may not be optimal planning.
+
+
+A search problem consists of a state space, successor function, start state, and goal test. A goal test may or may not be the same as goal state. A solution is a sequence of actions that transform the start state to goal state. Search problems are models. For a pathfinding problem states will be (x,y) locations, actions will be taking a step in either of four directions, the successor function will update the location and our goal test is (x,y) which is the location of the goal test. For every search problem, the world state includes every detail of the environment.
+
+
+State Space Graph - it is a representation of the search problem in the form of a graph where every node is a possible world state. Each state occurs only once. Edges represent successors or the next state based on actions.
+
+
+A search tree is based on the actions we take from the current state. The start state is the root. Children represent successors based on actions. Nodes correspond to the plans that achieve those states. Each node in the search tree represents an entire path in state space graph. In the case of the cycle in the graph, the tree can be infinite but if we fix some constraints we can avoid infinite tree.
+
+
+Searching for goal state using a search tree. There are three types of search depth-first search, breadth-first search, and uniform cost search. Every search has the same pattern, maintaining a fringe of partial plans under consideration, expanding out potential plans and exploration strategy which each search follows. We try to explore as few nodes as possible. 
+
+
+Uninformed Search
+
+
+Depth First Search - the strategy being followed is the expansion of the deepest node first. Here stack is being used as a fringe. Supposing b is the branching factor and m is the maximum depth of the search tree then the number of nodes will be O(b raise to power m), in worst case time complexity will be O(b raise to power m). The space complexity of the fringe will be O(b*m). It is not an optimal solution because it finds the “leftmost” solution irrespective of depth or cost. In case we have our goal state in the first level but the rightmost branch, this search will first explore all the nodes on the left side and then will explore on the right side thus not finding the optimal solution.
+
+
+Breadth First Search - the strategy being followed is the expansion of the shallowest nodes first. Here the queue is being used as a fringe. Supposing b is the branching factor and s is the depth of the shallowest solution, in worst case time complexity will be O(b raise to power s). The space complexity of the fringe will be O(b raise to power s). For a complete solution to exist s must be finite. It will be an optimal solution in case all costs are 1. BFS will outperform DFS in case the goal state is in shallow level. DFS will outperform BFS in case the goal state is on the left side of the tree.
+
+
+
+
+Uniform Cost Search - the strategy being followed is the expansion of the cheapest nodes first. Here priority queue is being used as a fringe. If the solution costs C and arc costs at least e then effective depth will be C/e. Supposing b is the branching factor and C/e is the depth of the solution, in worst case time complexity will be O(b raise to power C/e). The space complexity of the fringe will be O(b raise to power C/e). Most of the time, optimal and complete solution exists. The problem with UCS is that it explores in every direction and has no information about the goal location. Next, we will learn about informed search where we have some information about goal location.
+
+
+Informed Search
+
+
+In an informed search, we have some approximate knowledge at each state about how far we are from the goal state. The function which provides this information is called the heuristic function. Each problem has a unique heuristic function. Examples of heuristic functions are euclidean distance, Manhattan distance, etc. For example heuristic function in pathfinding problem can be Euclidean distance, heuristic function in the pancake problem can be the number of largest pancake that is still out of place.
+
+
+Greedy Search - This search is similar to uniform cost search but instead of the actual cost it uses value of cost provided by the heuristic function. It maintains the fringe of nodes. Priority queue is used as a fringe here. Lowest cost nodes are expanded first. This approach does not always work. Sometimes the lowest cost node may take to the wrong state goal.
+
+
+Uniform cost search orders by path cost or backward cost g(n). Greedy orders by goal proximity, or forward cost h(n).
+
+
+A* search - It is a combination of uniform cost search and greedy search.f(n) = g(n) + h(n). We should stop only when the goal state is dequeued and not when it is enqueued. For A* search to be optimal actual bad cost should be less than the estimated good goal cost.
+
+
+There are two types of heuristics inadmissible(pessimistic) and admissible(optimistic). Inadmissible heuristic break optimality by trapping good plans on the fringe while admissible heuristic slows down bad plans but never outweighs the true costs.
+
+
+A heuristic h is admissible if heuristic cost is less than the true cost to the nearest goal. The main thing involved in A* search is coming up with admissible heuristics. Uniform cost search expands equally in all directions on the other hand A* expands mainly towards the goal but does hedge its best to ensure optimality. Some applications of A* are video games, pathing problems, robot motion planning etc. Coming up with an admissible heuristic solves major problem in hard search problems.
