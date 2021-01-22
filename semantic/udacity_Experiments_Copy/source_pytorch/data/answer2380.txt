@@ -1,0 +1,1 @@
+the number of host names using bsd is nearing 4 million, whereas the number of active sites is nearly 2 million, netcraft said.
