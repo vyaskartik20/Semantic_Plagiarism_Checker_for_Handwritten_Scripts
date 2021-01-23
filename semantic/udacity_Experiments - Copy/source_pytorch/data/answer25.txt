@@ -1,1 +1,0 @@
-a bmi between 18.5 and 24.9 is considered normal, over 25 is considered overweight and 30 or greater is defined as obese.

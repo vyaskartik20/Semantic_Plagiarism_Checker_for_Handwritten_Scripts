@@ -1,1 +1,0 @@
-opforce 3.0 supports solaris, ibm aix, red hat linux and windows.

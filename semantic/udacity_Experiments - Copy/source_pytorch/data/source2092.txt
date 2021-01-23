@@ -1,1 +1,0 @@
-intel’s xeon surpassed hp’s pa-risc to become the most often used processor, rising from 76 systems in june to 152 systems in november.

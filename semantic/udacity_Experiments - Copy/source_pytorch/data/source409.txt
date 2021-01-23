@@ -1,1 +1,0 @@
-autoadvice is available as a one-year subscription at $400 per cpu, scaling from one to 50,000 cpus.

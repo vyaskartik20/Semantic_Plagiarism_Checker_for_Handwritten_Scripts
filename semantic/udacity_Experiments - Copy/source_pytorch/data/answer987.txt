@@ -1,1 +1,0 @@
-starting on aug. 16, every computer infected with mblast will start flooding microsoft's windows update service with legitimate-looking connection requests.

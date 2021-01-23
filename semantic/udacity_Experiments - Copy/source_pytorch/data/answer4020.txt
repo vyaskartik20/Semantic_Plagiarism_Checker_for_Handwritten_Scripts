@@ -1,1 +1,0 @@
-in addition, apple's new server admin tool makes it easy for system administrators to set up, manage and monitor the complete set of services built into panther server.

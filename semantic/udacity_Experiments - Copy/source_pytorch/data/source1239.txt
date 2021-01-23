@@ -1,1 +1,0 @@
-in addition to hp, vendors backing smi-s include computer associates, emc, ibm, sun and veritas.

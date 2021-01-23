@@ -1,1 +1,0 @@
-sco claims that the linux kernel holds unix intellectual property owned by sco.

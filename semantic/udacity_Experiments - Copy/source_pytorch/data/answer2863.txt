@@ -1,1 +1,0 @@
-nuremberg, germany-based suse will license sun's java 2 standard edition (j2se) and ship sun's java virtual machine across its linux software line.

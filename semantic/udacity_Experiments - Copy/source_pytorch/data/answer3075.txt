@@ -1,1 +1,0 @@
-microsoft issued a patch for the vulnerability, which affects windows nt 4.0, windows nt 4.0 terminal services edition, windows 2000, windows xp and windows server 2003.

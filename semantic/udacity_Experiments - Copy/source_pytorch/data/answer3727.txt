@@ -1,1 +1,0 @@
-the foreign bits are recognized by other cells that realize it is infected and kill it.

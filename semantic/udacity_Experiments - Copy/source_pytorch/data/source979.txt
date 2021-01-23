@@ -1,1 +1,0 @@
-the guru microcontroller serves four functions: hardware monitoring, overclocking management, bios (basic input output system) update and a troubleshooting-assistance feature called black box.

@@ -91,7 +91,7 @@ data_stream = open('plagiarism_data/test.csv',"r").read()
 test_df = pd.read_csv('plagiarism_data/test.csv', header=None, names=None)
 # split data into labels and features
 test_y_np = test_df.iloc[:,0].values.astype('float32')
-test_x_np = test_df.iloc[:,0:].values.astype('float32')
+test_x_np = test_df.iloc[:,1:].values.astype('float32')
 
 arr = predict_fn(test_x_np,model_fn(os.path.dirname(path)))
 #print(arr)

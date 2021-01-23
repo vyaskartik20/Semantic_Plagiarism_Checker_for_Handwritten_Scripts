@@ -1,1 +1,0 @@
-"we have an incredible amount of work to do, but it's not in [designing new] instruction set architectures.

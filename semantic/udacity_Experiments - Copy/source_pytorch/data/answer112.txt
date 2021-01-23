@@ -1,1 +1,0 @@
-the suite includes a word processor, spreadsheet, presentation application (analogous to powerpoint), and other components -- all built around the xml file format.

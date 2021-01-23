@@ -1,1 +1,0 @@
-a stage one alert is declared when ozone readings exceed 0.20 parts per million during a one-hour period.

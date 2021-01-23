@@ -1,1 +1,0 @@
-it also offers a built-in nand flash boot loader so that high-density nand flash memory can be used without having to install an additional support chip.

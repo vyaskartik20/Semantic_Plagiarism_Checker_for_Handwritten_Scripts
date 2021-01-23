@@ -1,1 +1,0 @@
-it also features nvidia's own powermizer power management system.

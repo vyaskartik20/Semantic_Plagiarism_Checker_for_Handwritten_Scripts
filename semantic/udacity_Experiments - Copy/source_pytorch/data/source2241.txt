@@ -1,1 +1,0 @@
-apple has also built a new vpn (define) server into panther server that supports mac os x, windows or unix clients using pptp and l2tp tunneling protocols.

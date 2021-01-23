@@ -189,7 +189,7 @@ all_features[i]= np.squeeze(cosine_2.create_cosine_2_features(complete_df))
 i+=1
 
 features_list.append("cosine_trigram")
-all_features[i]= np.squeeze(cosine_2.create_cosine_2_features(complete_df))
+all_features[i]= np.squeeze(cosine_trigram.create_cosine_trigram_features(complete_df))
 i+=1
 
 features_list.append("docism_nltk")

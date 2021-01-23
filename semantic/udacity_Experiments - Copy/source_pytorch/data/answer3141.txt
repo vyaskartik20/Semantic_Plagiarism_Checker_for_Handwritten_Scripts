@@ -1,1 +1,0 @@
-the premium edition adds isa server, sql server and a specialized edition of biztalk 2004.

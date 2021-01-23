@@ -1,1 +1,0 @@
-writing safe programs that demonstrate an infection vector is adequate without building in the reproductive sequences."
