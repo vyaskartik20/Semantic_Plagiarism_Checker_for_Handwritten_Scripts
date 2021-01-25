@@ -97,7 +97,7 @@ from distinctFeatures import ngram
 from distinctFeatures import phrase_nltk_1
 from distinctFeatures import phrase_nltk_2
 # from distinctFeatures import rabin_karp_1
-# from distinctFeatures import rabin_karp_2
+from distinctFeatures import rabin_karp_2
 from distinctFeatures import sequence_matcher
 
 
@@ -196,9 +196,9 @@ i=0
 # all_features[i]= np.squeeze(docism_nltk.create_docism_nltk_features(complete_df))
 # i+=1
 
-features_list.append("jaccard_trigram")
-all_features[i]= np.squeeze(jaccard_trigram.create_jaccard_trigram_features(complete_df))
-i+=1
+# features_list.append("jaccard_trigram")
+# all_features[i]= np.squeeze(jaccard_trigram.create_jaccard_trigram_features(complete_df))
+# i+=1
 
 # Calculate features for LCS_Norm Words 
 # features_list.append('lcs_word')
@@ -213,9 +213,9 @@ i+=1
 #     all_features[i]=np.squeeze(ngram.create_containment_features(complete_df, n))
 #     i+=1
 
-# # features_list.append("rabin_karp_1")
-# # all_features[i]= np.squeeze(rabin_karp_1.create_rabin_karp_1_features(complete_df))
-# # i+=1
+# features_list.append("rabin_karp_1")
+# all_features[i]= np.squeeze(rabin_karp_1.create_rabin_karp_1_features(complete_df))
+# i+=1
 # features_list.append("phrase_nltk_1")
 # all_features[i]= np.squeeze(phrase_nltk_1.create_phrase_nltk_1_features(complete_df))
 # i+=1
@@ -224,9 +224,9 @@ i+=1
 # all_features[i]= np.squeeze(phrase_nltk_2.create_phrase_nltk_2_features(complete_df))
 # i+=1
 
-# features_list.append("rabin_karp_2")
-# all_features[i]= np.squeeze(rabin_karp_2.create_rabin_karp_2_features(complete_df))
-# i+=1
+features_list.append("rabin_karp_2")
+all_features[i]= np.squeeze(rabin_karp_2.create_rabin_karp_2_features(complete_df))
+i+=1
 
 # features_list.append("sequence_matcher")
 # all_features[i]= np.squeeze(sequence_matcher.create_sequence_matcher_features(complete_df))
@@ -240,7 +240,7 @@ features_df = pd.DataFrame(np.transpose(all_features), columns=features_list)
 # print('Features: ', features_list)
 # print()
 
-test_selection = list(features_df)[:2] # first couple columns as a test
+test_selection = list(features_df)[:1] # first couple columns as a test
 (train_x, train_y), (test_x, test_y) = plagiarism_feature_engineering.train_test_data(complete_df, features_df, test_selection)
 
 data_dir = 'plagiarism_data'
