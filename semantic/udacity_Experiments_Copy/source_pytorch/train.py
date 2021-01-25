@@ -140,7 +140,7 @@ if __name__ == '__main__':
     # Training Parameters, given
     parser.add_argument('--batch_size', type=int, default=10, metavar='N',
                         help='input batch size for training (default: 10)')
-    parser.add_argument('--epochs', type=int, default=50, metavar='N',
+    parser.add_argument('--epochs', type=int, default=100, metavar='N',
                         help='number of epochs to train (default: 10)')
     parser.add_argument('--seed', type=int, default=1, metavar='S',
                         help='random seed (default: 1)')
@@ -148,7 +148,7 @@ if __name__ == '__main__':
     ## DONE: Add args for the three model parameters:
     # input_features, hidden_dim, output_dim
     # Model Parameters
-    parser.add_argument('--input_features', type=int, default=13, metavar='IN',
+    parser.add_argument('--input_features', type=int, default=1, metavar='IN',
                         help='number of input features')
     parser.add_argument('--hidden_dim', metavar='H', nargs='*', default=[64,64],
                         help='size of hidden layers')
