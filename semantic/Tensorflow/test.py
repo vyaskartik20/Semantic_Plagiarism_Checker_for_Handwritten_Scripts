@@ -17,7 +17,7 @@ print ("module %s loaded" % module_url)
 def embed(input):
   return model(input)
 
-#@title Compute a representation for each message, showing various lengths supported.
+# #@title Compute a representation for each message, showing various lengths supported.
 word = "Elephant"
 sentence = "I am a sentence for which I would like to get its embedding."
 paragraph = (
