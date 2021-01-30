@@ -81,9 +81,8 @@ def predict_fn(input_data, model):
 
     return out_label
 
-#path = 'D:\\BTP-2\\semantic\\udacity_Experiments\\source_pytorch\\model\\'
-path = 'C:\\Users\\Aditya\\Desktop\\Semantic_Plagiarism_Checker_for_Handwritten_Scripts\\semantic\\udacity_Experiments_Copy\\source_pytorch\\model\\'
-#path = 'D:\\BTP-2\\semantic\\udacity_Experiments_Copy\\source_pytorch\\model\\'
+# path = 'C:\\Users\\Aditya\\Desktop\\Semantic_Plagiarism_Checker_for_Handwritten_Scripts\\semantic\\udacity_Experiments_Copy\\source_pytorch\\model\\'
+path = 'D:\\BTP-2\\semantic\\udacity_Experiments_Copy\\source_pytorch\\model\\'
 #model_fn(os.path.dirname(path))
 
 data_stream = open('plagiarism_data/test.csv',"r").read()

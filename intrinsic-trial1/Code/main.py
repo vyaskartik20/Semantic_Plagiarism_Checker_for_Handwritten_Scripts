@@ -48,7 +48,7 @@ def slidingWindow(sequence, winSize, step=1):
     for i in range(0, numOfChunks * step, step):
         l.append(" ".join(sequence[i:i + winSize]))
 
-    print (l)
+    # print (l)
     return l
 
 
@@ -394,7 +394,7 @@ def loadText():
     for filename in os.listdir(DATASET):
 	    # assignment_files.append(DATASET + '/' + filename + '.txt')
         currentFile =  DATASET + '/' + filename
-        print (filename)
+        # print (filename)
         currentData = open(currentFile, errors='ignore').read()
         currentData = sent_tokenize(currentData)
 
@@ -525,11 +525,21 @@ def Analysis(vector, K=2):
 
     kmeans = KMeans(n_clusters=K, n_jobs=-1)
     kmeans.fit_transform(components)
-    print("labels: ", kmeans.labels_)
+    # print("labels: ", kmeans.labels_)
+
+    
     centers = kmeans.cluster_centers_
 
     # lables are assigned by the algorithm if 2 clusters then lables would be 0 or 1
     lables = kmeans.labels_
+    
+    files = []
+    for filename in os.listdir(DATASET):
+        files.append(filename)
+    
+    for i in range(len(components)):
+        print( files[i] + "     " + str(lables[i]))    
+        
     colors = ["r.", "g.", "b.", "y.", "c."]
     colors = colors[:K + 1]
 
