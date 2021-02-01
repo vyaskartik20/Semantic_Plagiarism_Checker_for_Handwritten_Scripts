@@ -150,7 +150,7 @@ if __name__ == '__main__':
     # Model Parameters
     parser.add_argument('--input_features', type=int, default=1, metavar='IN',
                         help='number of input features')
-    parser.add_argument('--hidden_dim', metavar='H', nargs='*', default=[64,64],
+    parser.add_argument('--hidden_dim', metavar='H', nargs='*', default=[[64,64],[64,64],[64,64]],
                         help='size of hidden layers')
     parser.add_argument('--output_dim', type=int, default=1, metavar='OUT',
                         help='number of outputs')
