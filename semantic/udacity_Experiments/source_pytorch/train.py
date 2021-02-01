@@ -10,7 +10,8 @@ import torch.utils.data
  
 # imports the model in model.py by name
 from model import BinaryClassifier
- 
+
+# print(model)
  
 def model_fn(model_dir):
     """Load the PyTorch model from the `model_dir` directory."""
@@ -119,6 +120,9 @@ def train(model, train_loader, epochs, criterion, optimizer, device):
     return model_state_dict
  
 ## DONE: Complete the main code
+
+import sys
+
 if __name__ == '__main__':
     
     # All of the model parameters and training parameters are sent as arguments
@@ -182,6 +186,9 @@ if __name__ == '__main__':
     model = BinaryClassifier(args.input_features, args.hidden_dim,
                              args.output_dim, args.dropout)
     model.to(device)
+ 
+    print(model)
+    sys.exit()
  
     ## DONE: Define an optimizer and loss function for training
     optimizer = optim.Adam(model.parameters(), lr=args.lr)
