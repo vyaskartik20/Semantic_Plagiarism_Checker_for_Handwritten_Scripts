@@ -1,1 +1,1 @@
-the s3c2440 has a built-in nand flash boot loader, for example, so that high-density nand flash memory can be installed without an additional support chip.
+a man is playing the drum

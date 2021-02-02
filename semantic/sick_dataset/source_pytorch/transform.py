@@ -20,18 +20,18 @@ def dataLoader(filename):
     i=1
     
     # with open('file_information.txt', 'w') as csvfile:
-            # filewriter0 = csv.writer(csvfile, delimiter=',',
-                            # quotechar='|', quoting=csv.QUOTE_MINIMAL)
-    # filewriter.writerow(['File', 'Class'])
+    #         filewriter0 = csv.writer(csvfile, delimiter=',',
+    #                         quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    # filewriter0.writerow(['File', 'Class'])
     
     file1=open("file_information.txt","w")
     
-    temp = "File" + "," + "Class"
+    temp = "File" + "," + "Class" + "," + "DataType"
     file1.write(temp)
     file1.write("\n")
       
     for line in text[1:]:
-        label, _, _, s1, s2 = line.split("\t")
+        _, s1, s2, _ ,label, _ , _ , _ , _ , _ , _ , datatype = line.split("\t")
 
         labels.append(label)
         sentence1.append(s1)
@@ -42,16 +42,18 @@ def dataLoader(filename):
        
         i=i+1
         
-        # file1=open(file1Name,"w")
-        # file1.write(s1)
-        # file1.close()
+        # file3=open(file1Name,"w")
+        # file3.write(s1)
+        # file3.close()
         
         # file2=open(file2Name,"w")
         # file2.write(s2)
         # file2.close()
         
-        a = file1Name + "," + str(-1) 
-        b = file2Name + "," + str(label) 
+        a = file1Name + "," + str(-1) + "," + str("orig")
+        if(datatype == "trial") :
+            datatype = "train" 
+        b = file2Name + "," + str(label) + "," + str(datatype) 
 
         a = str(a)
         b = str(b)
@@ -64,13 +66,20 @@ def dataLoader(filename):
         
     file1.close()
 
-    labels = list(map(int, labels))
+    # labels = list(map(int, labels))
 
-    return labels, sentence1, sentence2
+    # return labels, sentence1, sentence2
 
+
+import pandas as pd
 
 if __name__ == '__main__':
-    filename = "msr_paraphrase_train.txt"
-    label, sx, sy = dataLoader(filename)
-    print(label[0], sx[0], sy[0])
+    # filename = "SICK.txt"
+    # dataLoader(filename)
+    # print(label[0], sx[0], sy[0])
+    
+
+    read_file = pd.read_csv (r'file_information.txt')
+    read_file.columns = ['File','Class', 'Datatype']
+    read_file.to_csv (r'data/file_information.csv', index=None)
     

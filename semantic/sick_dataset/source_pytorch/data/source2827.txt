@@ -1,1 +1,1 @@
-microsoft will seek to simplify creation of biztalk applications by tying it more tightly to its flagship development tool, visual studio.net.
+the cats are not playing with each other

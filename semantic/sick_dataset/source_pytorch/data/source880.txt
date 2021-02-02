@@ -1,1 +1,1 @@
-the first vulnerability is a buffer overrun that results from ie's failure to properly determine an object type returned from a web server.
+a girl in a uniform, which is blue, is quickly raising her arm

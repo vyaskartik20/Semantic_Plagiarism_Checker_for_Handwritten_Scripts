@@ -86,7 +86,7 @@ import pandas as pd
 import helpers
 import plagiarism_feature_engineering
 import numpy as np
-# import distinct-Features/cosine_1
+# import distinctFeatures/cosine_1
 from distinctFeatures import cosine_1
 from distinctFeatures import cosine_2
 from distinctFeatures import cosine_trigram
@@ -96,7 +96,7 @@ from distinctFeatures import lcs
 from distinctFeatures import ngram
 from distinctFeatures import phrase_nltk_1
 from distinctFeatures import phrase_nltk_2
-from distinctFeatures import rabin_karp_1
+# from distinctFeatures import rabin_karp_1
 from distinctFeatures import rabin_karp_2
 from distinctFeatures import sequence_matcher
 from distinctFeatures import tensorflow_sentence_embedding
@@ -106,7 +106,7 @@ from distinctFeatures import tensorflow_sentence_embedding
 csv_file = 'data/file_information.csv'
 complete_df = pd.read_csv(csv_file)
 
-# text_df = helpers.create_text_column(plagiarism_df)
+# text_df = helpers.create_text_column(complete_df)
 
 
 # check work
@@ -117,9 +117,9 @@ complete_df = pd.read_csv(csv_file)
 
 # print('Sample processed text:\n\n', sample_text)
 
-# complete_df = helpers.train_test_dataframe(text_df, random_seed=1)
+# # complete_df = helpers.train_test_dataframe(text_df, random_seed=1)
 
-# complete_df.to_csv('data/file_information.csv') 
+# text_df.to_csv('data/file_information.csv') 
 
 # print('\nExample data: ')
 
@@ -154,10 +154,10 @@ complete_df = pd.read_csv(csv_file)
 #     c = plagiarism_feature_engineering.calculate_containment(complete_df, n, filename)
 #     containment_vals.append(c)
 
-# # print out result, does it make sense?
-# # print('Original category values: \n', class_vals)
-# # print()
-# # print(str(n)+'-gram containment values: \n', containment_vals)
+# print out result, does it make sense?
+# print('Original category values: \n', class_vals)
+# print()
+# print(str(n)+'-gram containment values: \n', containment_vals)
 
 # for i in range(0,400,1) :
 #     if class_vals[i] != -1 :
@@ -167,7 +167,7 @@ complete_df = pd.read_csv(csv_file)
 
         
         
-ngram_range = [1,3,5]
+ngram_range = [1,3]
 
 
 # The following code may take a minute to run, depending on your ngram_range
@@ -177,9 +177,16 @@ DON'T MODIFY ANYTHING IN THIS CELL THAT IS BELOW THIS LINE
 features_list = []
 
 # Create features in a features_df
-all_features = np.zeros((14, len(complete_df)))
+all_features = np.zeros((13, len(complete_df)))
 
 i=0
+
+for n in ngram_range:
+    column_name = 'c_'+str(n)
+    features_list.append(column_name)
+    # create containment features
+    all_features[i]=np.squeeze(ngram.create_containment_features(complete_df, n))
+    i+=1
 
 features_list.append("cosine_1")
 all_features[i]= np.squeeze(cosine_1.create_cosine_1_features(complete_df))
@@ -207,16 +214,11 @@ all_features[i]= np.squeeze(lcs.create_lcs_features(complete_df))
 i+=1
 
 # # Calculate features for containment for ngrams in range
-for n in ngram_range:
-    column_name = 'c_'+str(n)
-    features_list.append(column_name)
-    # create containment features
-    all_features[i]=np.squeeze(ngram.create_containment_features(complete_df, n))
-    i+=1
 
 # features_list.append("rabin_karp_1")
 # all_features[i]= np.squeeze(rabin_karp_1.create_rabin_karp_1_features(complete_df))
 # i+=1
+
 features_list.append("phrase_nltk_1")
 all_features[i]= np.squeeze(phrase_nltk_1.create_phrase_nltk_1_features(complete_df))
 i+=1
@@ -227,7 +229,7 @@ i+=1
 
 features_list.append("rabin_karp_2")
 all_features[i]= np.squeeze(rabin_karp_2.create_rabin_karp_2_features(complete_df))
-# i+=1
+i+=1
 
 features_list.append("tensorflow_sentence_embedding")
 all_features[i]= np.squeeze(tensorflow_sentence_embedding.create_tensorflow_sentence_embedding_features(complete_df))
@@ -245,7 +247,7 @@ features_df = pd.DataFrame(np.transpose(all_features), columns=features_list)
 # print('Features: ', features_list)
 # print()
 
-test_selection = list(features_df)[:14] # first couple columns as a test
+test_selection = list(features_df)[:13] # first couple columns as a test
 (train_x, train_y), (test_x, test_y) = plagiarism_feature_engineering.train_test_data(complete_df, features_df, test_selection)
 
 data_dir = 'plagiarism_data'
