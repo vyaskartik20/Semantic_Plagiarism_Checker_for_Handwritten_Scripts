@@ -1,0 +1,1 @@
+however, commercial use of the 2.6.0 kernel is still months off for most customers.

@@ -1,0 +1,1 @@
+the standard edition one is a single processor version of the oracle standard edition database.
