@@ -54,7 +54,7 @@ def create_containment_features(df, n, column_name=None):
     for i in df.index:
         file = df.loc[i, 'File']
         # Computes features using calculate_containment function
-        if df.loc[i,'Class'] > -1:
+        if df.loc[i,'Class'] != -1:
             c = calculate_containment(df, n, file)
             containment_values.append(c)
         # Sets value to -1 for original tasks 

@@ -325,7 +325,7 @@ def create_phrase_nltk_2_features(df):
     phrase_nltk_2_values = []
 
     for i in df.index:
-        if df.loc[i,'Class'] > -1:
+        if df.loc[i,'Class'] != -1:
             # get texts to compare
             answer_text = df.loc[i, 'Text']
             answer_filename = df.loc[i, 'File'] 
