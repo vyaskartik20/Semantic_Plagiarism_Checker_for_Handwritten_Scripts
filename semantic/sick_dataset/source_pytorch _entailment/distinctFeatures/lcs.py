@@ -38,7 +38,7 @@ def create_lcs_features(df, column_name='lcs_word'):
     # iterate through files in dataframe
     for i in df.index:
         # Computes LCS_norm words feature using function above for answer tasks
-        if df.loc[i,'Class'] > -1:
+        if df.loc[i,'Class'] != -1:
             # get texts to compare
             answer_text = df.loc[i, 'Text']
             answer_filename = df.loc[i, 'File'] 

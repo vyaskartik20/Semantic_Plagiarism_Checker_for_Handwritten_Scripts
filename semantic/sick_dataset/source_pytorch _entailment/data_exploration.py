@@ -86,7 +86,7 @@ import pandas as pd
 import helpers
 import plagiarism_feature_engineering
 import numpy as np
-import distinctFeatures/cosine_1
+# import distinctFeatures/cosine_1
 from distinctFeatures import cosine_1
 from distinctFeatures import cosine_2
 from distinctFeatures import cosine_trigram
