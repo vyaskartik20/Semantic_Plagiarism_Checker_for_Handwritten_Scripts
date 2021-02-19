@@ -1,0 +1,161 @@
+During the II world war in 1941, it was a difficult time for our family at Rameswaram. I was a ten year old boy then. War had almost reached our doors of Rameswaram since the cloud of war had already reached Colombo. Almost everything was a rarity from food articles to anything. Ours was a large joint family. The size of our family was five sons and five daughters and three of whom had families. I used to see in my house anytime three cradles. My grandmother and mother were almost managing this large contingent. The environment in the home alternated by happiness and sadness. I used to get up at four in the morning, take bath and went to my teacher Swamiyar for learning mathematics. He will not accept students if they had not taken bath. He was a unique mathematics teacher and he used to take only five students for free tuition in a year. My mother used to get up before me, and gave bath to me and prepared me to go for the tuition. I use to comeback at 5:30 when my father would be waiting for taking me to the Namaz and Koran Sharif learning in Arabic school. After that I used to go to Rameswaram Road Railway station, three kilometers away to collect newspaper. Madras Dhanushkodi Mail will pass through the station but will not stop, since it was war time. The newspaper bundle will be thrown from the running train to the platform.
+
+CS323 Artificial Intelligence 
+Notes Assignement 1
+Kartik Vyas B18CSE020
+
+
+Introduction
+The  purpose of Artificial intelligence is to ease out the activitiestasks for humans with the help of machinery. We want to make machines that resemble us and perform the tasks for us and are in some ways, even better than ourselves, humans. We want the machines to think and act like us.
+
+
+Rationality 
+Rationality is concerned with maximizing the utility of the decisions that are made. It can be interpreted as taking the best possible decisions for some predefined goals. We are not concerned about the thought process behind the decisions and only the decisions and their utility is stressed upon. 
+
+So can we mimic the human brain 
+Human brain is capable of making rational decisions by considering different outcomes and their utility. But it is difficult to reverse engineer, that is we cannot apply the similar approach such as a brain for the machines. But we can have something that can inspire us to achieve our goal.
+Let us consider the case of birds. Wings help the bird to fly by flapping wings,  we took this idea and attached wing like structures to aeroplanes with the needed optimizations(no flapping). Thus, we know that the components of the brain can lead machines to making rational decisions.
+
+
+History of AI
+In the era from the 1940s to late 1960s, people were optimistic and believed that advancement would be feasible and achievable. They believed that such machines can be designed.
+From the early 1970s to late 1980s, this era is called AI winter as the researchers lost motivation due to the conventional knowledge based approach. From the early 1990s, the era is referred to as AI Spring. With the onset of probability and technical depth, researchers achieved a few milestones. But is there still a long way ahead? What can AI do?
+
+
+What can AI do and what AI cannot do?
+AI can play a good game of chess, it can buy groceries from the web, it can convey information to us for hours, it can do the laundry. But, there are still a lot of tasks, trivial even, which AI cannot perform. Good examples of this can be that AI cant buy groceries from a market store, it cannot have a completely meaningful two way conversation with us. It may or may not be able to prove a theorem based on the theorem, it may or may not be able to perform surgical operations and it needs human supervision for that.
+
+
+Natural Language
+Speech recognition and text to speech synthesis has undergone large progress in the last five to ten years. AI is basically traversing a ‘S’ curve, we do not the other side.
+We are still not through with language conversions, despite working on it from the last 50 years. 
+
+
+Vision
+Currently, we are able to recognize different animal species with considerable accuracy but the movie scenes in which everything can be identified are still out of scope for the current advancement level.  
+
+
+Robotics
+We have built robots that can do simple physical tasks such as folding clothes(only towels) and walking, pushups, etc. But these robots are extremely slow and would not work in case of slightest different environments.
+
+
+Game Playing
+Machines are equipped now to play chess and other games. They work on the basis of considering every possibility and then figuring out which combinations work and then learning and performing better with more activity. But if we consider a game with a large number of cases and possibilities, then the machine  would not be able to play optimally and timely, due to the large number of possibilities at every move. 
+
+
+Logic
+One of the first applications of AI, significant progress has been made in this area. Mathematical Theorems can be proved which might not be so trivial for humans.
+
+
+Is AI going to be everywhere?
+AI is used in search engines optimization, machinery, help desks, medical treatment  diagnosis, games, spam messages detections, smart devices. AI is going to be everywhere and will make things easy for us.
+
+
+Designing Rational Agents
+An agent acts according to the environment. It perceives the environment and then makes decisions. A rational agent makes the decisions that maximizes the utility. The environment characteristics decide the selection of rational decisions.
+
+
+Types of Agents
+Reflex Agents  Take the action according to the current environment. They may use some memory as well. Do not think of the consequences of their actions.
+An example can be when we put our hand on fire by mistake, we pull it back without reasoning. This example gives us an indication that they can be rational agents. But it is not necessarily the case. Say, in the case of the Pacman game, if there is a wall between the agent and the food, then the agent would not move due to the  collision with the wall. Hence, it is not a rational agent.
+Planning Agents 
+They think of all the possible solutions available, make conclusions on that  basis and make a rational decision. They think of what if situations. They find the solution if it is present.
+
+
+Replanning  Replanning is an extension of planning. Replanning consides just the solutions for the next move and then executes and then again formulates the plan on the basis of the new environment. This is helpful when there are many possibilities and we want the solution to be formulated quickly.
+In the case of a pacman game, if we use a planning approach, it will take time in the beginning and then come up with a final solution and execute it. In case of replanning approach, only possibilities for the next move i.e only four possibilities are to be checked, thus it quickly comes up with the solution.
+
+
+Search Problems
+State Space  All the possible states that the agent and environment can have.
+Successor Function  The set of next possible states from the current state
+Start State  The starting environment and the agent characteristics given.
+Goal Test   The final state which is to be reached
+Solution  The sequence of actions to achieve the goal state from the start state.
+
+
+State Space 
+Problem  Eat All Dots in PacMan game
+States  Coordinates of agent, boolean matrix for food
+Actions  North South East West [NSEW]
+Successor   Update the agent coordinates and the food boolean matrix accordingly
+Goal Test  All food eaten 
+
+
+State Space Size 
+In PacMan game, it would comprise a factor of the following aspects  
+Agent Positions
+Food Count
+Ghost Positions
+Agent Direction Facing
+Different states would result in different successor functions.
+
+
+State Space Graphs
+Nodes are configurations  and their connecting directed edges represent the successor functions. If there are many possibilities, it may not be possible to build the entire graph.
+Each node will occur only once.
+
+
+Search Trees
+Every child is a successor of the given statenode. Basically, for every state, all the next states are represented as its children. 
+Issue  In case of a state space graph such that there is a cycle or a self loop, the size of the corresponding search tree is going to be infinite. 
+
+
+Search Algorithms
+What do we look for in a good algorithm?
+Is the algorithm complete ? Is the algorithm optimum ? Time complexity and space complexity also plays out a major role. We would want them to be minimum.
+
+
+Depth First Search 
+In this algorithm, we traverse the tree and search for our element on the basis of their height. The nodes with higher height will be traversed before. Therefore, to apply depth first search for a particular node, first we will pick any of its children, apply DFS for that children and then, apply DFS for each child one by one.
+If we want to assume depth first search to be a complete solution whose time and space complexity is finite, then we need to assume that there are finite levels of the trees i.e we need to prevent cycles in the corresponding state space diagram. Time Complexity is O(bm) and space complexity is O(bm).
+
+
+Breadth First Search
+In this algorithm, in order to traverse a node, we traverse each children its neighbouring node and then add them in the fringe and sort these nodes inside the fringe and take the minimum height node and apply breadth first search for that node.
+Breadth First Search time and space complexity are O(bm) and O(bm) respectively. It will find a solution, if it exists, thus it is a complete solution. In case the cost of all the edges is not the same, then BFS might not give the most optimum least cost solution. 
+
+
+Depth First Search Versus Breadth First Search
+DFS has better space complexity but in case of the same weights of the graph edges, BFS would give the shortest path. If we have a shallow tree, BFS would be better, if we have a tree which is very deep and considerable of children, then DFS would be better if an element is present in the left section of the tree. Thus, there are certain trade offs for both of these search algorithms.
+
+
+Uniform Cost Search 
+This algorithm will help us in finding the least cost tree in case of weighted edges search tree.
+The basic idea is to iterate through that node which is a  neighbour of a node that is already iterated over and has minimum cost. 
+It is time and space optimized and is a complete and optimum solution since we are looking for costs increasingly. The limitation is that we do not know where the target node is, and we iterate over the tree in any direction without any information about the location of the target. 
+
+
+Implementation
+Priority queue can be used for the implementation of Breadth First Search, Depth First Search and Uniform Cost Search. It facilitates us to get the minimum distance node that is to be used for the next iteration. For the special case of Breadth First Search, queue data structure can be used and for Depth First Search, stack can be used. This would slightly increase the time taken for the operations. Though, the main idea remains the same and a priority queue can be used for all the three algorithms mentioned.
+
+
+Heuristic Function
+Heuristics functions are functions that help us in determining how close our current state is from the goal state. It is designed specifically and is unique for each problem. 
+For the Pac Man game, the minimum euclidean distance from the food item can be a good heuristic function. For the Romania Map example, distance of locations from the final location can be a good heuristic as it would tell us how far we are from the final location.
+Heuristic functions should indicate towards what remains to be done and should be easily computable.
+
+
+Greedy Search 
+This approach works on the basis of heuristic function. The next step decision is taken on the basis that if that action is taken, then the heuristic function will be minimum, that is, least amount of work is further required. It is not always the best approach though, because it might not return the path with least cost. It does not account for the cost of the successive action and plans only the next step ahead and not the entire scenario.
+
+
+A Search
+The idea for this algorithm comes from the basis of the famous hare and tortoise story. The approach is to use both greedy alongwith uniform cost search. This would ensure a mix of two and give the most optimum solution in most of the cases (not all). We need to consider the heuristic function and the cost of the next step to finally come up with the decision that is to be taken.
+If we use the admissible Heuristic function though, it can be proved that A Tree Search would always give an optimal solution.
+
+A heuristic h is admissibleoptimistic  if 0<= h(n) <=h(n) here h(n) is the true cost to traverse to the nearest goal.
+Admissible heuristics often lead us to the solution of non trivial problems, inadmissible heuristics can be useful as well.
+
+
+8 Puzzle
+Problem Statement  Arrange the pieces in ascending order by moving the pieces to the empty box. 
+The state space size is nine factorial, since these are the number of combinations of the puzzle that are possible. The successive states include the transfer of one piece to the empty region this transfer of the piece in either North, South , East, West direction wherever possible is the successive function. The goal state is the ascending arrangement with the empty space at the top right corner.
+The heuristic that first comes to mind is the number of pieces that are out of places. Or the maximum number that is misplaced. The number of pieces is actually convincing because it tells how far we are from reaching the goal state.
+This is an example of  relaxed problem heuristic, where we take the action and then we have more actions available and the optimal solution is cheaper or the same as that in the case of the original scenario.
+
+
+References 
+(1) Attended class lectures of CS323 Course
+(2) Saw the online lectures of UC Berkeley CS 188 Introduction to Artificial Intelligence, Fall 2018 httpswww.youtube.complaylist?list=PLsOUugYMBBJENfZ3XAToMsg44W7LeUVhF
+I have not taken help besides these two sources, I went through the vidoes and then wrote these notes in my langauge based on my understanding from the above.
