@@ -27,7 +27,7 @@ class CSVDataset(Dataset):
         # store the inputs and outputs
         self.X = df.values[:, 1:].astype('float32')
         self.y = df.values[:, 0].astype('float32')
-        
+
         # ensure target has the right shape
         self.y = self.y.reshape((len(self.y), 1))
 
@@ -71,11 +71,11 @@ class MLP(Module):
         xavier_uniform_(self.hidden2.weight)
         self.act2 = Sigmoid()
         # third hidden layer and output
-        
+
         self.hidden3 = Linear(10, 6)
         xavier_uniform_(self.hidden3.weight)
         self.act3 = Sigmoid()
-        
+
         # self.hidden4 = Linear(8, 6)
         # xavier_uniform_(self.hidden4.weight)
         # self.act4 = Sigmoid()
@@ -83,11 +83,10 @@ class MLP(Module):
         # self.hidden5 = Linear(6, 4)
         # xavier_uniform_(self.hidden5.weight)
         # self.act5 = Sigmoid()
-        
-        
+
         # self.hidden6 = Linear(4, 1)
         # xavier_uniform_(self.hidden6.weight)
-        
+
         self.hidden4 = Linear(6, 1)
         xavier_uniform_(self.hidden4.weight)
 
@@ -104,13 +103,13 @@ class MLP(Module):
 
         X = self.hidden3(X)
         X = self.act3(X)
-        
+
         # # X = self.hidden4(X)
 
         # X = self.hidden4(X)
         # X = self.act4(X)
         # # return X
-        
+
         # X = self.hidden5(X)
         # X = self.act5(X)
 
@@ -131,7 +130,7 @@ def prepare_data(path):
     # prepare data loaders
     if (path == 'train.csv'):
         train_dl = DataLoader(train, batch_size=32, shuffle=True)
-    else :
+    else:
         train_dl = DataLoader(train, batch_size=1024, shuffle=True)
     # test_dl = DataLoader(test, batch_size=1024, shuffle=False)
     return train_dl
@@ -198,7 +197,7 @@ train_dl = prepare_data(path_train)
 test_dl = prepare_data(path_test)
 print(len(train_dl.dataset), len(test_dl.dataset))
 # define the network
-model = MLP(12)
+model = MLP(10)
 # train the model
 train_model(train_dl, model)
 # evaluate the model
@@ -209,7 +208,7 @@ print('MSE: %.3f, RMSE: %.3f' % (mse1, sqrt(mse1)))
 mse = evaluate_model(test_dl, model)
 print('MSE: %.3f, RMSE: %.3f' % (mse, sqrt(mse)))
 # make a single prediction (expect class=1)
-row = [1, 0.818181818, 0.9701425, 0.976480793, 1, 0, 1,
-       0.976947257, 0.954986513, 78.78787879, 0.938977063, 0.998986829]
+row = [1, 0.818181818, 0.9701425, 0.976480793, 1,
+       0, 1, 78.78787879, 0.938977063, 0.998986829]
 yhat = predict(row, model)
 print('Predicted: %.3f' % yhat)
