@@ -1,0 +1,156 @@
+﻿Artificial Intelligence Assignment (I referred the slide and explained in my own words)
+
+What is Constraint satisfaction problem?
+
+We always define the problem as mathematical models. There are many variables associated with the problem.A CSP consists of finite set of variables X1, X2, ..... xn, Nonempty domain of possible values for each variable.All variables
+must satisfy various conditions. So, these problems are called Constraint satisfaction problems where all variables must satisfy some constraints.
+These are a special subset of search problems.The optimal solution should satisfy all constraints.
+
+
+There are many different Features of Constraint Satisfaction Problem:
+There are various states in the Constraint satisfaction Problem. a state is defined by variables Xi with values from domain D(it may happen that sometimes D depends on i as well).
+the path from the start state to the goal state is such that all the variables in the path satisfy all constraints of the problem. All the values in the domain D can't be assigned to any variable.
+Otherwise, the constraints may not be satisfied.
+
+Let's take an example of coloring problem.In this problem we are given a map of various cities and we want to assign some colour to each city from the domain D such that no two
+adjacent cities have the same colour. there are many different algorithms to assign colour to each city.
+we assign variables to each city and our domain D also has some colour in it.
+One simple algorithm is Breadth-first search.we start from some start state and assign one colour to start state and while exploring the neighbours of current state, 
+we check if this neighbour has already been visited or not. If already visited, we check if the colour assigned to this state is same as the colour assigned to current state or not. If same, we backtrack and assign some different colour to current state and proceed further.
+if the neighbour is not already visited, we assign some different colour to neighbour and proceed further.after the end of the algorithm, we will have all the cities assigned some different colour to all cities.
+
+Another example of constraint satisfaction problem is N queens problem.
+consider a N * N matrix of cells with each cell either black or white.we want to place N queens on this board(one in each row) such that no two queens are attacking each other.
+we assign variables Xij which represent the jth column of ith row of the matrix.The domain is a set containing two numbers 0 and 1. 0 means that no queen is present at that particular cell and 1 means that a queen is present at that particular cell.
+Two queens are attacking each other if they are in the same column or in the same row or either they may be attacking diagonally as well.
+We use backtracking to solve the problem.we place the queen in some cell if there is no other queen in the same column or in the same row or diagonally as well.we keeep checking each cell whether it is satisfying the constraints or not.
+if it is satisfying the constraints, we place the queen in that cell otherwise we move ahead.
+after the algorithm ends, we will have the matrix as a binary matrix where each cell is either 1 or 0.
+
+Now , let's see what are Constraint Graph ?
+As known graph is a set of vertices and edges where the edges represent the relation between two end vertices.
+In this graph, each vertex satisfies the constraint given in the problem.  
+There is a problem category called Binary CSP where each constraint relates (at most)two variables.
+and binary constraints graph is the graph where nodes are variables and arcs show constraints.
+general purpose CSP algorithm use the graph structure to speed up the search.
+
+Another example of CSP is Cryptoarithmetic.
+These are nothing but mathematical puzzles in which instead of digits, their values are represented by the letters of the alphabet.
+and perform the operation on the letters of the alphabet instead of digits.
+suppose for example if we were to add two numbers then we would have to take care of sum and carry.
+we would do both of these operations here as well.The only difference being that instead of numbers, we
+will see encrypted letters.so, here we will define some variables which will represent the letters of words.
+The constraints of the problem is same as in case of digits where we will have sum and carry in terms of words.
+say     T W O
+      + T W O
+      -----------
+      F O U R 
+Here in this example, we are simply adding two numbers 2 and 2 but using cryptoarithmetic.
+the result is also encrypted.
+
+One more example of constraint satisfaction problem is sudoku. we want to fill a 9 * 9 matrix with numbers from 1 to 9 such that no two numbers are same in any row as well as column.also the 3 * 3 submatrix will be filled with numbers from 1 to 9 such that each number
+occur exactly once.The domain of the problem is numbers from 1 to 9.we can solve this problem using backtracking.we can start filling the matrix with numbers.we try to fill one cell with one particular number. after filling,we check
+whether the constraints are voilated or not. if voilated we pick another number and again try to fill until the constraints are satisfied.we backtrack when the current cell can't be filled with any number and change the
+previous cell which was filled.
+
+Now let's discuss about Waltz algorithm.
+Waltz algorithm is simply for interpreting line drawing of solid polyhedra as 3d objects.An early example of an AI computation was posed as a CSP.
+The approach is very simple.Each intersection is a variable.Adjacent intersection impose constraints on each other.Solution
+are physically realizable 3D interpretations.
+
+Now There are various varieties of Constraint satisfaction Problem.
+The first one is problem having Discretr variables.They have finite domains. Example of this may be Boolean CSP, including boolean satisfiability which is NP complete.
+Another case in discrete variable only is the case of Infinite domain like Integer,string, etc.
+example of this may include The very popular Job scheduling, in which the variables are the start and end times for each job.
+Linear constraints are solvable while nonlinear are undecidable.
+
+Now let's talk about the Continuous variables.Example of this include start and end times for the Hubble telescope observations.
+In this case the linear constraints are solvable in polynomial times by LP method.
+There are some varieties of constraints as well.so Unary constraints involve a single variable(which can be thought of to be equivalent to reducing domain).
+and in case of binary constraints , they involve pairs of variables.and finally Higher-order constraints involve
+3 or more variables.So these are some varieties of constraints.
+
+Now if we see some example of Real world constraints satisfaction problem,
+they are Assignment problem(who teaches what class),timetabling problem(which class is ordered when and where),Hardware configuration,Transportation scheduling etc.
+Many of these real world problems involve real valued variables.
+
+Now let's see the standard search Formulations of Constraint satisfaction problem.
+In this the state are defined by the values assigned so far in.The initial state would be of course empty assignment,{}.
+The successor function will assign a value to an unassigned variable.and the goal test is that the current assignment is complete and satisfies all constraints.
+
+So, there are various search methods like BFS, DFS as seen before also.
+we will use backtracking search which is the basic uniformed algorithm for solving CSP's.
+The basic Idea is to take one variable at a time.since it is cumulative, fix the ordering.
+We only need to consider assignments to a single variable at each step.
+we also keep checking constraints as we move further.we only consider values which do not conflict.
+Depth search technique with these two improvements is called the backtracking search(still not the best.)
+It can solve N queens for n nearly equal to 25.
+
+The backtracking example could be our city colouring problem in which we start with 
+some city and keep assigning colour to all the neighbours of current city such that the constraint is satisfied. In case constraint is not satisfied,simply backtrack and go back.
+The backtracking algorithm works something similar to this:
+select unassigned variables and for each variable in order domain values, if value is consistent with assignment given constraint then add variable to assignment
+and store the result in recursive backtracking. if result is not same as failure then return result otherwise remove value from the assignment and return failure.
+
+Now let's see how we can improve backtracking.
+general purpose Idea give huge gains speed.
+
+we do ordering of the variables.it depends on which variable should be assigned next.and also in what order its values be tried.
+
+another important question is can we detect inevitable failure ? can we exploit the problem structure ?
+we use filtering which is simply forward checking. Filtering can be seen as to keep track of domains for unassigned variables and cross of bad options.Simply cross off values that violate the constraints when added.
+Forward checking propagates information from assigned to unassigned variables, but does not provide early detection for all failures.
+
+let's define something called as Consistency of a single arc. So, an Arc X -> Y is consistent iff for every x in the tail there is some y in the head which could be assigned without violating the constraints.
+The forward checking here is enforcing consistency of the arcs pointing to each new assignment.
+a simple form of propagation makes sure that all arcs are consistent.
+The imprtant point is that if X loses a value, neighbours of X need to be rechecked.
+arc consistency detects failures earlier than forward checking.It can be run as a preprocessor or after each assignment.
+we always need to remember that we always delete from the tail not the head.
+
+How to enforce arc consistency in a Constraint satisfaction problem ?
+The input is a binary CSP with variable {X1,X2,.....Xn}.
+we take a queue of arcs, initially all the arcs are in CSP.
+while the queue is not empty:
+remove the first node from the queue , then check if the value removed makes the constraints inconsistent, we again add the value to each neighbours from where we took the value out.
+
+There are some limitations of Arc consistency as well.after enforcing arc consistency,it is possible that only one solution
+is left.Multiple solution may also be left. and also can have no solution left(and we do not even known it).
+Arc consistency still runs inside the backtracking search.
+
+Now let's what is Ordering ?
+Variable ordering simply means minimum remaining values.It chooses the variable with the fewest legal left values in its domain.
+It is also called most constrained variable.
+value ordering is least constraining value.Given a choice of a variable,choose the least constraining value, i.e, the one that rules out the fewest values in the remaining variable.Note that it may take some computation to determine this.(Example is rerunning the filtering).
+One interesting fact to notice is that combining these ordering ideas makes even 1000 queens feasible.
+
+What is Arc consistency of an Entire CSP ?
+it is a simple form of propagation that makes sure all arcs are simultaneously consistent.Arc consistency detects failure earlier than forward checking.The important
+point is that if X loses a value, neighbours of X need to be rechecked.It must be rerun after each assignment.
+
+let's see what this local search is ?
+Tree search keeps the unexplored alternatives on the fringe(ensures completeness.)local search improves the single options
+until you can't make it better(no fringe is the best).
+It is generally much faster and more memory-efficient(but at the same time incomplete and suboptimal.)
+
+Now let's look at what is Hill climbing algorithm ?
+It's a greedy algorithm where at each step we explore all the available options
+and choose the best one if it better than that of current , otherwise the algorithm simply stops.
+it move to the best neighbouring state.One disadvantage of Hill climbing is that it can get stuck in local maximum.
+whenever it reaches the local maximum it thinks that it reached the optimal state but it may happen that the current state may not be global optimal
+state and so it may not give the optimal answer. 
+
+Let's see what is Simulated Annealing ? 
+The idea here is very simple to escape the local maxima by allowing the downhill moves.The more downhill
+steps you need to escape a local optimum, the less likely you are to ever make them all in a row.
+People think hard about ridge operators which let you jump around the space in better ways.
+
+Let's see what is Genetic Algorithms ?
+genetic algorithm is a search heuristic that reflects the process of natural selection where the fittest individuals
+are selected for reproduction in order to produce offspring of the next generation.
+it keeps the best N hypothesis at each step based on the fitness function.it also has pairwise crossover operators,with optimal mutation to give variety.
+It is possibly the most misunderstood, misapplied technique around.
+
+Let's finally see what Beam search is ?
+It is also like greedy hill climbing only ,but instead of keeping the only best state, it keeps  K states at all times.
+It is the best choice in many practical settings.
