@@ -57,7 +57,7 @@ def create_tensorflow_sentence_embedding_features(df):
     sequence_matcher_values = []
 
     for i in df.index:
-        if df.loc[i,'Class'] != -1:
+        if df.loc[i,'Class'] > -1:
             # get texts to compare
             answer_text = df.loc[i, 'Text']
             answer_filename = df.loc[i, 'File'] 
@@ -72,7 +72,7 @@ def create_tensorflow_sentence_embedding_features(df):
         else:
             sequence_matcher_values.append(-1)
 
-    print('sequence_matcher features created!')
+    print('tensorflow sentence embeddings features created!')
     return sequence_matcher_values
 
 # answer_text = "kartik vyas is a good boy"

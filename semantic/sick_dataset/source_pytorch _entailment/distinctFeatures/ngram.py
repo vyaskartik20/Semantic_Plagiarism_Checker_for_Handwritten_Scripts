@@ -1,6 +1,16 @@
 from sklearn.feature_extraction.text import CountVectorizer
 # Should return a list of length 100 for all files in a complete_df
 
+def calculate_containment_individual(text1,text2 , n):
+    counts = CountVectorizer(analyzer='word', ngram_range=(n,n))
+    ngrams = counts.fit_transform([text1, text2])
+    ngram_array = ngrams.toarray()
+
+    intersection = [min(a, s) for a, s in zip(*ngram_array)]
+    c_value = sum(intersection) / sum(ngram_array[0])
+
+    return c_value
+
 # Calculate the ngram containment for one answer file/source file pair in a df
 def calculate_containment(df, n, answer_filename):
     """
@@ -54,7 +64,7 @@ def create_containment_features(df, n, column_name=None):
     for i in df.index:
         file = df.loc[i, 'File']
         # Computes features using calculate_containment function
-        if df.loc[i,'Class'] != -1:
+        if df.loc[i,'Class'] > -1:
             c = calculate_containment(df, n, file)
             containment_values.append(c)
         # Sets value to -1 for original tasks 

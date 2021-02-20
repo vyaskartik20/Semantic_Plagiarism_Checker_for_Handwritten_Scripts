@@ -22,7 +22,7 @@ def create_sequence_matcher_features(df):
     sequence_matcher_values = []
 
     for i in df.index:
-        if df.loc[i,'Class'] != -1:
+        if df.loc[i,'Class'] > -1:
             # get texts to compare
             answer_text = df.loc[i, 'Text']
             answer_filename = df.loc[i, 'File'] 

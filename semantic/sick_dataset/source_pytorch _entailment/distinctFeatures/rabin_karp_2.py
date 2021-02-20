@@ -50,6 +50,8 @@ class PlagiarismChecker:
         # Formular for plagiarism rate
         # P = (2 * SH / THA * THB ) 100%
         p = (float( sh)/(th_a)) * 100
+        if(p>1):
+            p=1
         return p
 
     # get content from file
@@ -169,7 +171,7 @@ def create_rabin_karp_2_features(df):
     rabin_karp_2_values = []
 
     for i in df.index:
-        if df.loc[i,'Class'] != -1:
+        if df.loc[i,'Class'] > -1:
             # get texts to compare
             answer_text = df.loc[i, 'Text']
             answer_filename = df.loc[i, 'File'] 
@@ -187,7 +189,12 @@ def create_rabin_karp_2_features(df):
 
     print('rabin_karp_2 features created!')
     return rabin_karp_2_values
-    
+
+def similarity_individual(text1,text2) :
+    object = PlagiarismChecker(text1,text2)
+    value = object.get_rate()
+    return value
+
 # checker = PlagiarismChecker(text1,text2)
 
 # print('The percentage of plagiarism held by both documents is  {0}%'.format(

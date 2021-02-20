@@ -10,7 +10,7 @@ import nltk
 # Variables
 MODEL = 'trigram'
 MEASURE = 'jaccard'
-NUM_DOCS = 2
+NUM_DOCS = 0
 MASTER_DOC = 'combined_docs'
 STOPWORDS = 'nltk_en_stopwords'
 DATASET = 'docs'
@@ -62,23 +62,17 @@ def extract_trigram_unique_words(text):
 
 
 # Return the document frequency for each term in the input list
-def computeDFs(unique_words, text1,text2):
+def computeDFs(unique_words, list_of_assignment_files):
 	# DF for each term t (dfT) was calculated by counting the number of
 	# documents which had the term t
 	list_of_df = []
-	list_of_assignment_files = []
-	list_of_assignment_files.append(text1)
-	list_of_assignment_files.append(text2)
-
 
 	for unique_word in unique_words:
 		counter = 0
 		for assignment_file in list_of_assignment_files:
-			# with open(assignment_file, 'r') as f:
-				# all_text = f.read().replace('\n', ' ')
+			with open(assignment_file, 'r') as f:
+				all_text = f.read().replace('\n', ' ')
 
-			all_text = assignment_file
-			# print(all_text)
 			
 			# Convert the whole text into lower case
 			all_text = all_text.lower()
@@ -91,8 +85,6 @@ def computeDFs(unique_words, text1,text2):
 				counter = counter + 1
 
 		list_of_df.append(counter)
-
-	# print(list_of_df)
 
 	return list_of_df
 
@@ -114,7 +106,6 @@ def computeIDFs(NUM_DOCS, DFs):
 
 		list_of_idf.append(idf)
 
-	# print(list_of_idf)
 	return list_of_idf
 
 
@@ -155,7 +146,6 @@ def computeTFIDFweightvector(assignment_file, unique_words, IDFs):
 		
 		list_of_TFIDFweightvector.append(weightVector)
 
-	# print(list_of_TFIDFweightvector)
 	return list_of_TFIDFweightvector
 
 
@@ -208,7 +198,7 @@ def compareDocumentJaccard(TFIDF_weightvector_1, TFIDF_weightvector_2):
 	for tfidfweightvector_1 in TFIDF_weightvector_1:
 		if tfidfweightvector_1 in TFIDF_weightvector_2:
 			TFIDF_weightvector_intersection.append(tfidfweightvector_1)
-			# break
+			break
 
 	# Find the union of all elements (unique values) from both document vectors
 	TFIDF_weightvector_union = []
@@ -221,15 +211,16 @@ def compareDocumentJaccard(TFIDF_weightvector_1, TFIDF_weightvector_2):
 
 	TFIDF_weightvector_union = list(set(TFIDF_weightvector_union))
 
-	
 
+	# Compute the Jaccard coeficient
 
 	# print( str(len(TFIDF_weightvector_intersection)) + ' 		' + str(len(TFIDF_weightvector_union)) + 
     #    ' 		' +  str(len(TFIDF_weightvector_1)) + ' 		' + str(len(TFIDF_weightvector_2)) + ' 		' )
  
-	# Compute the Jaccard coeficient
-
-	jaccardCoef = len(TFIDF_weightvector_intersection) / len(TFIDF_weightvector_1)
+	try :
+		jaccardCoef = len(TFIDF_weightvector_intersection) / len(TFIDF_weightvector_1)
+	except :
+		return 1
 
 	return jaccardCoef
 
@@ -249,7 +240,6 @@ def eliminateStopwords(unique_words):
 			if word in stopwords:
 				no_stopwords_list.pop()
 				break
-				print('yes')
 
 	return no_stopwords_list
 
@@ -349,7 +339,7 @@ def similarity(text1,text2):
 	# NUM_DOCS = len(assignment_files)
 
 	# Computer Document Frequency (DF) for each term t
-	DFs = computeDFs(unique_words_no_stopwords, text1, text2)
+	DFs = computeDFs(unique_words_no_stopwords, assignment_files)
 
 	# print ('DFs')
 	# print (DFs)
@@ -415,11 +405,11 @@ def similarity(text1,text2):
 		# print ('Jaccard similarity measure of document {0} from {1} gives {2} as the result'.format(0, 1, jaccardSim))
 		return jaccardSim
 
-def create_cosine_trigram_features(df):
-    cosine_trigram_values = []
+def create_jaccard_trigram_features(df):
+    jaccard_trigram_values = []
 
     for i in df.index:
-        if df.loc[i,'Class'] != -1:
+        if df.loc[i,'Class'] > -1:
             # get texts to compare
             answer_text = df.loc[i, 'Text']
             answer_filename = df.loc[i, 'File'] 
@@ -430,22 +420,22 @@ def create_cosine_trigram_features(df):
 
             # value = similarity(answer_text, source_text, False)
             value = similarity(answer_text,source_text)
-            cosine_trigram_values.append(value)
+            jaccard_trigram_values.append(value)
         else:
-            cosine_trigram_values.append(-1)
+            jaccard_trigram_values.append(-1)
 
-    print('cosine_trigram features created!')
-    return cosine_trigram_values
+    print('jaccard_trigram features created!')
+    return jaccard_trigram_values
 
 
-f = open('data1.txt', encoding="utf8")
-file1_data = f.read()
-# print (similarity.returnTable(similarity.report(str(file1_data))))
-text1 = (str(file1_data))
+# f = open('data1.txt', encoding="utf8")
+# file1_data = f.read()
+# # print (similarity.returnTable(similarity.report(str(file1_data))))
+# text1 = (str(file1_data))
 
-f = open('data2.txt', encoding="utf8")
-file2_data = f.read()
-# print (similarity.returnTable(similarity.report(str(file1_data))))
-text2 = (str(file2_data))
+# f = open('data2.txt', encoding="utf8")
+# file2_data = f.read()
+# # print (similarity.returnTable(similarity.report(str(file1_data))))
+# text2 = (str(file2_data))
 
-print(similarity(text2,text1))
+# value = similarity(text1,text2)

@@ -107,7 +107,6 @@ csv_file = 'data/file_information.csv'
 complete_df = pd.read_csv(csv_file)
 
 # text_df = helpers.create_text_column(complete_df)
-# text_df.to_csv('data/file_information2.csv') 
 
 
 # check work
@@ -118,7 +117,7 @@ complete_df = pd.read_csv(csv_file)
 
 # print('Sample processed text:\n\n', sample_text)
 
-# complete_df = helpers.train_test_dataframe(text_df, random_seed=1)
+# # complete_df = helpers.train_test_dataframe(text_df, random_seed=1)
 
 # text_df.to_csv('data/file_information.csv') 
 
@@ -166,25 +165,6 @@ complete_df = pd.read_csv(csv_file)
         
         
 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
         
         
 ngram_range = [1,3]
@@ -197,9 +177,17 @@ DON'T MODIFY ANYTHING IN THIS CELL THAT IS BELOW THIS LINE
 features_list = []
 
 # Create features in a features_df
-all_features = np.zeros((13, len(complete_df)))
+all_features = np.zeros((11, len(complete_df)))
 
 i=0
+
+features_list.append("cosine_trigram")
+all_features[i]= np.squeeze(cosine_trigram.create_cosine_trigram_features(complete_df))
+i+=1
+
+features_list.append("tensorflow_sentence_embedding")
+all_features[i]= np.squeeze(tensorflow_sentence_embedding.create_tensorflow_sentence_embedding_features(complete_df))
+i+=1
 
 for n in ngram_range:
     column_name = 'c_'+str(n)
@@ -216,9 +204,6 @@ features_list.append("cosine_2")
 all_features[i]= np.squeeze(cosine_2.create_cosine_2_features(complete_df))
 i+=1
 
-features_list.append("cosine_trigram")
-all_features[i]= np.squeeze(cosine_trigram.create_cosine_trigram_features(complete_df))
-i+=1
 
 features_list.append("docism_nltk")
 all_features[i]= np.squeeze(docism_nltk.create_docism_nltk_features(complete_df))
@@ -233,27 +218,11 @@ features_list.append('lcs_word')
 all_features[i]= np.squeeze(lcs.create_lcs_features(complete_df))
 i+=1
 
-# # Calculate features for containment for ngrams in range
-
-# features_list.append("rabin_karp_1")
-# all_features[i]= np.squeeze(rabin_karp_1.create_rabin_karp_1_features(complete_df))
-# i+=1
-
-features_list.append("phrase_nltk_1")
-all_features[i]= np.squeeze(phrase_nltk_1.create_phrase_nltk_1_features(complete_df))
-i+=1
-
-features_list.append("phrase_nltk_2")
-all_features[i]= np.squeeze(phrase_nltk_2.create_phrase_nltk_2_features(complete_df))
-i+=1
 
 features_list.append("rabin_karp_2")
 all_features[i]= np.squeeze(rabin_karp_2.create_rabin_karp_2_features(complete_df))
 i+=1
 
-features_list.append("tensorflow_sentence_embedding")
-all_features[i]= np.squeeze(tensorflow_sentence_embedding.create_tensorflow_sentence_embedding_features(complete_df))
-i+=1
 
 features_list.append("sequence_matcher")
 all_features[i]= np.squeeze(sequence_matcher.create_sequence_matcher_features(complete_df))
@@ -262,12 +231,26 @@ all_features[i]= np.squeeze(sequence_matcher.create_sequence_matcher_features(co
 # create a features dataframe
 features_df = pd.DataFrame(np.transpose(all_features), columns=features_list)
 
+# # Calculate features for containment for ngrams in range
+
+# features_list.append("rabin_karp_1")
+# all_features[i]= np.squeeze(rabin_karp_1.create_rabin_karp_1_features(complete_df))
+# i+=1
+
+# features_list.append("phrase_nltk_1")
+# all_features[i]= np.squeeze(phrase_nltk_1.create_phrase_nltk_1_features(complete_df))
+# i+=1
+
+# features_list.append("phrase_nltk_2")
+# all_features[i]= np.squeeze(phrase_nltk_2.create_phrase_nltk_2_features(complete_df))
+# i+=1
+
 # Print all features/columns
 # print()
 # print('Features: ', features_list)
 # print()
 
-test_selection = list(features_df)[:13] # first couple columns as a test
+test_selection = list(features_df)[:11] # first couple columns as a test
 (train_x, train_y), (test_x, test_y) = plagiarism_feature_engineering.train_test_data(complete_df, features_df, test_selection)
 
 data_dir = 'plagiarism_data'
