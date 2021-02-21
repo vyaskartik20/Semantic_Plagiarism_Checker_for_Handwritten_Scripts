@@ -421,6 +421,12 @@ def create_rabin_karp_1_features(df):
             # value = similarity(answer_text, source_text, False)
             object = OnlinePlag(answer_text,source_text)
             value = object.search_main()
+            
+            if value > 1 :
+                value =1
+            if value < 0 :
+                value = 0
+            
             rabin_karp_1_values.append(value)
         else:
             rabin_karp_1_values.append(-1)

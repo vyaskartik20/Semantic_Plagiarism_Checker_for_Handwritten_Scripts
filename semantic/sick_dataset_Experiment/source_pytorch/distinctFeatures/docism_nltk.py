@@ -25,7 +25,17 @@ def _assymetric_subset_measure(doc1, doc2):
     _v_safe_divide(doc2, doc1)))
     zdoc1 = _v_zero_mask(doc1, filtered)
     zdoc2 = _v_zero_mask(doc2, filtered)
-    return np.sum(np.dot(zdoc1, zdoc2)) / np.sum(np.dot(doc1, doc2))
+
+    if np.sum(np.dot(doc1, doc2)) == 0:
+        return 1
+
+    val =  np.sum(np.dot(zdoc1, zdoc2)) / np.sum(np.dot(doc1, doc2))
+
+    if val == np.nan :
+        val =0
+        
+    return val
+
 
 def scam_distance(doc1, doc2):
     asm12 = _assymetric_subset_measure(doc1, doc2)
@@ -125,6 +135,12 @@ def create_docism_nltk_features(df):
             source_text = source_df.iloc[0].at['Text']
 
             cosineValue = docism(answer_text, source_text)
+            
+            if cosineValue > 1 :
+                cosineValue =1
+            if cosineValue < 0 :
+                cosineValue = 0
+            
             docism_nltk_values.append(cosineValue)
         else:
             docism_nltk_values.append(-1)

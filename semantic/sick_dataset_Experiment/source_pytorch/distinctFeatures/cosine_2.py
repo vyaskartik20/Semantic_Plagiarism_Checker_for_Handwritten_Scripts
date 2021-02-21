@@ -66,6 +66,12 @@ def create_cosine_2_features(df):
          source_text = source_df.iloc[0].at['Text']
 
          cosineValue = cosine2(answer_text, source_text)
+         
+         if cosineValue < 0 :
+             cosineValue = 0
+         if cosineValue  > 1 :
+             cosineValue = 1 
+         
          cosine_2_values.append(cosineValue)
       else:
          cosine_2_values.append(-1)
@@ -73,7 +79,7 @@ def create_cosine_2_features(df):
    print('COSINE_2 features created!')
    return cosine_2_values
 
-# text1 = "Kartik Vyas studies at IITJ"
-# text2 = "Kartik Vyas is an Undergrad student at IITJ"
+# text1 = "the young boys are playing outdoors and the man is smiling nearby"
+# text2 = "a group of children is playing in the house and there is no man standing in the background"
 
-# print(cosine2(text1,text2))
+# print(cosine2(text2,text1))

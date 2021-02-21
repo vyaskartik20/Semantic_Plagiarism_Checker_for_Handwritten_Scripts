@@ -100,7 +100,7 @@ from distinctFeatures import phrase_nltk_2
 from distinctFeatures import rabin_karp_2
 from distinctFeatures import sequence_matcher
 from distinctFeatures import tensorflow_sentence_embedding
-
+from distinctFeatures import embed_spacy
 
 
 csv_file = 'data/file_information.csv'
@@ -167,7 +167,7 @@ complete_df = pd.read_csv(csv_file)
 
         
         
-ngram_range = [1,3]
+ngram_range = [1,2,3,4]
 
 
 # The following code may take a minute to run, depending on your ngram_range
@@ -177,16 +177,35 @@ DON'T MODIFY ANYTHING IN THIS CELL THAT IS BELOW THIS LINE
 features_list = []
 
 # Create features in a features_df
-all_features = np.zeros((13, len(complete_df)))
+all_features = np.zeros((14, len(complete_df)))
 
 i=0
+
+features_list.append("tensorflow_sentence_embedding")
+all_features[i]= np.squeeze(tensorflow_sentence_embedding.create_tensorflow_sentence_embedding_features(complete_df))
+i+=1
+
+features_list.append("embed_spacy")
+all_features[i]= np.squeeze(embed_spacy.create_embed_spacy_features(complete_df))
+i+=1
 
 for n in ngram_range:
     column_name = 'c_'+str(n)
     features_list.append(column_name)
     # create containment features
     all_features[i]=np.squeeze(ngram.create_containment_features(complete_df, n))
+    print(f"n gram  :::     {n}")
     i+=1
+
+features_list.append("docism_nltk")
+all_features[i]= np.squeeze(docism_nltk.create_docism_nltk_features(complete_df))
+i+=1
+
+features_list.append("cosine_trigram")
+all_features[i]= np.squeeze(cosine_trigram.create_cosine_trigram_features(complete_df))
+i+=1
+
+
 
 features_list.append("cosine_1")
 all_features[i]= np.squeeze(cosine_1.create_cosine_1_features(complete_df))
@@ -196,13 +215,7 @@ features_list.append("cosine_2")
 all_features[i]= np.squeeze(cosine_2.create_cosine_2_features(complete_df))
 i+=1
 
-features_list.append("cosine_trigram")
-all_features[i]= np.squeeze(cosine_trigram.create_cosine_trigram_features(complete_df))
-i+=1
 
-features_list.append("docism_nltk")
-all_features[i]= np.squeeze(docism_nltk.create_docism_nltk_features(complete_df))
-i+=1
 
 features_list.append("jaccard_trigram")
 all_features[i]= np.squeeze(jaccard_trigram.create_jaccard_trigram_features(complete_df))
@@ -213,27 +226,11 @@ features_list.append('lcs_word')
 all_features[i]= np.squeeze(lcs.create_lcs_features(complete_df))
 i+=1
 
-# # Calculate features for containment for ngrams in range
-
-# features_list.append("rabin_karp_1")
-# all_features[i]= np.squeeze(rabin_karp_1.create_rabin_karp_1_features(complete_df))
-# i+=1
-
-features_list.append("phrase_nltk_1")
-all_features[i]= np.squeeze(phrase_nltk_1.create_phrase_nltk_1_features(complete_df))
-i+=1
-
-features_list.append("phrase_nltk_2")
-all_features[i]= np.squeeze(phrase_nltk_2.create_phrase_nltk_2_features(complete_df))
-i+=1
 
 features_list.append("rabin_karp_2")
 all_features[i]= np.squeeze(rabin_karp_2.create_rabin_karp_2_features(complete_df))
 i+=1
 
-features_list.append("tensorflow_sentence_embedding")
-all_features[i]= np.squeeze(tensorflow_sentence_embedding.create_tensorflow_sentence_embedding_features(complete_df))
-i+=1
 
 features_list.append("sequence_matcher")
 all_features[i]= np.squeeze(sequence_matcher.create_sequence_matcher_features(complete_df))
@@ -242,12 +239,26 @@ all_features[i]= np.squeeze(sequence_matcher.create_sequence_matcher_features(co
 # create a features dataframe
 features_df = pd.DataFrame(np.transpose(all_features), columns=features_list)
 
+# # Calculate features for containment for ngrams in range
+
+# features_list.append("rabin_karp_1")
+# all_features[i]= np.squeeze(rabin_karp_1.create_rabin_karp_1_features(complete_df))
+# i+=1
+
+# features_list.append("phrase_nltk_1")
+# all_features[i]= np.squeeze(phrase_nltk_1.create_phrase_nltk_1_features(complete_df))
+# i+=1
+
+# features_list.append("phrase_nltk_2")
+# all_features[i]= np.squeeze(phrase_nltk_2.create_phrase_nltk_2_features(complete_df))
+# i+=1
+
 # Print all features/columns
 # print()
 # print('Features: ', features_list)
 # print()
 
-test_selection = list(features_df)[:13] # first couple columns as a test
+test_selection = list(features_df)[:14] # first couple columns as a test
 (train_x, train_y), (test_x, test_y) = plagiarism_feature_engineering.train_test_data(complete_df, features_df, test_selection)
 
 data_dir = 'plagiarism_data'
