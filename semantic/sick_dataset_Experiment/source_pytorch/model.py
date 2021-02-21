@@ -15,7 +15,9 @@ from torch.nn import Module
 from torch.optim import SGD
 from torch.nn import MSELoss
 from torch.nn.init import xavier_uniform_
-
+import torch
+import torch.nn as nn
+import torch.optim as optim
 # dataset definition
 
 
@@ -63,18 +65,18 @@ class MLP(Module):
     def __init__(self, n_inputs):
         super(MLP, self).__init__()
         # input to first hidden layer
-        self.hidden1 = Linear(n_inputs, 16)
+        self.hidden1 = Linear(n_inputs, 10)
         xavier_uniform_(self.hidden1.weight)
         self.act1 = Sigmoid()
         # second hidden layer
-        self.hidden2 = Linear(16, 10)
+        self.hidden2 = Linear(10, 8)
         xavier_uniform_(self.hidden2.weight)
         self.act2 = Sigmoid()
         # third hidden layer and output
 
-        self.hidden3 = Linear(10, 6)
-        xavier_uniform_(self.hidden3.weight)
-        self.act3 = Sigmoid()
+        # self.hidden3 = Linear(10, 6)
+        # xavier_uniform_(self.hidden3.weight)
+        # self.act3 = Sigmoid()
 
         # self.hidden4 = Linear(8, 6)
         # xavier_uniform_(self.hidden4.weight)
@@ -87,8 +89,8 @@ class MLP(Module):
         # self.hidden6 = Linear(4, 1)
         # xavier_uniform_(self.hidden6.weight)
 
-        self.hidden4 = Linear(6, 1)
-        xavier_uniform_(self.hidden4.weight)
+        self.hidden3 = Linear(8, 1)
+        xavier_uniform_(self.hidden3.weight)
 
     # forward propagate input
     def forward(self, X):
@@ -101,8 +103,8 @@ class MLP(Module):
 
         # third hidden layer and output
 
-        X = self.hidden3(X)
-        X = self.act3(X)
+        # X = self.hidden3(X)
+        # X = self.act3(X)
 
         # # X = self.hidden4(X)
 
@@ -116,7 +118,7 @@ class MLP(Module):
         # X = self.hidden6(X)
         # return X
 
-        X = self.hidden4(X)
+        X = self.hidden3(X)
         return X
 
 # prepare the dataset
@@ -128,7 +130,7 @@ def prepare_data(path):
     # calculate split
     train, test = dataset.get_splits()
     # prepare data loaders
-    if (path == 'train.csv'):
+    if (path == 'plagiarism_data/train.csv'):
         train_dl = DataLoader(train, batch_size=32, shuffle=True)
     else:
         train_dl = DataLoader(train, batch_size=1024, shuffle=True)
@@ -190,25 +192,38 @@ def predict(row, model):
     return yhat
 
 
-# prepare the data
-path_train = 'plagiarism_data/train.csv'
-path_test = 'plagiarism_data/test.csv'
-train_dl = prepare_data(path_train)
-test_dl = prepare_data(path_test)
-print(len(train_dl.dataset), len(test_dl.dataset))
-# define the network
-model = MLP(10)
-# train the model
-train_model(train_dl, model)
-# evaluate the model
+def main():
+    # prepare the data
+    path_train = 'plagiarism_data/train.csv'
+    path_test = 'plagiarism_data/test.csv'
+    train_dl = prepare_data(path_train)
+    test_dl = prepare_data(path_test)
+    print(len(train_dl.dataset), len(test_dl.dataset))
+    # define the network
+    model = MLP(14)
+    # train the model
+    train_model(train_dl, model)
+    # evaluate the model
 
-mse1 = evaluate_model(train_dl, model)
-print('MSE: %.3f, RMSE: %.3f' % (mse1, sqrt(mse1)))
+    mse1 = evaluate_model(train_dl, model)
+    print('MSE: %.3f, RMSE: %.3f' % (mse1, sqrt(mse1)))
 
-mse = evaluate_model(test_dl, model)
-print('MSE: %.3f, RMSE: %.3f' % (mse, sqrt(mse)))
-# make a single prediction (expect class=1)
-row = [1, 0.818181818, 0.9701425, 0.976480793, 1,
-       0, 1, 78.78787879, 0.938977063, 0.998986829]
-yhat = predict(row, model)
-print('Predicted: %.3f' % yhat)
+    mse = evaluate_model(test_dl, model)
+    print('MSE: %.3f, RMSE: %.3f' % (mse, sqrt(mse)))
+
+    PATH = 'model/mod.pt'
+
+    torch.save(model, PATH)
+
+    model = torch.load(PATH)
+
+
+
+    # make a single prediction (expect class=1)
+    # row = [1.0,0.7365336418151855,0.5555555555555556,0.14285714285714285,0.44474958999666075,0.48395141579019735,0.0,0.0,0.45454545454545453,0.0,0.726502311248074]
+    # yhat = predict(row, model)
+    # print('Predicted: %.3f' % yhat)
+
+
+if __name__ == '__main__':
+    main()

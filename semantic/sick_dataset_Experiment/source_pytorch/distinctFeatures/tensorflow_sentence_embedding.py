@@ -38,6 +38,7 @@ def run_and_plot(messages_):
   message_embeddings_ = embed(messages_)
   value = plot_similarity(messages_, message_embeddings_, 90)
   return value
+
 def similarity(text1,text2) :
   texts = []
   # folder = "docs2"
@@ -68,11 +69,17 @@ def create_tensorflow_sentence_embedding_features(df):
 
             # value = similarity(answer_text, source_text, False)
             value = similarity(answer_text,source_text)
+            
+            if value > 1 :
+                value =1
+            if value < 0 :
+                value = 0
+            
             sequence_matcher_values.append(value)
         else:
             sequence_matcher_values.append(-1)
 
-    print('sequence_matcher features created!')
+    print('tensorflow sentence embeddings features created!')
     return sequence_matcher_values
 
 # answer_text = "kartik vyas is a good boy"
@@ -80,3 +87,19 @@ def create_tensorflow_sentence_embedding_features(df):
 
 # value = similarity(answer_text,source_text)
 # print(f" the plag is  : {value} ")
+
+# files = os.listdir('docs')
+
+# for file1 in files :
+#     file1 = 'docs/' + file1
+#     # with open (file1,'r') as fileStr1:
+#         # text1 = fileStr1.read()
+#     text1 = open(file1, errors='ignore').read()
+#     for file2 in files  :
+#         file2 = 'docs/' + file2
+#         if file1 != file2 :
+#             # with open (file2,'r') as fileStr2:
+#             text2 = open(file2, errors = 'ignore').read()
+#             yhat = similarity(text1,text2)
+            
+#             print(f"{file1} and {file2}  ::    {yhat}  ")
