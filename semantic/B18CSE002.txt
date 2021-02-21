@@ -1,0 +1,90 @@
+﻿1 - Some are of the view that a better way to think does not exist because everybody is entitled to his or her opinion. Do you agree with this view? Give reasons for your
+answer by making clear the difference between critical thinking and other types of
+thinking. The answer should briefly discuss the four-part model of critical thinking.
+Ans - I do not agree with this view because critical thinking is a slow, effortful and deliberate process that considers both positive and negative while making a decision while other thinking does not do so and make a decision in a hurry without analyzing everything. There is an infinite amount of information out there and only critical thinking can help us in making the best of decisions.
+Four part-model includes
+1.learning skills of critical thinking. Skills like recognizing semantic slanting, metacognitive knowledge to monitor one’s performance, making informative arguments, always look out for contradictory evidence, gathering information from various sources, understanding
+basic research principles, thinking probabilistically, etc.
+2. Developing the disposition for effortful thinking and learning includes making plans, learning from feedback, willingness to self-correct, etc.
+3. Direct learning activities in ways that increase the probability of transfer learning. Learning when to use what skills.
+4. Make metacognitive monitoring explicit and overt. The process of thinking while thinking and keeping a check on our goals.
+
+
+
+
+2 - What, according to Keith Stanovich, is that intelligence tests miss? Explain. Also briefly explain the concept of bounded rationality.
+Ans - Intelligence tests are designed to measure the ability to reason, plan, solve problems, and ability to learn from experience. Intelligence tests measure the ability to hold beliefs in short-term memory and manipulation of those beliefs but they miss measuring the ability to form rational beliefs when presented with evidence.
+Bounded rationality was introduced by Herbert Simon and it says that people are not always completely rational because people not always have complete knowledge about the consequences of their decisions and are uncertain about the future. The required information that we have is less than required to make completely rational decisions.
+
+
+
+
+3- Explain the illusion of inevitability with an example. Also explain what is meant by
+hindsight bias and outcome bias with examples.
+Ans - An evoking narrative produces the illusion of inevitability. For example story of google’s success. We have illusions from stories that we can predict the future in advance but such is not the case.  
+Hindsight bias is an illusion where individuals believe that they have known it all along about an event that will happen in the future. For example, consider people’s beliefs about President Nixon’s visit to USSR and China before and after the visit. After the event took place people overestimated the probability of their past knowledge that the event would take place. 
+Outcome bias can be defined as an event when individuals measure the quality of a decision on basis of its outcome instead of the process involved during the process. For example, a doctor was about to conduct an operation that involved very little risk but somehow patient dies. The doctor will be blamed irrespective of the less risk involved in the process.
+
+
+4- Explain the major features of System 1 and System 2. What are the two ways in which
+a process becomes part of System 1? When we refer to ourselves which system do we
+take into account and why? Explain
+Ans -  System1 is automatic, effortless thinking and it operates quickly and we have no control over it. It is the first thought or reaction that comes to our mind. Ex - comparing which among two objects are near to us, adding 2+2. Whereas system 2 is slow, deliberate and effortful thinking and it comes into action when we have to perform complex computations or tasks.
+System 1 produces intuitions, impressions, feelings, and intentions. Intuitions turn into beliefs when acknowledged by System 2 and impulses turn into meaningful actions. When the process requires less attention it becomes part of System1.  When we refer to ourselves we think of system 2 as we monitor ourselves everytime and do not let system1 overtake us. 
+
+
+5- Explain the phenomenon of priming with the help of two experiments done to
+demonstrate it. Also explain why priming is said to affect our image of ourselves as
+autonomous agents.
+Ans - The automatic association between two different things can be defined as priming. The thought that comes associated with certain things can be defined as the priming effect. For example, when given an incomplete word  S_ _P, there is the possibility of both soup and soap as word, experiments showed that if we are presented with the word EAT we are more likely to predict it as SOUP and when presented with the word WASH we are more likely to predict this word as SOAP. We can see the phenomenon of priming in the Florida effect also where students were exposed to words such as bald, forgetful, and grey and they started walking slowly and students did not notice that these words had a common theme therefore priming can be unconscious also. Another opposite experiment was conducted where students were asked to walk slow and they developed ideas related to old age.
+
+
+We think that we are not affected by irrelevant details while making autonomous decisions but such is not the case. For example, the location of the polling station should not determine our votes or propositions but such was not the case. Experiments found that supports for funding for schools was more when polling stations were situated in a school instead of nearby places.
+
+
+6- Explain the phenomenon of substitution of question with two examples. Why do you
+think that human beings tend to do this? Also try to explain the tendency to conform
+to a group in terms of substitution.
+
+
+7- Mindfulness is defined as ‘paying attention on whatever takes place in the present
+non-judgmentally.’ Which of these aspects appear to be relevant in reducing cognitive
+biases? Explain. Also explain whether mindfulness can help in finding a balance
+between remembering self and experiential self.
+Ans - Paying attention and not getting carried away by irrelevant information reduces cognitive biases. Yes mindfulness can help in finding a balance between remembering self and experiencing self because remembering self focuses on peaks and ends of a process and experiencing self has a voice only while the process takes place and remembering self store key moments of a process as memories.
+
+
+8- Explain endowment effect with examples. What can be an evolutionary justification
+for its emergence? Can thinking like a trader reduce the endowment effect? Explain.
+Ans -  Endowment effect can be seen in a case where the owner of the wine bottle is ready to sell it for 100 dollars but not ready to give more than 35 dollars to buy it. This affects goods that are traded less or are attractive. People think in terms of reference points instead of absolute outcomes. Individuals dislike loss more than equivalent gains and take more risks to avoid loss.
+Therefore the price of the bottle depends upon the reference point of whether the person owns the bottle or not. In case he does not own it he would love to get the bottle but in case he owns it.
+
+
+Yes, thinking like a trader can reduce the endowment effect.
+
+
+
+
+9- Explain the relation between hindsight bias and illusion of understanding with the help of one example. Also explain what is meant by halo effect and regression to the mean.
+Ans - The meaning of illusion of understanding is that we have an illusion that we know our past very well and therefore we should know the future also but such is not the case as we know our past less than we think we do.  Hindsight bias is an illusion where individuals believe that they have known it all along about an event that will happen in the future. For example, consider people’s beliefs about President Nixon’s visit to USSR and China before and after the visit. After the event took place people overestimated the probability of their past knowledge that the event would take place. 
+Predicting other values to be similar on basis of one value is called the halo effect. Value can be positive or negative. For example, sometimes leaders do well by luck but we overestimate because of the halo effect.
+
+
+
+
+10- Explain the difference between formal and informal fallacies with two examples each.Also explain why informal fallacies are present so widely.
+
+
+Ans - Formal fallacies occur when the form of argument is incorrect. It occurs when the conclusion does not follow from premises. Examples of a formal fallacy
+1 -  Premise1 -  All lions are carnivores
+      Premise2 -  All tigers are carnivores
+      Conclusion - therefore all lions are tigers
+2 -  Premise1 -  All pigeons can fly
+      Premise2 -  All crows can fly
+      Conclusion - therefore all pigeons are crows
+Informal fallacies occur when premises are irrelevant or incorrect. There are five different types of informal fallacy. The fallacy of relevance, week induction, presumption, ambiguity, and grammatical analogy.  Examples of informal fallacy-
+1 -  There is concern about pesticides in fruits. But fruits have got a lot of vitamins. So fruits have to be promoted. It is fallacy of relevance. The topic of the conclusion is diverted in between
+2  - Murder is wrong. So abortion is wrong. This is the fallacy of presumption. The premise to support the conclusion is missing
+
+
+Informal fallacies are present so widely because of our carelessness and presuppositions. We can avoid them by being more careful and challenging our presuppositions.

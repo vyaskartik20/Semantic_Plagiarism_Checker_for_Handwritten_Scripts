@@ -27,7 +27,7 @@ class CSVDataset(Dataset):
         # store the inputs and outputs
         self.X = df.values[:, 1:].astype('float32')
         self.y = df.values[:, 0].astype('float32')
-        
+
         # ensure target has the right shape
         self.y = self.y.reshape((len(self.y), 1))
 
@@ -71,18 +71,18 @@ class MLP(Module):
         xavier_uniform_(self.hidden2.weight)
         self.act2 = Sigmoid()
         # third hidden layer and output
-        
+
         self.hidden3 = Linear(8, 8)
         xavier_uniform_(self.hidden3.weight)
         self.act3 = Sigmoid()
-        
+
         # self.hidden4 = Linear(12, 6)
         # xavier_uniform_(self.hidden4.weight)
         # self.act4 = Sigmoid()
 
         # self.hidden5 = Linear(6, 1)
         # xavier_uniform_(self.hidden5.weight)
-        
+
         self.hidden4 = Linear(8, 1)
         xavier_uniform_(self.hidden4.weight)
 
@@ -99,7 +99,7 @@ class MLP(Module):
 
         # X = self.hidden3(X)
         # X = self.act3(X)
-        
+
         # X = self.hidden4(X)
 
         X = self.hidden3(X)
@@ -121,7 +121,7 @@ def prepare_data(path):
     # prepare data loaders
     if (path == 'train.csv'):
         train_dl = DataLoader(train, batch_size=32, shuffle=True)
-    else :
+    else:
         train_dl = DataLoader(train, batch_size=1024, shuffle=True)
     # test_dl = DataLoader(test, batch_size=1024, shuffle=False)
     return train_dl
