@@ -1,25 +1,55 @@
-# from flask import Flask, render_template, request, url_for
-# import similarity
-
-# app = Flask(__name__, template_folder='Templates')
-
-# @app.route('/', methods=['GET', 'POST'])
-# def hello_world():
-#     return render_template('index.html')
-
-# @app.route('/report',methods = ['POST', 'GET'])
-# def result():
-#    if request.method == 'POST':
-#       result = request.form['text']
-#       return (similarity.returnTable(similarity.report(str(result))))
-
-# if __name__ == '__main__':
-#    app.run(debug = True, host='0.0.0.0', port=5555)
-
-
+import os
 import similarity
+import individual
+import websearch
 
-f = open('data.txt', encoding="utf8")
-file1_data = f.read()
-# print (similarity.returnTable(similarity.report(str(file1_data))))
-similarity.report(str(file1_data))
+def main():
+    
+    files = os.listdir('docs')
+    
+    for file in files :
+        fileName = 'docs/' + file
+        text = open(fileName, errors='ignore').read() 
+
+        matches = similarity.report(str(text))
+    
+        print(f"Current File is   ::    {file}")
+    
+        for match in matches:
+            source_text = websearch.extractText(match)
+            
+            plag_score = individual.check_online(text,source_text)
+            
+            if(plag_score > 1) :
+                plag_score =1
+            if(plag_score < 0) :
+                plag_score = 0
+            
+            print(f" Plag with  {match} is   ::     {100*plag_score} ")
+
+        print()
+        print()
+
+
+            # print (similarity.returnTable(similarity.report(str(file1_data))))
+
+
+    # file1 = 'docs_backup/1.txt' 
+    # text = open(file1, errors='ignore').read() 
+    # matches = similarity.report(str(text))
+    
+    # for match in matches:
+    #     source_text = websearch.extractText(match)
+        
+    #     plag_score = individual.check_online(text,source_text)
+        
+    #     print(f" Plag with  {match} is   ::     {plag_score} ")
+        
+    #     print()
+    #     print()        
+        # print()
+
+    
+
+if __name__ == '__main__':
+    main()

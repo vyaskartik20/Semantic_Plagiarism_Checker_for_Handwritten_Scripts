@@ -63,6 +63,28 @@ def make_features(text1,text2) :
 
     return arr
 
+def check_online(text1,text2) :
+    result = make_features(text1,text2)
+                
+    ans = 0
+    
+    for res in result :
+        if res > 1:
+            res =1
+        # if res :
+        #     res =0
+    
+    ans = ans + result[0] * N_GRAM_2
+    ans = ans + result[1] * N_GRAM_3
+    ans = ans + result[2] * N_GRAM_4
+    ans = ans + result[3] * COSINE_2
+    ans = ans + result[4] * DOCISM_NLTK
+    ans = ans + result[5] * LCS
+    ans = ans + result[6] * SEQUENCE_MATCHER
+    
+    return ans
+
+
 def main() :
     
     files = os.listdir('docs_backup')
