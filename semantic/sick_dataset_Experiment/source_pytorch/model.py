@@ -65,22 +65,22 @@ class MLP(Module):
     def __init__(self, n_inputs):
         super(MLP, self).__init__()
         # input to first hidden layer
-        self.hidden1 = Linear(n_inputs, 10)
+        self.hidden1 = Linear(n_inputs, 20)
         xavier_uniform_(self.hidden1.weight)
         self.act1 = Sigmoid()
         # second hidden layer
-        self.hidden2 = Linear(10, 8)
+        self.hidden2 = Linear(20, 12)
         xavier_uniform_(self.hidden2.weight)
         self.act2 = Sigmoid()
         # third hidden layer and output
 
-        # self.hidden3 = Linear(10, 6)
-        # xavier_uniform_(self.hidden3.weight)
-        # self.act3 = Sigmoid()
+        self.hidden3 = Linear(12, 8)
+        xavier_uniform_(self.hidden3.weight)
+        self.act3 = Sigmoid()
 
-        # self.hidden4 = Linear(8, 6)
-        # xavier_uniform_(self.hidden4.weight)
-        # self.act4 = Sigmoid()
+        self.hidden4 = Linear(8, 6)
+        xavier_uniform_(self.hidden4.weight)
+        self.act4 = Sigmoid()
 
         # self.hidden5 = Linear(6, 4)
         # xavier_uniform_(self.hidden5.weight)
@@ -89,8 +89,8 @@ class MLP(Module):
         # self.hidden6 = Linear(4, 1)
         # xavier_uniform_(self.hidden6.weight)
 
-        self.hidden3 = Linear(8, 1)
-        xavier_uniform_(self.hidden3.weight)
+        self.hidden5 = Linear(6, 1)
+        xavier_uniform_(self.hidden5.weight)
 
     # forward propagate input
     def forward(self, X):
@@ -103,13 +103,13 @@ class MLP(Module):
 
         # third hidden layer and output
 
-        # X = self.hidden3(X)
-        # X = self.act3(X)
+        X = self.hidden3(X)
+        X = self.act3(X)
 
         # # X = self.hidden4(X)
 
-        # X = self.hidden4(X)
-        # X = self.act4(X)
+        X = self.hidden4(X)
+        X = self.act4(X)
         # # return X
 
         # X = self.hidden5(X)
@@ -118,7 +118,7 @@ class MLP(Module):
         # X = self.hidden6(X)
         # return X
 
-        X = self.hidden3(X)
+        X = self.hidden5(X)
         return X
 
 # prepare the dataset
