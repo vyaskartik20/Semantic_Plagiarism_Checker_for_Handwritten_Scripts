@@ -490,7 +490,7 @@ def ElbowMethod(data):
 # ANALYSIS PART
 
 # Using the graph shown in Elbow Method, find the appropriate value of K and set it here.
-def Analysis(vector, K=4):
+def Analysis(vector, K=3):
     arr = (np.array(vector))
 
     # mean normalization of the data . converting into normal distribution having mean=0 , -0.1<x<0.1
@@ -529,7 +529,7 @@ def Analysis(vector, K=4):
 if __name__ == '__main__':
 
     # You can try any text file here
-    text = open("test.txt").read()
+    text = open("test2.txt", "r", encoding='utf-8').read()
 
     vector = FeatureExtration(text, winSize=10, step=10)
     ElbowMethod(np.array(vector))
