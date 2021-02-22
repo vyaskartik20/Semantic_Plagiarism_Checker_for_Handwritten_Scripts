@@ -14,15 +14,12 @@ from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
 import nltk
-import os
 
 nltk.download('cmudict')
 nltk.download('stopwords')
 
 style.use("ggplot")
 cmuDictionary = None
-
-DATASET = 'docs_backup/back'
 
 
 # takes a paragraph of text and divides it into chunks of specified number of sentences
@@ -49,7 +46,6 @@ def slidingWindow(sequence, winSize, step=1):
     for i in range(0, numOfChunks * step, step):
         l.append(" ".join(sequence[i:i + winSize]))
 
-    # print (l)
     return l
 
 
@@ -390,81 +386,62 @@ def PrepareData(text1, text2, Winsize):
     return " ".join(str(chunk1) + str(chunk2) for chunk1, chunk2 in zip(chunks1, chunks2))
 
 
-def loadText():
-
-    assignment_files = []
-
-    for filename in os.listdir(DATASET):
-        # assignment_files.append(DATASET + '/' + filename + '.txt')
-        currentFile = DATASET + '/' + filename
-        # print (filename)
-        currentData = open(currentFile, errors='ignore').read()
-        currentData = sent_tokenize(currentData)
-
-        assignment_files.append(" ".join(currentData))
-
-    # print(assignment_files)
-    return assignment_files
-
-
 # ------------------------------------------------------------------
 
 # returns a feature vector of text
-# def FeatureExtration(text, winSize, step):
-def FeatureExtration(winSize):
+def FeatureExtration(text, winSize, step):
     # cmu dictionary for syllables
     global cmuDictionary
     cmuDictionary = cmudict.dict()
 
-    # chunks = slidingWindow(text, winSize, step)
-    chunks = loadText()
+    chunks = slidingWindow(text, winSize, step)
     vector = []
     for chunk in chunks:
         feature = []
 
         # LEXICAL FEATURES
-        # meanwl = (Avg_wordLength(chunk))
-        # feature.append(meanwl)
+        meanwl = (Avg_wordLength(chunk))
+        feature.append(meanwl)
 
-        # meansl = (Avg_SentLenghtByCh(chunk))
-        # feature.append(meansl)
+        meansl = (Avg_SentLenghtByCh(chunk))
+        feature.append(meansl)
 
-        # mean = (Avg_SentLenghtByWord(chunk))
-        # feature.append(mean)
+        mean = (Avg_SentLenghtByWord(chunk))
+        feature.append(mean)
 
-        # meanSyllable = Avg_Syllable_per_Word(chunk)
-        # feature.append(meanSyllable)
+        meanSyllable = Avg_Syllable_per_Word(chunk)
+        feature.append(meanSyllable)
 
-        # means = CountSpecialCharacter(chunk)
-        # feature.append(means)
+        means = CountSpecialCharacter(chunk)
+        feature.append(means)
 
-        # p = CountPuncuation(chunk)
-        # feature.append(p)
+        p = CountPuncuation(chunk)
+        feature.append(p)
 
-        # f = CountFunctionalWords(text)
-        # feature.append(f)
+        f = CountFunctionalWords(text)
+        feature.append(f)
 
         # VOCABULARY RICHNESS FEATURES
 
-        # TTratio = typeTokenRatio(chunk)
-        # feature.append(TTratio)
+        TTratio = typeTokenRatio(chunk)
+        feature.append(TTratio)
 
-        # HonoreMeasureR, hapax = hapaxLegemena(chunk)
-        # feature.append(hapax)
-        # feature.append(HonoreMeasureR)
+        HonoreMeasureR, hapax = hapaxLegemena(chunk)
+        feature.append(hapax)
+        feature.append(HonoreMeasureR)
 
-        # SichelesMeasureS, dihapax = hapaxDisLegemena(chunk)
-        # feature.append(dihapax)
-        # feature.append(SichelesMeasureS)
+        SichelesMeasureS, dihapax = hapaxDisLegemena(chunk)
+        feature.append(dihapax)
+        feature.append(SichelesMeasureS)
 
-        # YuleK = YulesCharacteristicK(chunk)
-        # feature.append(YuleK)
+        YuleK = YulesCharacteristicK(chunk)
+        feature.append(YuleK)
 
         S = SimpsonsIndex(chunk)
         feature.append(S)
 
-        # B = BrunetsMeasureW(chunk)
-        # feature.append(B)
+        B = BrunetsMeasureW(chunk)
+        feature.append(B)
 
         Shannon = ShannonEntropy(text)
         feature.append(Shannon)
@@ -512,9 +489,8 @@ def ElbowMethod(data):
 # -----------------------------------------------------------------------------------------
 # ANALYSIS PART
 
-
 # Using the graph shown in Elbow Method, find the appropriate value of K and set it here.
-def Analysis(vector, K=2):
+def Analysis(vector, K=4):
     arr = (np.array(vector))
 
     # mean normalization of the data . converting into normal distribution having mean=0 , -0.1<x<0.1
@@ -528,20 +504,11 @@ def Analysis(vector, K=2):
 
     kmeans = KMeans(n_clusters=K, n_jobs=-1)
     kmeans.fit_transform(components)
-    # print("labels: ", kmeans.labels_)
-
+    print("labels: ", kmeans.labels_)
     centers = kmeans.cluster_centers_
 
     # lables are assigned by the algorithm if 2 clusters then lables would be 0 or 1
     lables = kmeans.labels_
-
-    files = []
-    for filename in os.listdir(DATASET):
-        files.append(filename)
-
-    for i in range(len(components)):
-        print(files[i] + "     " + str(lables[i]))
-
     colors = ["r.", "g.", "b.", "y.", "c."]
     colors = colors[:K + 1]
 
@@ -557,16 +524,13 @@ def Analysis(vector, K=2):
     plt.title(title)
     plt.savefig("Results" + ".png")
     plt.show()
-    # exit
 
 
 if __name__ == '__main__':
 
     # You can try any text file here
-    text = open("DocumentWithVariantWritingStyles.txt").read()
-    # vector = FeatureExtration(text, winSize=2, step=2)
+    text = open("test.txt").read()
 
-    vector = FeatureExtration(winSize=10)
-
+    vector = FeatureExtration(text, winSize=10, step=10)
     ElbowMethod(np.array(vector))
     Analysis(vector)
