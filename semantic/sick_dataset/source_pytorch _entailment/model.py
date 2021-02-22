@@ -52,7 +52,7 @@ print(dummy_label)
 
 # create model
 model = Sequential()
-model.add(Dense(48, input_dim=12, activation='relu'))
+model.add(Dense(30, input_dim=15, activation='relu'))
 model.add(Dense(3, activation='softmax'))
 # Compile model
 model.compile(loss='categorical_crossentropy',
@@ -108,13 +108,13 @@ Xnew = array([[0.181818182, 0, 0.344265186, 0, 0, 0.846153846, 0.153846154, 0.54
               [0.25, 0, 0.335410197, 0.2, 0, 1, 0.25, 0.470823615, 0.276237782, 4.347826087, 0.355904579, 0.463157895]])
 # make a prediction
 # ynew = model.predict_classes(Xnew)
-ynew = np.argmax(loaded_model.predict(Xnew), axis=-1)
-# show the inputs and predicted outputs
-# print("X=%s, Predicted=%s" % (Xnew, ynew))
-print("Predicted=%s" % (ynew))
+# ynew = np.argmax(loaded_model.predict(Xnew), axis=-1)
+# # show the inputs and predicted outputs
+# # print("X=%s, Predicted=%s" % (Xnew, ynew))
+# print("Predicted=%s" % (ynew))
 
-yhat = loaded_model.predict(Xnew)
-print(yhat)
+# yhat = loaded_model.predict(Xnew)
+# print(yhat)
 # evaluate the model
 scores = loaded_model.evaluate(XX, dummy_yy, verbose=0)
 print("%s: %.2f%%" % (loaded_model.metrics_names[1], scores[1]*100))
