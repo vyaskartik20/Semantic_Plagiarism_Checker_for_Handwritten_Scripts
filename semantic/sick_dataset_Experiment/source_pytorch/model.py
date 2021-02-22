@@ -211,7 +211,7 @@ def main():
     test_dl = prepare_data(path_test)
     print(len(train_dl.dataset), len(test_dl.dataset))
     # define the network
-    model = MLP(14)
+    model = MLP(15)
     # train the model
     train_model(train_dl, model)
     # evaluate the model

@@ -99,7 +99,6 @@ from distinctFeatures import phrase_nltk_2
 # from distinctFeatures import rabin_karp_1
 from distinctFeatures import rabin_karp_2
 from distinctFeatures import sequence_matcher
-# from distinctFeatures import tensorflow_sentence_embedding
 from distinctFeatures import embed_spacy
 from distinctFeatures import bert_sentence_encoder
 
@@ -185,9 +184,10 @@ i=0
 features_list.append("bert_sentence_encoder")
 all_features[i]= np.squeeze(bert_sentence_encoder.create_bert_sentence_encoder_features(complete_df))
 
-# features_list.append("tensorflow_sentence_embedding")
-# all_features[i]= np.squeeze(tensorflow_sentence_embedding.create_tensorflow_sentence_embedding_features(complete_df))
-# i+=1
+from distinctFeatures import tensorflow_sentence_embedding
+features_list.append("tensorflow_sentence_embedding")
+all_features[i]= np.squeeze(tensorflow_sentence_embedding.create_tensorflow_sentence_embedding_features(complete_df))
+i+=1
 
 features_list.append("embed_spacy")
 all_features[i]= np.squeeze(embed_spacy.create_embed_spacy_features(complete_df))
