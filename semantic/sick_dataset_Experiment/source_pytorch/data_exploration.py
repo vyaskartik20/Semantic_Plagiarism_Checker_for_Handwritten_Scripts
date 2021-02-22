@@ -99,8 +99,9 @@ from distinctFeatures import phrase_nltk_2
 # from distinctFeatures import rabin_karp_1
 from distinctFeatures import rabin_karp_2
 from distinctFeatures import sequence_matcher
-from distinctFeatures import tensorflow_sentence_embedding
+# from distinctFeatures import tensorflow_sentence_embedding
 from distinctFeatures import embed_spacy
+from distinctFeatures import bert_sentence_encoder
 
 
 csv_file = 'data/file_information.csv'
@@ -177,13 +178,16 @@ DON'T MODIFY ANYTHING IN THIS CELL THAT IS BELOW THIS LINE
 features_list = []
 
 # Create features in a features_df
-all_features = np.zeros((14, len(complete_df)))
+all_features = np.zeros((15, len(complete_df)))
 
 i=0
 
-features_list.append("tensorflow_sentence_embedding")
-all_features[i]= np.squeeze(tensorflow_sentence_embedding.create_tensorflow_sentence_embedding_features(complete_df))
-i+=1
+features_list.append("bert_sentence_encoder")
+all_features[i]= np.squeeze(bert_sentence_encoder.create_bert_sentence_encoder_features(complete_df))
+
+# features_list.append("tensorflow_sentence_embedding")
+# all_features[i]= np.squeeze(tensorflow_sentence_embedding.create_tensorflow_sentence_embedding_features(complete_df))
+# i+=1
 
 features_list.append("embed_spacy")
 all_features[i]= np.squeeze(embed_spacy.create_embed_spacy_features(complete_df))
@@ -258,7 +262,7 @@ features_df = pd.DataFrame(np.transpose(all_features), columns=features_list)
 # print('Features: ', features_list)
 # print()
 
-test_selection = list(features_df)[:14] # first couple columns as a test
+test_selection = list(features_df)[:15] # first couple columns as a test
 (train_x, train_y), (test_x, test_y) = plagiarism_feature_engineering.train_test_data(complete_df, features_df, test_selection)
 
 data_dir = 'plagiarism_data'

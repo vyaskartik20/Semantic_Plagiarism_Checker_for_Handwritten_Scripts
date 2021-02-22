@@ -17,9 +17,14 @@ from distinctFeatures import rabin_karp_2
 from distinctFeatures import sequence_matcher
 from distinctFeatures import tensorflow_sentence_embedding
 from distinctFeatures import embed_spacy
+from distinctFeatures import bert_sentence_encoder
+
 
 def make_features(text1,text2) : 
     arr = []
+
+    val = bert_sentence_encoder.similarity(text1,text2)
+    arr.append(val)
     
     val = tensorflow_sentence_embedding.similarity(text1,text2)
     arr.append(val)

@@ -79,7 +79,7 @@ if __name__ == '__main__':
     # print(label[0], sx[0], sy[0])
     
 
-    read_file = pd.read_csv (r'file_information.txt')
-    read_file.columns = ['File','Class', 'Datatype']
-    read_file.to_csv (r'data/file_information.csv', index=None)
+    # read_file = pd.read_csv (r'file_information.txt')
+    # read_file.columns = ['File','Class', 'Datatype']
+    # read_file.to_csv (r'data/file_information.csv', index=None)
     

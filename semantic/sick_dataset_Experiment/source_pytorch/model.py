@@ -176,6 +176,17 @@ def evaluate_model(test_dl, model):
         actuals.append(actual)
     predictions, actuals = vstack(predictions), vstack(actuals)
     # calculate mse
+    
+    sum = 0
+    
+    for i in range(len(actuals)) : 
+        diff = abs(actuals[i] - predictions[i])
+        sum = sum + diff
+    
+    diff = sum / len(actuals)
+    
+    print(f"the diff, the ans :: ::  {diff} ")
+    
     mse = mean_squared_error(actuals, predictions)
     return mse
 
