@@ -66,6 +66,10 @@ def create_cosine_1_features(df):
          source_text = source_df.iloc[0].at['Text']
 
          cosineValue = cosineSim(answer_text, source_text)
+         if cosineValue > 1 :
+            cosineValue =1
+         if cosineValue < 0 :
+            cosineValue = 0
          cosine_1_values.append(cosineValue)
       else:
          cosine_1_values.append(-1)

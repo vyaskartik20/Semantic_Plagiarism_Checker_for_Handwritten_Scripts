@@ -96,7 +96,7 @@ def train_model(train_dl, model):
     criterion = MSELoss()
     optimizer = SGD(model.parameters(), lr=0.01, momentum=0.9)
     # enumerate epochs
-    for epoch in range(100):
+    for epoch in range(200):
         # enumerate mini batches
         for i, (inputs, targets) in enumerate(train_dl):
             # clear the gradients

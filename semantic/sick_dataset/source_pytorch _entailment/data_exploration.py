@@ -100,7 +100,7 @@ from distinctFeatures import phrase_nltk_2
 from distinctFeatures import rabin_karp_2
 from distinctFeatures import sequence_matcher
 from distinctFeatures import tensorflow_sentence_embedding
-
+from distinctFeatures import embed_spacy
 
 
 csv_file = 'data/file_information.csv'
@@ -167,7 +167,7 @@ complete_df = pd.read_csv(csv_file)
 
         
         
-ngram_range = [1,3]
+ngram_range = [1,2,3,4]
 
 
 # The following code may take a minute to run, depending on your ngram_range
@@ -177,16 +177,16 @@ DON'T MODIFY ANYTHING IN THIS CELL THAT IS BELOW THIS LINE
 features_list = []
 
 # Create features in a features_df
-all_features = np.zeros((11, len(complete_df)))
+all_features = np.zeros((14, len(complete_df)))
 
 i=0
 
-features_list.append("cosine_trigram")
-all_features[i]= np.squeeze(cosine_trigram.create_cosine_trigram_features(complete_df))
-i+=1
-
 features_list.append("tensorflow_sentence_embedding")
 all_features[i]= np.squeeze(tensorflow_sentence_embedding.create_tensorflow_sentence_embedding_features(complete_df))
+i+=1
+
+features_list.append("embed_spacy")
+all_features[i]= np.squeeze(embed_spacy.create_embed_spacy_features(complete_df))
 i+=1
 
 for n in ngram_range:
@@ -194,7 +194,18 @@ for n in ngram_range:
     features_list.append(column_name)
     # create containment features
     all_features[i]=np.squeeze(ngram.create_containment_features(complete_df, n))
+    print(f"n gram  :::     {n}")
     i+=1
+
+features_list.append("docism_nltk")
+all_features[i]= np.squeeze(docism_nltk.create_docism_nltk_features(complete_df))
+i+=1
+
+features_list.append("cosine_trigram")
+all_features[i]= np.squeeze(cosine_trigram.create_cosine_trigram_features(complete_df))
+i+=1
+
+
 
 features_list.append("cosine_1")
 all_features[i]= np.squeeze(cosine_1.create_cosine_1_features(complete_df))
@@ -205,9 +216,6 @@ all_features[i]= np.squeeze(cosine_2.create_cosine_2_features(complete_df))
 i+=1
 
 
-features_list.append("docism_nltk")
-all_features[i]= np.squeeze(docism_nltk.create_docism_nltk_features(complete_df))
-i+=1
 
 features_list.append("jaccard_trigram")
 all_features[i]= np.squeeze(jaccard_trigram.create_jaccard_trigram_features(complete_df))

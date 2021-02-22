@@ -7,9 +7,15 @@ def calculate_containment_individual(text1,text2 , n):
     ngram_array = ngrams.toarray()
 
     intersection = [min(a, s) for a, s in zip(*ngram_array)]
-    c_value = sum(intersection) / sum(ngram_array[0])
-
-    return c_value
+    
+    if sum(ngram_array[0] == 0):
+        return 1
+    
+    try :
+        c_value = sum(intersection) / sum(ngram_array[0])
+        return c_value
+    except : 
+        return 0
 
 # Calculate the ngram containment for one answer file/source file pair in a df
 def calculate_containment(df, n, answer_filename):
@@ -43,15 +49,21 @@ def calculate_containment(df, n, answer_filename):
     source_df = df.query('File == @source_filename')
     s_text = source_df.iloc[0].at['Text']
 
-    counts = CountVectorizer(analyzer='word', ngram_range=(n,n))
-    ngrams = counts.fit_transform([a_text, s_text])
-    ngram_array = ngrams.toarray()
+    try :
+        counts = CountVectorizer(analyzer='word', ngram_range=(n,n))
+        ngrams = counts.fit_transform([a_text, s_text])
+        ngram_array = ngrams.toarray()
 
-    intersection = [min(a, s) for a, s in zip(*ngram_array)]
-    c_value = sum(intersection) / sum(ngram_array[0])
+        intersection = [min(a, s) for a, s in zip(*ngram_array)]
+        
+        if sum(ngram_array[0]) == 0 :
+            return 1
+        
+        c_value = sum(intersection) / sum(ngram_array[0])
 
-    return c_value
-
+        return c_value
+    except:
+        return 0
 
 def create_containment_features(df, n, column_name=None):
     
@@ -66,6 +78,12 @@ def create_containment_features(df, n, column_name=None):
         # Computes features using calculate_containment function
         if df.loc[i,'Class'] > -1:
             c = calculate_containment(df, n, file)
+            
+            if c > 1 :
+                c =1
+            if c < 0 :
+                c = 0
+            
             containment_values.append(c)
         # Sets value to -1 for original tasks 
         else:

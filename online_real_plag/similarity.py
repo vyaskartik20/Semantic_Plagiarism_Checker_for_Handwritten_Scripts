@@ -17,7 +17,25 @@ def webVerify(string, results_per_sentence):
     matching_sites = []
     for url in websearch.searchBing(query=string, num  = results_per_sentence):
         matching_sites.append(url)
-    for sentence in sentences:
+    
+    newSentences = sentences
+    
+    if len(sentences) > 40 :
+        newSentences = []
+        for i in range(0,(len(sentences)-2),3) :
+            try : 
+                currSentence = sentences [i] + sentences [i+1] + sentences [i+2]
+            
+            except :
+                try :
+                    currSentence = sentences [i] + sentences [i+1]
+                except :
+                    currSentence = sentences [i]
+            
+            
+            newSentences.append(currSentence)
+    
+    for sentence in newSentences:
         # print(sentence)
         for url in websearch.searchBing(query = sentence, num = results_per_sentence):
             matching_sites.append(url)
@@ -47,7 +65,7 @@ def report(text):
     matching_sites = webVerify(purifyText(text), 1)
     matches = {}
 
-    print(len(matching_sites))
+    # print(len(matching_sites))
 
     # for i in range(len(matching_sites)):
     #     # score=0

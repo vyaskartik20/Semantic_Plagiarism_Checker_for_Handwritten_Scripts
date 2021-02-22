@@ -420,6 +420,12 @@ def create_jaccard_trigram_features(df):
 
             # value = similarity(answer_text, source_text, False)
             value = similarity(answer_text,source_text)
+            
+            if value > 1 :
+                value =1
+            if value < 0 :
+                value = 0
+            
             jaccard_trigram_values.append(value)
         else:
             jaccard_trigram_values.append(-1)

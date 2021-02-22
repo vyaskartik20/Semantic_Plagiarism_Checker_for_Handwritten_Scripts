@@ -335,6 +335,12 @@ def create_phrase_nltk_2_features(df):
             source_text = source_df.iloc[0].at['Text']
 
             value = similarity(answer_text, source_text, True)
+            
+            if value > 1 :
+                value =1
+            if value < 0 :
+                value = 0
+            
             phrase_nltk_2_values.append(value)
         else:
             phrase_nltk_2_values.append(-1)

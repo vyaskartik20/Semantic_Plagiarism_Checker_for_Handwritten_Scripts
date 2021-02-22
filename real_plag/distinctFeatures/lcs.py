@@ -60,6 +60,12 @@ def create_lcs_features(df, column_name='lcs_word'):
 
             # calculate lcs
             lcs = lcs_norm_word(answer_text, source_text)
+            
+            if lcs > 1 :
+                lcs =1
+            if lcs < 0 :
+                lcs = 0
+            
             lcs_values.append(lcs)
         # Sets to -1 for original tasks 
         else:

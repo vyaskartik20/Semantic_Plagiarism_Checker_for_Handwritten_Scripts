@@ -33,6 +33,12 @@ def create_sequence_matcher_features(df):
 
             # value = similarity(answer_text, source_text, False)
             value = similarity(answer_text,source_text)
+            
+            if value > 1 :
+                value =1
+            if value < 0 :
+                value = 0
+            
             sequence_matcher_values.append(value)
         else:
             sequence_matcher_values.append(-1)

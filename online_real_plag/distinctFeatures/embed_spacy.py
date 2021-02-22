@@ -31,7 +31,7 @@ def compare_sentences(text1, text2):
             
             if(sim > simi):
                 simi = sim
-        if(simi > 0.8):
+        if(simi > 0.85):
             totalPlag = totalPlag + simi
     
     totalPlag = totalPlag / totalEmbeddings
@@ -66,9 +66,16 @@ def create_embed_spacy_features(df):
             source_text = source_df.iloc[0].at['Text']
 
             cosineValue = embed(answer_text, source_text)
+            
+            if cosineValue > 1 :
+                cosineValue =1
+            if cosineValue < 0 :
+                cosineValue = 0
+            
             docism_nltk_values.append(cosineValue)
         else:
             docism_nltk_values.append(-1)
 
     print('embed_spacy features created!')
     return docism_nltk_values
+
