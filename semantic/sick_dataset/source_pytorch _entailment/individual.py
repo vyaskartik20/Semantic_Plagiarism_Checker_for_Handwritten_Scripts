@@ -1,7 +1,19 @@
 import os
-import torch
-from torch import Tensor
-from model import *
+# import torch
+# from torch import Tensor
+# from model import *
+import pandas
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.wrappers.scikit_learn import KerasClassifier
+from keras.utils import np_utils
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import KFold
+from sklearn.preprocessing import LabelEncoder
+from sklearn.pipeline import Pipeline
+from keras.models import model_from_json
+from numpy import array
+import numpy as np
 
 from distinctFeatures import cosine_1
 from distinctFeatures import cosine_2
@@ -79,20 +91,29 @@ def make_features(text1,text2) :
     return arr
 
 def predict(row, model):
-    # convert row to data
-    row = Tensor([row])
     # make prediction
-    yhat = model(row)
-    # retrieve numpy array
-    yhat = yhat.detach().numpy()
+    row = np.array(row)
+    row = row.reshape(-1,15)
+    yhat = np.argmax(model.predict(row), axis=-1)
     return yhat
 
 def main() :
     
     files = os.listdir('docs')
     
-    PATH = 'model/mod.pt'
-    model = torch.load(PATH)
+    # PATH = 'model/mod.pt'
+    # model = torch.load(PATH)
+
+    # load json and create model
+    json_file = open('model.json', 'r')
+    loaded_model_json = json_file.read()
+    json_file.close()
+    model = model_from_json(loaded_model_json)
+    # load weights into new model
+    model.load_weights("model.h5")
+    print("Loaded model from disk")
+    model.compile(loss='categorical_crossentropy',
+                        optimizer='adam', metrics=['accuracy'])
     
     for file1 in files :
         file1 = 'docs/' + file1
