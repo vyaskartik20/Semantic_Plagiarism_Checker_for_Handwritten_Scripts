@@ -1,0 +1,91 @@
+CS323 Artificial Intelligence 
+Notes Assignement 1
+Kartik Vyas B18CSE020
+
+
+Introduction
+The  purpose of Artificial intelligence is to ease out the activitiestasks for humans with the help of machinery. We want to make machines that resemble us and perform the tasks for us and are in some ways, even better than ourselves, humans. We want the machines to think and act like us.
+
+
+Rationality 
+Rationality is concerned with maximizing the utility of the decisions that are made. It can be interpreted as taking the best possible decisions for some predefined goals. We are not concerned about the thought process behind the decisions and only the decisions and their utility is stressed upon. 
+
+So can we mimic the human brain 
+Human brain is capable of making rational decisions by considering different outcomes and their utility. But it is difficult to reverse engineer, that is we cannot apply the similar approach such as a brain for the machines. But we can have something that can inspire us to achieve our goal.
+Let us consider the case of birds. Wings help the bird to fly by flapping wings,  we took this idea and attached wing like structures to aeroplanes with the needed optimizations(no flapping). Thus, we know that the components of the brain can lead machines to making rational decisions.
+
+
+History of AI
+In the era from the 1940s to late 1960s, people were optimistic and believed that advancement would be feasible and achievable. They believed that such machines can be designed.
+From the early 1970s to late 1980s, this era is called AI winter as the researchers lost motivation due to the conventional knowledge based approach. From the early 1990s, the era is referred to as AI Spring. With the onset of probability and technical depth, researchers achieved a few milestones. But is there still a long way ahead? What can AI do?
+
+
+What can AI do and what AI cannot do?
+AI can play a good game of chess, it can buy groceries from the web, it can convey information to us for hours, it can do the laundry. But, there are still a lot of tasks, trivial even, which AI cannot perform. Good examples of this can be that AI cant buy groceries from a market store, it cannot have a completely meaningful two way conversation with us. It may or may not be able to prove a theorem based on the theorem, it may or may not be able to perform surgical operations and it needs human supervision for that.
+
+
+Natural Language
+Speech recognition and text to speech synthesis has undergone large progress in the last five to ten years. AI is basically traversing a ‘S’ curve, we do not the other side.
+We are still not through with language conversions, despite working on it from the last 50 years. 
+
+
+Vision
+Currently, we are able to recognize different animal species with considerable accuracy but the movie scenes in which everything can be identified are still out of scope for the current advancement level.  
+
+
+Robotics
+We have built robots that can do simple physical tasks such as folding clothes(only towels) and walking, pushups, etc. But these robots are extremely slow and would not work in case of slightest different environments.
+
+
+Game Playing
+Machines are equipped now to play chess and other games. They work on the basis of considering every possibility and then figuring out which combinations work and then learning and performing better with more activity. But if we consider a game with a large number of cases and possibilities, then the machine  would not be able to play optimally and timely, due to the large number of possibilities at every move. 
+
+
+Logic
+One of the first applications of AI, significant progress has been made in this area. Mathematical Theorems can be proved which might not be so trivial for humans.
+
+
+Is AI going to be everywhere?
+AI is used in search engines optimization, machinery, help desks, medical treatment  diagnosis, games, spam messages detections, smart devices. AI is going to be everywhere and will make things easy for us.
+
+
+Designing Rational Agents
+An agent acts according to the environment. It perceives the environment and then makes decisions. A rational agent makes the decisions that maximizes the utility. The environment characteristics decide the selection of rational decisions.
+
+
+Types of Agents
+Reflex Agents  Take the action according to the current environment. They may use some memory as well. Do not think of the consequences of their actions.
+An example can be when we put our hand on fire by mistake, we pull it back without reasoning. This example gives us an indication that they can be rational agents. But it is not necessarily the case. Say, in the case of the Pacman game, if there is a wall between the agent and the food, then the agent would not move due to the  collision with the wall. Hence, it is not a rational agent.
+Planning Agents 
+They think of all the possible solutions available, make conclusions on that  basis and make a rational decision. They think of what if situations. They find the solution if it is present.
+
+
+Replanning  Replanning is an extension of planning. Replanning consides just the solutions for the next move and then executes and then again formulates the plan on the basis of the new environment. This is helpful when there are many possibilities and we want the solution to be formulated quickly.
+In the case of a pacman game, if we use a planning approach, it will take time in the beginning and then come up with a final solution and execute it. In case of replanning approach, only possibilities for the next move i.e only four possibilities are to be checked, thus it quickly comes up with the solution.
+
+
+Search Problems
+State Space  All the possible states that the agent and environment can have.
+Successor Function  The set of next possible states from the current state
+Start State  The starting environment and the agent characteristics given.
+Goal Test   The final state which is to be reached
+Solution  The sequence of actions to achieve the goal state from the start state.
+
+
+State Space 
+Problem  Eat All Dots in PacMan game
+States  Coordinates of agent, boolean matrix for food
+Actions  North South East West [NSEW]
+Successor   Update the agent coordinates and the food boolean matrix accordingly
+Goal Test  All food eaten 
+
+
+State Space Size 
+In PacMan game, it would comprise a factor of the following aspects  
+Agent Positions
+Food Count
+Ghost Positions
+Agent Direction Facing
+Different states would result in different successor functions.
+
+
