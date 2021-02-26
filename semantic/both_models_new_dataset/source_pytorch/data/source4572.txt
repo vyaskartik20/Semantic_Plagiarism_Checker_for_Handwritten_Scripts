@@ -1,0 +1,1 @@
+Lossless / nondestructive edits are reversible and would entail transforming and/or appending the data in a way that could be reversed.

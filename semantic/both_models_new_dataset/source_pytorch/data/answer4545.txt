@@ -1,0 +1,1 @@
+A method used to calculate the distance between stars is 3 Dimensional trigonometry.

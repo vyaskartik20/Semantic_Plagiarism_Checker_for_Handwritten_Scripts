@@ -1,0 +1,1 @@
+There is no test that can tell you if it is sealed or not.
