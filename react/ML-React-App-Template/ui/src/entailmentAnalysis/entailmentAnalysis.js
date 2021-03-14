@@ -74,7 +74,7 @@ export default class EntailmentAnalysis extends Component {
     return (
       <Container>
         <div>
-          <h1 className="title">Real Plagiarism</h1>
+          <h1 className="title"> Entailment Analysis </h1>
         </div>
         <div className="content">
           <Form>

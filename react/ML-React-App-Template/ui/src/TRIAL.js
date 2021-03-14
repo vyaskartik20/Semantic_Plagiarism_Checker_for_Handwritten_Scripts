@@ -23,7 +23,7 @@ import RealPlagiarism from './realPlagiarism/realPlagiarism';
 import OnlinePlagiarism from './onlinePlagiarism/onlinePlagiarism';
 import SemanticSimilarity from './semanticSimilarity/semanticSimilarity';
 import EntailmentAnalysis from './entailmentAnalysis/entailmentAnalysis';
-import Background from './images/3.jfif';
+import Background from './images/coding20.jpg';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -92,10 +92,61 @@ export default function App() {
   
   
   const Home =() => (
+
+    // <Grid container component="main">
+    //   <CssBaseline />
+    //   <Grid item xs={false} sm={4} md={6} />
+    //   <Grid item xs={12} sm={8} md={6}  component={Paper} elevation={6} square>
+    //     <div >
+    //       {/* <Button
+    //         type="submit"
+    //         fullWidth
+    //         variant="contained"
+    //         color="primary"
+    //         className={classes.submit}
+    //       >
+    //         Sign In
+    //       </Button>
+    //        */}
+    //       <AppBar position="static"  style={{ background: 'inherit' }} >
+    //         <Toolbar>
+    //           <Typography variant="h3" style={{color:'rgb(26,80,22)'}} >
+    //             Pacify 
+    //           </Typography>
+    //         </Toolbar>
+    //       </AppBar>
+    //       <div style={{ marginTop:'18%', marginBottom:'6%' ,width: '40%' }} >
+    //         <Button variant="contained" size="large" style={{width: '100%',color:'red', backgroundColor:'white'}} href="Compiler">
+    //           Compiler
+    //         </Button>
+    //       </div>
+    //       <div style={{margin:'6%',width: '40%' }}>
+    //         <Button variant="contained" size="large" style={{width: '100%',color:'red', backgroundColor:'white'}} href="#contained-buttons">
+    //           Test Case Genreator
+    //         </Button>
+    //       </div>
+    //       <div style={{margin:'6%',width: '40%'}}>
+    //         <Button variant="contained" size="large" style={{width: '100%' ,color:'red', backgroundColor:'white'}}  href="#contained-buttons">
+    //           Debugger
+    //         </Button>
+    //       </div>
+    //       {/* <div></div> */}
+    //       <div style={{alignSelf:'flex-end', justifyContent:'space-between', marginTop:'6%'}}>
+    //         <h3 style={{color:'white'}}>
+    //           Developed by Kartik and Aditya 
+    //         </h3>
+    //       </div>
+    //     </div>
+    //   </Grid>
+    //   {/* <Grid item xs={false} sm={4} md={4} className={classes.image} /> */}
+    // </Grid>
+
+
+
   <Grid container component="main" className={useStyles().root}>
       <CssBaseline />
-      {/* <Grid item xs={false} sm={4} md={1} className={useStyles().image} /> */}
-      <Grid item xs={12} sm={8} md={12} className={useStyles().other} component={Paper} elevation={6} square>
+      <Grid item xs={false} sm={4} md={6} className={useStyles().image} />
+      <Grid item xs={12} sm={8} md={6} className={useStyles().other} component={Paper} elevation={6} square>
         <div className={useStyles().paper}>
           {/* <Button
             type="submit"
@@ -165,6 +216,6 @@ export default function App() {
           </div>
         </div>
       </Grid>
-      {/* <Grid item xs={false} sm={4} md={1} className={useStyles().image} /> */}
+      {/* <Grid item xs={false} sm={4} md={4} className={classes.image} /> */}
     </Grid>
 )

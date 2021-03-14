@@ -74,7 +74,7 @@ export default class SemanticSimilarity extends Component {
     return (
       <Container>
         <div>
-          <h1 className="title">Real Plagiarism</h1>
+          <h1 className="title">Semantic Similarity</h1>
         </div>
         <div className="content">
           <Form>
