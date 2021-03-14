@@ -1,5 +1,5 @@
-/* html, body {
-  background: url('./images/3.jfif') center center no-repeat;
+html, body {
+  /* background: url('./images/3.jfif') center center no-repeat; */
   background-size: cover;
   color: white;
   height: 100%;
@@ -41,4 +41,4 @@ label {
 
 #result {
   color: #000;
-} */
+}
