@@ -43,3 +43,13 @@ label {
 #result {
   color: #000;
 }
+
+p {
+  color: black;
+  /* background: rgb(197, 13, 13); */
+}
+
+/* .texthelp {
+  color: black;
+  background: rgb(197, 13, 13);
+} */

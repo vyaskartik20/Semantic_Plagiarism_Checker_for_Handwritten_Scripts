@@ -25,6 +25,7 @@ html, body {
   font-size: 4em;
   letter-spacing: 0.15rem;
   color: rgb(197, 13, 13);
+  text-shadow: 1px 1px rgb(197, 13, 13);
 }
 
 label {
