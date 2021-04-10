@@ -1,10 +1,23 @@
-html, body {
-  background: url('./images/3.jfif') center center no-repeat;
+.coverImage{
+  background-image:url('./images/3.jfif');
+  background-position: 'center';
+  background-size: 'cover';
+  height : '100%';
+  width : '100%';
+  background-attachment : 'fixed';
+}
+
+/* .coverImage{
+  background: url('./images/3.jfif');
+  background-repeat:  no-repeat;
   background-size: cover;
   color: white;
   height: 100%;
   width: 100%;
-}
+  background-position:'center' ;
+  background-size:'cover' ;
+  background-attachment : 'fixed';
+} */
 
 .content {
   margin: auto;
@@ -14,6 +27,7 @@ html, body {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
+  word-wrap: break-word;
 }
 
 .title {

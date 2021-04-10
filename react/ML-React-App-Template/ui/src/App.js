@@ -36,9 +36,9 @@ const useStyles = makeStyles((theme) => ({
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
       backgroundPosition: 'center',
     backgroundSize: 'cover',
-    height : '100%',
+    // height : '100%',
     width : '100%',
-    backgroundAttachment : 'fixed'
+    // backgroundAttachment : 'fixed'
   },
   image: {
     backgroundImage: 'url(https://picsum.photos/1000)',
@@ -79,8 +79,8 @@ const useStyles = makeStyles((theme) => ({
     // color:'white'
     backgroundImage: `url(${Background})`,
     backgroundRepeat: 'no-repeat',
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+    // backgroundColor:
+    //   theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
       backgroundPosition: 'center',
     backgroundSize: 'cover',
     height : '100%',
@@ -148,7 +148,7 @@ const Home =() => (
           */}
           <AppBar position="static"  style={{ background: 'rgba(90, 56, 200, 0.4)' , textAlign : 'center', justifyContent : 'center' }} >
             <Toolbar>
-              <Typography variant="h3" style={{color:'rgba(255, 255, 255, 0.95)', width : '100%', textShadow : '1px 1px rgb(100, 10, 255)'}} >
+              <Typography variant="h3" style={{color:'rgba(255, 255, 255, 0.95)', width : '100%', textShadow : '1npx 1px rgb(100, 10, 255)'}} >
                 Plagiarism, Similarity and Entailment Analysis
               </Typography>
             </Toolbar>

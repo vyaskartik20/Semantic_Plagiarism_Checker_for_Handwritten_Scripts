@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.css';
+import Background from './images/3.jfif';
 
 export default class RealPlagiarism extends Component {
 
@@ -57,7 +58,24 @@ export default class RealPlagiarism extends Component {
   }
 
   handleCancelClick = (event) => {
-   
+    // const formData = this.state.formData;
+    // this.setState({ isLoading: true });
+    // fetch('http://127.0.0.1:5000/prediction2/', 
+    //   {
+    //     headers: {
+    //       'Accept': 'application/json',
+    //       'Content-Type': 'application/json'
+    //     },
+    //     method: 'POST',
+    //     body: JSON.stringify(formData)
+    //   })
+    //   .then(response => response.json())
+    //   .then(response => {
+    //     this.setState({
+    //       result: response.result,
+    //       isLoading: false
+    //     });
+    //   });
     this.setState({ result: "",
                     formData : {
                       textfield1 : "",
@@ -72,6 +90,16 @@ export default class RealPlagiarism extends Component {
     const result = this.state.result;
 
     return (
+      <div style={{backgroundImage: `url(${Background})`,
+        // backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        height : '100%',
+        minHeight : '100vh',
+        width : '100%',
+        backgroundAttachment : 'fixed',
+        backgroundRepeat : 'no-repeat',
+      }}
+      >
       <Container>
         <div>
           <h1 className="title">Real Plagiarism</h1>
@@ -169,6 +197,7 @@ export default class RealPlagiarism extends Component {
           }
         </div>
       </Container>
+      </div>
     );
   }
 }

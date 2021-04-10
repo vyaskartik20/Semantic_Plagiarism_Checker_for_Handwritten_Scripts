@@ -14,6 +14,7 @@ html, body {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
+  word-wrap: break-word;
 }
 
 .title {

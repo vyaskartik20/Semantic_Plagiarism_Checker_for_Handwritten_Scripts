@@ -6,6 +6,23 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.css';
+import { makeStyles } from '@material-ui/core/styles';
+import Background from './images/3.jfif';
+
+// const useStyles = makeStyles((theme) => ({
+  
+//   root: {
+//     backgroundImage: `url(${Background})`,
+//     // backgroundRepeat: 'no-repeat',
+//     backgroundColor:
+//       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+//       backgroundPosition: 'center',
+//     backgroundSize: 'cover',
+//     // height : '100%',
+//     width : '100%',
+//     // backgroundAttachment : 'fixed'
+//   }
+// }));
 
 export default class OnlinePlagiarism extends Component {
 
@@ -38,7 +55,7 @@ export default class OnlinePlagiarism extends Component {
   handlePredictClick = (event) => {
     const formData = this.state.formData;
     this.setState({ isLoading: true });
-    fetch('http://127.0.0.1:5000/prediction1/', 
+    fetch('http://127.0.0.1:5000/predictionOnline/', 
       {
         headers: {
           'Accept': 'application/json',
@@ -72,7 +89,16 @@ export default class OnlinePlagiarism extends Component {
     const result = this.state.result;
 
     return (
-      <Container>
+      <div style={{backgroundImage: `url(${Background})`,
+        // backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        height : '100%',
+        width : '100%',
+        backgroundAttachment : 'fixed',
+        backgroundRepeat : 'no-repeat',
+      }}
+      >
+      <Container style={{minHeight:'100vh'}} >
         <div>
           <h1 className="title">Online Plagiarism</h1>
         </div>
@@ -80,15 +106,15 @@ export default class OnlinePlagiarism extends Component {
           <Form>
             <Form.Row>
               <Form.Group as={Col}>
-                <Form.Label>Text Field 1</Form.Label>
+                <center><Form.Label>Text Field</Form.Label></center>
                 <Form.Control 
                   type="textarea" 
-                  placeholder="Text Field 1" 
+                  placeholder="Text Field" 
                   name="textfield1"
                   value={formData.textfield1}
                   onChange={this.handleChange} />
               </Form.Group>
-              <Form.Group as={Col}>
+              {/* <Form.Group as={Col}>
                 <Form.Label>Text Field 2</Form.Label>
                 <Form.Control 
                   type="textarea" 
@@ -96,7 +122,7 @@ export default class OnlinePlagiarism extends Component {
                   name="textfield2"
                   value={formData.textfield2}
                   onChange={this.handleChange} />
-              </Form.Group>
+              </Form.Group> */}
             </Form.Row>
             {/* <Form.Row>
               <Form.Group as={Col}>
@@ -169,6 +195,7 @@ export default class OnlinePlagiarism extends Component {
           }
         </div>
       </Container>
+      </div>
     );
   }
 }

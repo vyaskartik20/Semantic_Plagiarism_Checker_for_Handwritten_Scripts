@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.css';
+import Background from './images/3.jfif';
 
 export default class SemanticSimilarity extends Component {
 
@@ -72,6 +73,16 @@ export default class SemanticSimilarity extends Component {
     const result = this.state.result;
 
     return (
+      <div style={{backgroundImage: `url(${Background})`,
+        // backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        height : '100%',
+        minHeight : '100vh',
+        width : '100%',
+        backgroundAttachment : 'fixed',
+        backgroundRepeat : 'no-repeat',
+        }}
+      >
       <Container>
         <div>
           <h1 className="title">Semantic Similarity</h1>
@@ -169,6 +180,7 @@ export default class SemanticSimilarity extends Component {
           }
         </div>
       </Container>
+      </div>
     );
   }
 }
