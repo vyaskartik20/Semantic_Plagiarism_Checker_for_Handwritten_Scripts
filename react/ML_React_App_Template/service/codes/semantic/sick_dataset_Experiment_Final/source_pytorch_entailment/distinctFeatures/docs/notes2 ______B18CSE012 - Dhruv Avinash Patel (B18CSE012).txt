@@ -1,0 +1,37 @@
+#Admissible Heuristics
+An Admissible Heuristic function is a non-negative function is a non-negative function that never overestimates the cost to reach the goal.
+One way to construct an admissible heuristic function is to find a solution to a relaxed problem (one with fewer concentrations). Since a solution to the full problem is a solution to the simpler problem, optimal solution to a simpler problem would not be higher than optimal solution to the simpler problem.
+
+#Dominance in heuristics
+Given two admissible Heuristic function, if one is greater or equal to another one for every state, then that function Dominates the other function. Greater the dominance, more closer the function to the exact heuristic. We can also combine admissible Heuristics with no dominance to give the max of the set for every state, to get a  function that dominates its set.
+
+#Graph Search
+A problem we face in tree search is repetition of expanding the same state more than one time in case of a loop. A way to avoid expanding twice is to have a set of states that are already expanded and skip them is encountered twice. This will not wreck the completeness, since all the viable options are already being considered with the first expansion.
+
+#Consistency of Heuristics
+A heuristic is consistent when the Heuristics of a state is less than the sum of the Heuristics of any neighbour state and the actual cost from neighbour to the state. A Consistent heuristic is also admissible and f value of the path never decrease.
+
+#Optimality of graph search
+If we use a consistent Heuristic for an A* search problem, the path selected will always have increasing f value; hence the optimal states would be expanded first than the sub-optimal states.
+{Proof}
+
+#Planning and Identification problems
+While defining a problem, we assume a single agent with deterministic actions is in play, with well-defined state and discrete state space.
+A planning problem focuses on the path to the goal, keeping in mind the cost and depth of the path. Heuristics are used as guidance in Heuristic problems.
+An Identification based problem focus on the goal instead of the path. Constraint Satisfaction problem is generally focused in these type of problems.
+
+#Constraint Satisfaction Problem
+CSP consists of three components, X (set of variables), D(set of allowable value for each variable) and constraint C (set of pair <scope, rel>, where the scope is a tuple of variables that participate in the rel). Constraints can be divided into 3 categories, unary constraints, binary constraints and Higher-order constraints. 
+A CSP can be represented by an undirected graph, called Constraint Problem. The nodes represent the variables and are connected to variables that can participate in the given constraint, C. Representing the problem in CSP format makes it easier to solve than create a custom algorithm for each problem. Also, the CSP can eliminate the large swatches of a state-space search.
+Let us take the example of a crossword puzzle in which start location and direction of the words are given, along with the list of words to be placed. The variable would be the start location of the word with the direction and its domain would be the accepted words for that variable. The constraints would be the locations where the words intersect should have the same letter.
+
+#Standard Search Formulation
+Standard Search Formulation for a CSP consists of 3 components, initial state, the successor function (assigning value to unassigned variables from its domain), and goal test (to check is the current assignment is complete). The basic and slow method to solve the problem would be to generate one by one all the possible variable assignment satisfying the constraints and checking if its the goal state.
+
+#Backtracking and Filtering
+A better approach to this would be using a depth-first search algorithm with proper ordering and constraint checking as we go. Trying to place the variables that are highly constrained or with a smaller range (minimum remaining Value(MRV)) and checking the constraint satisfaction as early as possible would make the algorithm more efficient. 
+Filtering/Forward Checking the domains of the unassigned variables of bad options added by the constraints added by the existing assignment can help us avoid some inevitable failures which we may encounter later. For eg., in case of the crossword problem, the domain of unassigned words intersecting the current word could be narrowed down early.
+
+#Consistency Driven
+A problem is i-consistent if for any choice of domains Dj1, Dj2, .., Dji and for any choice of values in the first i-1 domains there is a value in Dji such that the i-tuple consisting of all these values will not violate any constraint. A problem with i equal to 1 is called Node-consistent. Other problems are called Arc-consistent.
+Any problem with unary and binary constraints can be reduced to 1-consistent and 2-consistent. This is the basic assumptions we take while constructing the AC-3 algorithm[refer slide for the algorithm]. After we make the problem consistent, we run a backtracking algorithm to find a solution, if it exists. The limitation here is that the backtracking algorithm still needs to be run even if they have one or no solution left.

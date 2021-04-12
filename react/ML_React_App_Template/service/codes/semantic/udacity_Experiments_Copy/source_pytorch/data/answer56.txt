@@ -1,0 +1,1 @@
+ibm said the rational products were also integrated with rational purifyplus, which allows developers to work in java, visual c# and visualbasic .net.

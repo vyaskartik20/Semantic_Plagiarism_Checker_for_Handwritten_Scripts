@@ -1,0 +1,1 @@
+commercial releases of the 2.6 kernel by major linux distributors still remain months away.

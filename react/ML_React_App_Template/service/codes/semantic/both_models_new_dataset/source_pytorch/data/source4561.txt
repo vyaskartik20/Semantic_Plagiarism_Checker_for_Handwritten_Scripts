@@ -1,0 +1,1 @@
+ depth of field also decreases with camera-subject distance.

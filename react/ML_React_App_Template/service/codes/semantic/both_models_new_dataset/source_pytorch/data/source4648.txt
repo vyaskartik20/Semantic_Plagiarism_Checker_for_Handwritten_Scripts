@@ -1,0 +1,1 @@
+The minimal change needed to avoid disconcerting alliteration is to just call it a "simple example service".

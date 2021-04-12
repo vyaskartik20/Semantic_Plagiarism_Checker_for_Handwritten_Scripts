@@ -1,0 +1,1 @@
+the company updated the mysql 4.0 software with the ability to run on the hp-ux 11i unix operating system and linux on servers equipped with intel's 64-bit itanium 2 processor.

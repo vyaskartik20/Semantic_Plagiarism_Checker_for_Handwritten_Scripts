@@ -1,0 +1,1 @@
+the vendor has added 100 new third-party systems and 100 new components to the operating system's hardware compatibility list (hcl).

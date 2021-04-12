@@ -1,0 +1,1 @@
+ all open windows shrink to fit on the screen but are still clear enough to identify.

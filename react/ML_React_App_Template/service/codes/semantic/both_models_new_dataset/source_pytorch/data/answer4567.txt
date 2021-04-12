@@ -1,0 +1,1 @@
+A class 6 card in theory should be more than enough bandwidth for HD (1080) video for the 550D (48 MBit).

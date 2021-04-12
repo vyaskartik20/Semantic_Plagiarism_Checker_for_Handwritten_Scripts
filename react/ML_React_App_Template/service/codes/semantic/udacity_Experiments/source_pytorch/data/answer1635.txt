@@ -1,0 +1,1 @@
+the new wpan standard uses the 2.4 ghz unlicensed frequency band and specifies raw data rates of 11, 22, 33, 44 and 55mbit/s.

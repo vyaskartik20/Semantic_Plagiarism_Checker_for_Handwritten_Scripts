@@ -1,0 +1,1 @@
+There is actually functionality in most browsers already in place to do just this.

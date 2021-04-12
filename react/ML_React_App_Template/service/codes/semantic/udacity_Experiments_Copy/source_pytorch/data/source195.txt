@@ -1,0 +1,1 @@
+one of the features is the ability to delete data on a handheld device or lock down the device should a user lose it.

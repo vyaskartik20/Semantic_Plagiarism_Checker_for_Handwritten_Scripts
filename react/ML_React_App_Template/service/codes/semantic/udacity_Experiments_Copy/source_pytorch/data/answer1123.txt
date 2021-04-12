@@ -1,0 +1,1 @@
+it also supports coloured labels to better organise documents, and dynamic browsing of the network for mac, windows and unix file servers.

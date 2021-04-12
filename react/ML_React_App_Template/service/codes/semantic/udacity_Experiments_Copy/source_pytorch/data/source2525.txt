@@ -1,0 +1,1 @@
+the search feature works with around 120,000 titles from 190 publishers, which translates into some 33 million pages of searchable text.

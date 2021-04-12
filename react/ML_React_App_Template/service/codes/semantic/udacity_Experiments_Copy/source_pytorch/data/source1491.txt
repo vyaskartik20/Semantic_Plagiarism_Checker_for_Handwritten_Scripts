@@ -1,0 +1,1 @@
+the service also features a "self-healing" option that can provide continuous access to critical applications.

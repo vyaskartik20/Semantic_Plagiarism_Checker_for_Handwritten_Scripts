@@ -1,0 +1,1 @@
+with integrated amplifiers for driving microphone and speakers, bluecore3-multimedia is available in lfbga package.
