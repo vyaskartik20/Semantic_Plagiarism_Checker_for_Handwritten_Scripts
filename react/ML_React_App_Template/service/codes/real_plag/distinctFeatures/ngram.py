@@ -8,8 +8,8 @@ def calculate_containment_individual(text1,text2 , n):
 
     intersection = [min(a, s) for a, s in zip(*ngram_array)]
     
-    if sum(ngram_array[0] == 0):
-        return 1
+    # if sum(ngram_array[0] == 0):
+    #     return 0
     
     try :
         c_value = sum(intersection) / sum(ngram_array[0])

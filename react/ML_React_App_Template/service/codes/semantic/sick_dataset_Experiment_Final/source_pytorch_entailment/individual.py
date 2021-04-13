@@ -145,7 +145,7 @@ def web_entailment_analysis(text1, text2):
     
     result = make_features(text1,text2)
                 
-    print('open')
+    # print('open')
                 
     PATH = 'D:/BTP_2/react/ML_React_App_Template/service/codes/semantic/sick_dataset_Experiment_Final/source_pytorch_entailment/model.json'
     json_file = open(PATH, 'r')
@@ -160,7 +160,7 @@ def web_entailment_analysis(text1, text2):
                         optimizer='adam', metrics=['accuracy'])
     # print (result)
     
-    print('here')
+    # print('here')
     
     
     yhat = predict(result, model)

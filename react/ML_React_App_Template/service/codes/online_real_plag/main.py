@@ -35,7 +35,7 @@ def web_real_online_similarity(text) :
     
     # print(f"Current File is   ::    {file}")
 
-    data = []
+    data = ""
 
     for match in matches:
         source_text = websearch.extractText(match)
@@ -49,8 +49,9 @@ def web_real_online_similarity(text) :
         
         # print(f" Plag with  {match} is   ::     {100*plag_score} ")
 
-        temp = str({match}) + str({100 * plag_score})
-        data.append( str(temp))
+        temp = str(match) + str(' : ') + str([100 * plag_score]) + str("\n")
+        # data.append( str(temp))
+        data = data + temp
 
     return data
             # print (similarity.returnTable(similarity.report(str(file1_data))))

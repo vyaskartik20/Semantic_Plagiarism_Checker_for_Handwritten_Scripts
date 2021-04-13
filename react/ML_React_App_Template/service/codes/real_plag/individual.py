@@ -7,10 +7,11 @@ COSINE_2 = 0.05
 DOCISM_NLTK = 0.05 
 LCS = 0.1
 SEQUENCE_MATCHER = 0.2
+# codes.real_plag.
 
 from codes.real_plag.distinctFeatures import cosine_2
 
-# from distinctFeatures import cosine_1
+# from codes.real_plag. import cosine_1
 # from distinctFeatures import cosine_2
 # from distinctFeatures import cosine_trigram
 from codes.real_plag.distinctFeatures import docism_nltk
@@ -110,6 +111,15 @@ def web_real_similarity(text1,text2) :
         # if res :
         #     res =0
     
+    print(f'ngram2 :  {result[0]} ') 
+    print(f'ngram3 :  {result[1]} ') 
+    print(f'ngram4 :  {result[2]} ') 
+    print(f'cosine2 :  {result[3]} ') 
+    print(f'docismNLTK :  {result[4]} ') 
+    print(f'lcs :  {result[5]} ') 
+    print(f'seqmatcher :  {result[6]} ') 
+    
+    
     ans = ans + result[0] * N_GRAM_2
     ans = ans + result[1] * N_GRAM_3
     ans = ans + result[2] * N_GRAM_4
@@ -119,7 +129,14 @@ def web_real_similarity(text1,text2) :
     ans = ans + result[6] * SEQUENCE_MATCHER
     
     # print(f"{file1} and {file2}  ::   {ans} ")
+    # print(ans)
+    ans = ans*100
     return ans
                     
 if __name__ == '__main__':
-    main()
+    # main()
+
+    text1 = "kartik vyas is a boy njn b jkds nvnre eebcb ioner bb"
+    text2 = "kartik vyas is not a girl student at indian fner jfnre ffner "
+
+    web_real_similarity(text1,text2)
